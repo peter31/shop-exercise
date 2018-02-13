@@ -1,14 +1,21 @@
 <?php
 
+echo "<!DOCTYPE html>";
+echo "<html lang='en'>";
+echo "<head>";
+echo "<meta charset='UTF-8'>";
+echo "<title>Users</title>";
+echo "</head>";
+echo "<body>";
+echo "<p><a href='/admin/users/add'>Add user  through form</a></p>";
+echo "<p><a href='/admin/users/csv'>Add user(s)  through sending CVS file</a></p>";
+echo "<table border='1'>";
+echo "<tr><th>id</th><th>name</th><th>email</th><th>status</th><th>created</th><th>updated</th></tr>";
 require __DIR__ . '/config.php';
-
 $dbOpen = mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
 $sqlQuery = 'SELECT * FROM users';
 $sqlData = mysqli_query($dbOpen, $sqlQuery);
-
-echo "<table border='1' cellpadding='5'>";
-echo "<tr><th>id</th><th>name</th><th>email</th><th>status</th><th>created</th><th>updated</th></tr>";
-while($users = mysqli_fetch_assoc($sqlData)) {
+while ($users = mysqli_fetch_assoc($sqlData)) {
     echo "<tr><td>";
     echo $users['id'];
     echo "</td><td>";
@@ -23,6 +30,8 @@ while($users = mysqli_fetch_assoc($sqlData)) {
     echo $users['updated'];
     echo "</td></tr>";
 }
-echo "</table>";
-
 mysqli_close($dbOpen);
+echo "</table>";
+echo "<p>Powered by Peter</p>";
+echo "</body>";
+echo "</html>";
