@@ -1,0 +1,8 @@
+<?php
+
+$database = [
+    'host' => 'localhost',
+    'user' => '',
+    'pass' => '',
+    'db' => 'some_db_name',
+];
