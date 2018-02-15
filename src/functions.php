@@ -7,11 +7,6 @@ function openDB()
     return $db;
 }
 
-function closeDB()
-{
-    mysqli_close(openDB());
-}
-
 function sqlQuery($var)
 {
     mysqli_query($db, $var);

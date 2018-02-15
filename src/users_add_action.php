@@ -16,7 +16,7 @@ if (mysqli_fetch_row(mysqli_query(openDB(), $sqlQuery)) === NULL) {
     mysqli_query(openDB(), $updateUser);
     echo('User was updated');
 }
-closeDB();
+mysqli_close($db);
 
 echo "<!DOCTYPE html>";
 echo "<html lang='en'>";
