@@ -1,39 +1,30 @@
 <?php
 
+require __DIR__ . '/functions.php';
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST["user"];
-    $email = $_POST["email"];
-}
+$user = $_POST["user"];
+$email = $_POST["email"];
 
+$sqlQuery = 'SELECT * FROM users WHERE email = "' . $email . '"';
+$addUser = 'INSERT INTO users SET name = "' . $user . '", email = "' . $email . '"';
+$updateUser = 'UPDATE users SET name = "' . $user . '" WHERE email = "' . $email . '"';
 
-require __DIR__ . '/config.php';
-
-$db = mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
-
-$query = 'SELECT * FROM users WHERE email = "' . $email . '"';
-$insert = 'INSERT INTO users SET name = "' . $user . '", email = "' . $email . '"';
-$update = 'UPDATE users SET name = "' . $user . '" WHERE email = "' . $email . '"';
-
-if (mysqli_fetch_row(mysqli_query($db, $query)) === NULL) {
-    $added++;
-    mysqli_query($db, $insert);
+if (mysqli_fetch_row(mysqli_query(openDB(), $sqlQuery)) === NULL) {
+    mysqli_query(openDB(), $addUser);
     echo('User was added');
 } else {
-    mysqli_query($db, $update);
+    mysqli_query(openDB(), $updateUser);
     echo('User was updated');
 }
-
-mysqli_close($db);
+closeDB();
 
 echo "<!DOCTYPE html>";
 echo "<html lang='en'>";
 echo "<head>";
 echo "<meta charset='UTF-8'>";
-echo "<title>Users</title>";
+echo "<title>FIRST</title>";
 echo "</head>";
 echo "<body>";
-echo "<p>Powered by Peter</p>";
+echo "<p><a href='/admin/users/add'>Add another one user</a></p>";
 echo "</body>";
 echo "</html>";
-

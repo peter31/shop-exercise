@@ -1,8 +1,10 @@
 <?php
 
-
-
 $users = [];
+$added = 0;
+$updated = 0;
+$total = 0;
+
 if($_POST['Check']) {
     if($_FILES['file']['name']) {
         $result = explode('.', $_FILES['file']['name']);
