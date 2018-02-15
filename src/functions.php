@@ -3,8 +3,7 @@
 function openDB()
 {
     require __DIR__ . '/config.php';
-    $db = mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
-    return $db;
+    return mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
 }
 
 function sqlQuery($var)
