@@ -18,7 +18,7 @@ if($_POST['Check']) {
     }
 }
 
-require __DIR__ . '/config.php';
+require dirname(dirname(__DIR__)) . '/config.php';
 
 $db = mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
 

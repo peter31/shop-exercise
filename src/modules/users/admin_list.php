@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/functions.php';
+require dirname(dirname(__DIR__)) . '/functions.php';
 
 echo "<!DOCTYPE html>";
 echo "<html lang='en'>";
