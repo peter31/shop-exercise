@@ -1,3 +1,3 @@
-<p>Copyright</p>
+<p>&copy; 2018<p>
 </body>
 </html>

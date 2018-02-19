@@ -1,3 +1,4 @@
+
 <?php include dirname(__DIR__) . "/header.php" ?>
 
 <form  action='/admin/users/add_action' method='POST'>
@@ -6,4 +7,5 @@
 <button>Add</button>
 </form>
 
-<?php include dirname(__DIR__) . "/footer.php" ?>
+<?php include dirname(__DIR__) . "/footer.php"; ?>
+
