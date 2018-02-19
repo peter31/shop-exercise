@@ -25,17 +25,17 @@ foreach ($users as $key => $value) {
     $total++;
     $name = $value[0];
     $email = $value[1];
-    $query = 'SELECT * FROM users WHERE email = "' . $email . '"';
-    $insert = 'INSERT INTO users SET name = "' . $name . '", email = "' . $email . '"';
-    $update = 'UPDATE users SET name = "' . $name . '" WHERE email = "' . $email . '"';
-    if (mysqli_fetch_row(mysqli_query($accessDB, $query)) === NULL) {
+    $sqlQuery = 'SELECT * FROM users WHERE email = "' . $email . '"';
+    $addUser = 'INSERT INTO users SET name = "' . $name . '", email = "' . $email . '"';
+    $updateUser = 'UPDATE users SET name = "' . $name . '" WHERE email = "' . $email . '"';
+    if (mysqli_fetch_row(mysqli_query($accessDB, $sqlQuery)) === NULL) {
         $added++;
-        mysqli_query($accessDB, $insert);
+        mysqli_query($accessDB, $addUser);
     } else {
-        mysqli_query($accessDB, $update);
+        mysqli_query($accessDB, $updateUser);
         $updated++;
     }
 }
 mysqli_close($accessDB);
 
-include dirname(dirname(__DIR__)) . '/header.php';
+include dirname(dirname(__DIR__)) . '/templates/users/csv_action.php';

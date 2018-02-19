@@ -10,7 +10,7 @@ $addUser = 'INSERT INTO users SET name = "' . $user . '", email = "' . $email . 
 $updateUser = 'UPDATE users SET name = "' . $user . '" WHERE email = "' . $email . '"';
 $accessDB = openDB();
 
-if (mysqli_fetch_row(mysqli_query($accesDB, $sqlQuery)) === NULL) {
+if (mysqli_fetch_row(mysqli_query($accessDB, $sqlQuery)) === NULL) {
     mysqli_query($accessDB, $addUser);
     $userResultString = 'User is added';
 } else {
@@ -19,4 +19,4 @@ if (mysqli_fetch_row(mysqli_query($accesDB, $sqlQuery)) === NULL) {
 }
 mysqli_close($accessDB);
 
-include dirname(dirname(__DIR__)) . "/templates/users/add_action.php";
+include dirname(dirname(__DIR__)) . '/templates/users/add_action.php';
