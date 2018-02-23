@@ -6,20 +6,21 @@ function openDB()
     return mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
 }
 
-function dataValidation($arr)
+function userAddValidation(array $params): array
 {
-    $errArr = [];
+    $errors = [];
 
-    if (empty($arr['user']) || empty($arr['email'])) {
-        $errArr[] = 'All fields must be completed';
+    if (empty($params['user']) || empty($params['email'])) {
+        $errors[] = 'All fields must be filled';
+    } else {
+        if (preg_match("/[a-zA-Z ]/", $params['user']) === 0) {
+            $errors[] = 'Name must be from letters and spaces';
+        }
+
+        if (filter_var($params['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
+            $errors[] = 'Is not a valid email address';
+        }
     }
 
-    if (preg_match("/[a-zA-Z ]/", $arr['user']) === 0) {
-        $errArr[] = 'Name must be from letters and spaces';
-    }
-
-    if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
-        $errArr[] = 'Is not a valid email address';
-    }
-    return $errArr;
+    return $errors;
 }

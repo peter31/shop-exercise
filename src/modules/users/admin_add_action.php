@@ -1,20 +1,19 @@
 <?php
 
-require dirname(dirname(__DIR__)) . '/functions.php';
+require_once dirname(dirname(__DIR__)) . '/functions.php';
 
-dataValidation($_POST);
+$errors = userAddValidation($_POST);
 
-if (!empty($errArr)) {
-    foreach ($errArr as $value)
-    {
-        echo $value;
-    }
+if (count($errors)) {
     include dirname(dirname(__DIR__)) . '/templates/users/add.php';
 } else {
-    $sqlQuery = 'SELECT * FROM users WHERE email = "' . $email . '"';
-    $addUser = 'INSERT INTO users SET name = "' . $user . '", email = "' . $email . '"';
-    $updateUser = 'UPDATE users SET name = "' . $user . '" WHERE email = "' . $email . '"';
+    $email = $_POST['email'];
+    $user = $_POST['user'];
+
     $accessDB = openDB();
+    $sqlQuery = 'SELECT * FROM users WHERE email = "' . $email . '"';
+    $addUser = 'INSERT INTO users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '", email = "' . $email . '"';
+    $updateUser = 'UPDATE users SET name = "' . $user . '" WHERE email = "' . $email . '"';
 
     if (mysqli_fetch_row(mysqli_query($accessDB, $sqlQuery)) === NULL) {
         mysqli_query($accessDB, $addUser);

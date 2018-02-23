@@ -1,23 +1,27 @@
 <?php
 
-var_dump($_FILES);
-die;
+require_once dirname(dirname(__DIR__)) . '/functions.php';
+
+//var_dump($_FILES);die;
 
 $users = [];
-if($_POST['csv']) {
-    if($_FILES['file']['name']) {
-        $result = explode('.', $_FILES['file']['name']);
-        if($result[1] == 'csv') {
-            $take = fopen($_FILES['file']['tmp_name'], "r");
-            while(($usersRow = fgetcsv($take)) !== FALSE) {
+if (array_key_exists('browse_csv', $_FILES)) {
+    $result = explode('.', $_FILES['browse_csv']['name']);
+    if ($result[1] === 'csv') {
+        $take = fopen($_FILES['browse_csv']['tmp_name'], "rb");
+        while (($usersRow = fgetcsv($take)) !== false) {
+            $errors = userAddValidation(
+                ['user' => $usersRow[0], 'email' => $usersRow[1]]
+            );
+
+            if (!count($errors)) {
                 $users[] = $usersRow;
             }
-            fclose($take);
         }
+        fclose($take);
     }
 }
 
-require dirname(dirname(__DIR__)) . '/functions.php';
 $accessDB = openDB();
 
 $added = 0;
