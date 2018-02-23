@@ -25,11 +25,11 @@ $total = 0;
 
 foreach ($users as $key => $value) {
     $total++;
-    $name = $value[0];
+    $user = $value[0];
     $email = $value[1];
     $sqlQuery = 'SELECT * FROM users WHERE email = "' . $email . '"';
-    $addUser = 'INSERT INTO users SET name = "' . $name . '", email = "' . $email . '"';
-    $updateUser = 'UPDATE users SET name = "' . $name . '" WHERE email = "' . $email . '"';
+    $addUser = 'INSERT INTO users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '", email = "' . $email . '"';
+    $updateUser = 'UPDATE users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '" WHERE email = "' . $email . '"';
     if (mysqli_fetch_row(mysqli_query($accessDB, $sqlQuery)) === NULL) {
         $added++;
         mysqli_query($accessDB, $addUser);
