@@ -6,21 +6,21 @@ function openDB()
     return mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
 }
 
-function userAddValidation(array $params): array
+function userAddValidation($arr)
 {
     $errors = [];
 
-    if (empty($params['user']) || empty($params['email'])) {
-        $errors[] = 'All fields must be filled';
+    if (empty($arr['user']) || empty($arr['email'])) {
+        $errors[] = 'All fields must be completed';
     } else {
-        if (preg_match("/[a-zA-Z ]/", $params['user']) === 0) {
+        if (preg_match("/[a-zA-Z ]/", $arr['user']) === 0) {
             $errors[] = 'Name must be from letters and spaces';
         }
-
-        if (filter_var($params['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
+        if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
             $errors[] = 'Is not a valid email address';
         }
     }
 
     return $errors;
+
 }
