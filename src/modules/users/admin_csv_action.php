@@ -1,7 +1,10 @@
 <?php
 
+var_dump($_FILES);
+die;
+
 $users = [];
-if($_POST['Check']) {
+if($_POST['csv']) {
     if($_FILES['file']['name']) {
         $result = explode('.', $_FILES['file']['name']);
         if($result[1] == 'csv') {
