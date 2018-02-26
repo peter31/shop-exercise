@@ -9,6 +9,8 @@
         <th>Status</th>
         <th>Created</th>
         <th>Updated</th>
+        <th></th>
+        <th></th>
     </tr>
     <?php foreach ($users as $user) { ?>
     <tr>
@@ -18,7 +20,10 @@
         <td><?php echo $user['status'] ?></td>
         <td><?php echo $user['created'] ?></td>
         <td><?php echo $user['updated'] ?></td>
+        <td><form  action='/admin/users/edit' method='POST'><input type="submit" name='Action' value='Edit'></form></td>
+        <td><form  action='/admin/users/delete' method='POST'><input type="submit" name='Action' value='Delete'></form></td>
     </tr>
+
 <?php } ?>
 </table>
 <?php include dirname(__DIR__) . '/footer.php' ?>

@@ -30,3 +30,8 @@ if ($path === '/admin/users/csv') {
 if ($path === '/admin/users/csv_action' && $method === 'POST') {
     require dirname(__DIR__) . '/src/modules/users/admin_csv_action.php';
 }
+
+// Форма редактирования пользователя ...
+if ($path === '/admin/users/edit') {
+    require dirname(__DIR__) . '/src/modules/users/admin_edit.php';
+}
