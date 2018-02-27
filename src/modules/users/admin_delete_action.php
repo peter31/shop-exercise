@@ -2,7 +2,7 @@
 
 require_once dirname(dirname(__DIR__)) . '/functions.php';
 
-$id = $_POST['id'];
+$id = $_GET['id'];
 
 $accessDB = openDB();
 
@@ -12,6 +12,6 @@ mysqli_query($accessDB, $deleteUser);
 
 mysqli_close($accessDB);
 
-$userResultString = 'User was changed';
+$userResultString = 'User was deleted';
 
 include dirname(dirname(__DIR__)) . '/templates/users/add_action.php';

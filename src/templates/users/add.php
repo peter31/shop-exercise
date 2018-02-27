@@ -1,5 +1,4 @@
 <?php include dirname(__DIR__) . '/header.php' ?>
-
 <?php if (!empty($errors)) { ?>
     <?php foreach($errors as $error) { ?>
     <span style="color: #C1272D;"><?php echo $error ?></span><br />

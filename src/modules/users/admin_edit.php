@@ -7,10 +7,10 @@ $id = ($_GET['id']);
 $accessDB = openDB();
 $sqlQuery = 'SELECT * FROM users WHERE id = "' . $id . '"';
 $sqlData = mysqli_query($accessDB, $sqlQuery);
-$user = mysqli_fetch_assoc($sqlData);
+$userData = mysqli_fetch_assoc($sqlData);
 mysqli_close($accessDB);
 
-$name = $user['name'];
-$email = $user['email'];
+$user = $userData['name'];
+$email = $userData['email'];
 
 include dirname(dirname(__DIR__)) . '/templates/users/edit.php';

@@ -2,18 +2,27 @@
 
 require_once dirname(dirname(__DIR__)) . '/functions.php';
 
-$id = $_POST['id'];
-$email = $_POST['email'];
-$user = $_POST['user'];
+$errors = userAddValidation($_POST);
 
-$accessDB = openDB();
+if (count($errors) > 0) {
 
-$editUser = 'UPDATE users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '", email = "' . mysqli_real_escape_string($accessDB, $user) . '" WHERE id = "' . $id . '"';
+    include dirname(dirname(__DIR__)) . '/templates/users/add.php';
 
-mysqli_query($accessDB, $editUser);
+} else {
 
-mysqli_close($accessDB);
+    $id = $_POST['id'];
+    $user = $_POST['user'];
+    $email = $_POST['email'];
 
-$userResultString = 'User was deleted';
+    $accessDB = openDB();
 
-include dirname(dirname(__DIR__)) . '/templates/users/add_action.php';
+    $editUser = 'UPDATE users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '", email = "' . mysqli_real_escape_string($accessDB, $email) . '" WHERE id = "' . $id . '"';
+
+    mysqli_query($accessDB, $editUser);
+
+    mysqli_close($accessDB);
+
+    $userResultString = 'User was changed';
+
+    include dirname(dirname(__DIR__)) . '/templates/users/add_action.php';
+}
