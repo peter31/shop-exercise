@@ -20,10 +20,9 @@
         <td><?php echo $user['status'] ?></td>
         <td><?php echo $user['created'] ?></td>
         <td><?php echo $user['updated'] ?></td>
-        <td><form  action='/admin/users/edit' method='POST'><input type="submit" name='Action' value='Edit'></form></td>
-        <td><form  action='/admin/users/delete' method='POST'><input type="submit" name='Action' value='Delete'></form></td>
+        <td><a href="/admin/users/edit?id=<?php echo $user['id'] ?>">Edit</a></td>
+        <td><a href="/admin/users/delete_action?id=<?php echo $user['id'] ?>">Delete</a></td>
     </tr>
-
-<?php } ?>
+    <?php } ?>
 </table>
 <?php include dirname(__DIR__) . '/footer.php' ?>

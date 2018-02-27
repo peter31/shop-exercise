@@ -3,7 +3,7 @@
 error_reporting(E_ALL & ~E_STRICT);
 ini_set('display_errors', 1);
 
-$path = $_SERVER['REQUEST_URI'];
+list($path) = explode('?', $_SERVER['REQUEST_URI']);
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Страница пользователей ...
@@ -32,6 +32,16 @@ if ($path === '/admin/users/csv_action' && $method === 'POST') {
 }
 
 // Форма редактирования пользователя ...
-if ($path === '/admin/users/edit') {
+if ($path === '/admin/users/edit' && $method = 'GET') {
     require dirname(__DIR__) . '/src/modules/users/admin_edit.php';
+}
+
+// Форма редактирования пользователя ...
+if ($path === '/admin/users/edit_action' && $method = 'POST') {
+    require dirname(__DIR__) . '/src/modules/users/admin_edit_action.php';
+}
+
+// Удаление пользователя ...
+if ($path === '/admin/users/delete_action' && $method = 'GET') {
+    require dirname(__DIR__) . '/src/modules/users/admin_delete_action.php';
 }
