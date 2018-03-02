@@ -12,5 +12,12 @@ mysqli_close($accessDB);
 
 $user = $userData['name'];
 $email = $userData['email'];
+$password = $userData['password'];
+$status = $userData['status'];
+$list = $userData['list'];
+$aform = $userData['aform'];
+$eform = $userData['eform'];
+
+
 
 include dirname(dirname(__DIR__)) . '/templates/users/edit.php';

@@ -10,7 +10,7 @@ $errors = userAddValidation($_POST);
 $accessDB = openDB();
 
 if (empty($_POST['id'])) {
-    $errors[] = 'id is empty';
+    $errors[] = 'ID is empty';
 } else {
 
     $sqlQuery = 'SELECT * FROM users WHERE id = "' . mysqli_real_escape_string($accessDB, $_POST['id']) . '"';

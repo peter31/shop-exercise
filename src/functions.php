@@ -13,9 +13,6 @@ function userAddValidation($arr)
     if (empty($arr['user']) || empty($arr['email']) || empty($arr['password'])) {
         $errors[] = 'All fields must be completed';
     } else {
-        if (preg_match("/[a-zA-Z ]/", $_POST['user']) === 0) {
-            $errors[] = 'Name must be from letters and spaces';
-        }
         if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
             $errors[] = 'Is not a valid email address';
         }

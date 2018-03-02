@@ -45,3 +45,18 @@ if ($path === '/admin/users/edit_action' && $method = 'POST') {
 if ($path === '/admin/users/delete_action' && $method = 'GET') {
     require dirname(__DIR__) . '/src/modules/users/admin_delete_action.php';
 }
+
+// Объявления ...
+if ($path === '/adverts' && $method = 'GET') {
+    require dirname(__DIR__) . '/src/modules/adverts/adverts.php';
+}
+
+// Форма добавить объявление ...
+if ($path === '/add_adverts' && $method = 'GET') {
+    require dirname(__DIR__) . '/src/modules/adverts/add_adverts.php';
+}
+
+// Добавить объявление ...
+if ($path === '/add_adverts_action' && $method = 'POST') {
+    require dirname(__DIR__) . '/src/modules/adverts/add_adverts_action.php';
+}
