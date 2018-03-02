@@ -1,8 +1,24 @@
 <?php
 
+error_reporting(E_ALL & ~E_STRICT);
+ini_set('display_errors', 1);
+
 require_once dirname(dirname(__DIR__)) . '/functions.php';
 
 $errors = userAddValidation($_POST);
+
+$accessDB = openDB();
+
+if (empty($_POST['id'])) {
+    $errors[] = 'id is empty';
+} else {
+
+    $sqlQuery = 'SELECT * FROM users WHERE id = "' . mysqli_real_escape_string($accessDB, $_POST['id']) . '"';
+
+    if (mysqli_fetch_row(mysqli_query($accessDB, $sqlQuery)) === NULL) {
+        $errors[] = 'User with this id does not exist';
+    }
+}
 
 if (count($errors) > 0) {
 
@@ -14,15 +30,13 @@ if (count($errors) > 0) {
     $user = $_POST['user'];
     $email = $_POST['email'];
 
-    $accessDB = openDB();
-
     $editUser = 'UPDATE users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '", email = "' . mysqli_real_escape_string($accessDB, $email) . '" WHERE id = "' . $id . '"';
 
     mysqli_query($accessDB, $editUser);
-
-    mysqli_close($accessDB);
 
     $userResultString = 'User was changed';
 
     include dirname(dirname(__DIR__)) . '/templates/users/add_action.php';
 }
+
+mysqli_close($accessDB);

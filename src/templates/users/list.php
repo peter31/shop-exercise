@@ -6,6 +6,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Password</th>
         <th>Status</th>
         <th>Created</th>
         <th>Updated</th>
@@ -17,6 +18,7 @@
         <td><?php echo $user['id'] ?></td>
         <td><?php echo $user['name'] ?></td>
         <td><?php echo $user['email'] ?></td>
+        <td><?php echo $user['password'] ?></td>
         <td><?php echo $user['status'] ?></td>
         <td><?php echo $user['created'] ?></td>
         <td><?php echo $user['updated'] ?></td>
