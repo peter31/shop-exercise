@@ -12,6 +12,9 @@
     <input type='email' name='email' placeholder='example@mail.com' required/><br><br>
     Password:<br>
     <input type='password' name='password' placeholder='password' required/><br><br>
+    Status:<br>
+    <input type="hidden" name="status" value="0">
+    <input type="checkbox" name="status" value="1" checked><br><br>
     <button>Submit</button>
 </form>
 <?php include dirname(__DIR__) . "/footer.php" ?>

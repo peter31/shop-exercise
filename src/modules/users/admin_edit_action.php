@@ -30,7 +30,12 @@ if (count($errors) > 0) {
     $user = $_POST['user'];
     $email = $_POST['email'];
 
-    $editUser = 'UPDATE users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '", email = "' . mysqli_real_escape_string($accessDB, $email) . '" WHERE id = "' . $id . '"';
+    $editUser =
+        'UPDATE users SET
+         name = "' . mysqli_real_escape_string($accessDB, $user) . '",
+         email = "' . mysqli_real_escape_string($accessDB, $email) . '",
+         status = "' . mysqli_real_escape_string($accessDB, $status) . '"
+         WHERE id = "' . $id . '"';
 
     mysqli_query($accessDB, $editUser);
 

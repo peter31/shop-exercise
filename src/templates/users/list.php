@@ -6,11 +6,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Password</th>
         <th>Status</th>
-        <th>List</th>
-        <th>Add form</th>
-        <th>Edit form</th>
         <th>Created</th>
         <th>Updated</th>
         <th></th>
@@ -21,11 +17,7 @@
         <td><?php echo $user['id'] ?></td>
         <td><?php echo $user['name'] ?></td>
         <td><?php echo $user['email'] ?></td>
-        <td><?php echo $user['password'] ?></td>
         <td><?php echo $user['status'] ?></td>
-        <td><?php echo $user['list'] ?></td>
-        <td><?php echo $user['aform'] ?></td>
-        <td><?php echo $user['eform'] ?></td>
         <td><?php echo $user['created'] ?></td>
         <td><?php echo $user['updated'] ?></td>
         <td><a href="/admin/users/edit?id=<?php echo $user['id'] ?>">Edit</a></td>
