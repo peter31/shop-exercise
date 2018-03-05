@@ -47,16 +47,16 @@ if ($path === '/admin/users/delete_action' && $method = 'GET') {
 }
 
 // Объявления ...
-if ($path === '/adverts' && $method = 'GET') {
-    require dirname(__DIR__) . '/src/modules/adverts/adverts.php';
+if ($path === '/admin/adverts' && $method = 'GET') {
+    require dirname(__DIR__) . '/src/modules/adverts/admin_list.php';
 }
 
 // Форма добавить объявление ...
-if ($path === '/add_adverts' && $method = 'GET') {
-    require dirname(__DIR__) . '/src/modules/adverts/add_adverts.php';
+if ($path === '/admin/adverts/add' && $method = 'GET') {
+    require dirname(__DIR__) . '/src/modules/adverts/admin_add.php';
 }
 
 // Добавить объявление ...
-if ($path === '/add_adverts_action' && $method = 'POST') {
-    require dirname(__DIR__) . '/src/modules/adverts/add_adverts_action.php';
+if ($path === '/admin/adverts/add_action' && $method = 'POST') {
+    require dirname(__DIR__) . '/src/modules/adverts/admin_add_action.php';
 }

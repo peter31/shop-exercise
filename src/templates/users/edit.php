@@ -15,12 +15,7 @@
     <input type='password' name='password' placeholder='user' value='<?php echo $password ?>' required/><br><br>
     Status:<br>
     <input type="hidden" name="status" value="0">
-    <?php
-    if ($status == 1) { ?>
-        <input type="checkbox" name="status" value="<?php echo $status ?>" checked><br><br>
-    <?php } else { ?>
-        <input type="checkbox" name="status" value="1"><br><br>
-    <?php } ?>
+    <input type="checkbox" name="status" value="1" <?php if ($status == 1) { ?>checked<?php } ?>/><br><br>
     <button>Submit</button>
 </form>
 <?php include dirname(__DIR__) . '/footer.php' ?>
