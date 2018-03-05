@@ -29,6 +29,7 @@ if (count($errors) > 0) {
     $id = $_POST['id'];
     $user = $_POST['user'];
     $email = $_POST['email'];
+    $status = $_POST['status'];
 
     $editUser =
         'UPDATE users SET

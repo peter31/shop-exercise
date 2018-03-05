@@ -19,7 +19,7 @@
     if ($status == 1) { ?>
         <input type="checkbox" name="status" value="<?php echo $status ?>" checked><br><br>
     <?php } else { ?>
-        <input type="checkbox" name="status"><br><br>
+        <input type="checkbox" name="status" value="1"><br><br>
     <?php } ?>
     <button>Submit</button>
 </form>
