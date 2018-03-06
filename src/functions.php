@@ -26,7 +26,7 @@ function advertAddValidation($arr)
 {
     $errors = [];
 
-    if ( empty($arr['header']) || empty($arr['message']) || empty($arr['phone']) ) {
+    if ( empty($arr['title']) || empty($arr['message']) || empty($arr['phone']) ) {
         $errors[] = 'All fields must be completed';
     }
 

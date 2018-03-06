@@ -3,7 +3,7 @@
     <table border='1'>
         <tr>
             <th>ID</th>
-            <th>Header</th>
+            <th>Title</th>
             <th>Phone</th>
             <th>Status</th>
             <th>Created</th>
@@ -14,7 +14,7 @@
         <?php foreach ($adverts as $advert) { ?>
             <tr>
                 <td><?php echo $advert['id'] ?></td>
-                <td><?php echo $advert['header'] ?></td>
+                <td><?php echo $advert['title'] ?></td>
                 <td><?php echo $advert['phone'] ?></td>
                 <td><?php echo $advert['status'] ?></td>
                 <td><?php echo $advert['created'] ?></td>
