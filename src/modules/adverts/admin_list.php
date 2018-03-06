@@ -1,6 +1,6 @@
 <?php
 
-require dirname(dirname(__DIR__)) . '/functions.php';
+require dirname(__DIR__, 2) . '/functions.php';
 
 $accessDB = openDB();
 $sqlQuery = 'SELECT * FROM adverts';
@@ -13,5 +13,5 @@ while ($advert = mysqli_fetch_assoc($sqlData)) {
 
 mysqli_close($accessDB);
 
-require dirname(dirname(__DIR__)) . '/templates/adverts/list.php';
+require dirname(__DIR__, 2) . '/templates/adverts/list.php';
 

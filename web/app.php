@@ -32,46 +32,46 @@ if ($path === '/admin/users/csv_action' && $method === 'POST') {
 }
 
 // Форма редактирования пользователя ...
-if ($path === '/admin/users/edit' && $method = 'GET') {
+if ($path === '/admin/users/edit' && $method === 'GET') {
     require dirname(__DIR__) . '/src/modules/users/admin_edit.php';
 }
 
 // Форма редактирования пользователя ...
-if ($path === '/admin/users/edit_action' && $method = 'POST') {
+if ($path === '/admin/users/edit_action' && $method === 'POST') {
     require dirname(__DIR__) . '/src/modules/users/admin_edit_action.php';
 }
 
 // Удаление пользователя ...
-if ($path === '/admin/users/delete_action' && $method = 'GET') {
+if ($path === '/admin/users/delete_action' && $method === 'GET') {
     require dirname(__DIR__) . '/src/modules/users/admin_delete_action.php';
 }
 
 // Объявления ...
-if ($path === '/admin/adverts' && $method = 'GET') {
+if ($path === '/admin/adverts' && $method === 'GET') {
     require dirname(__DIR__) . '/src/modules/adverts/admin_list.php';
 }
 
 // Форма добавить объявление ...
-if ($path === '/admin/adverts/add' && $method = 'GET') {
+if ($path === '/admin/adverts/add' && $method === 'GET') {
     require dirname(__DIR__) . '/src/modules/adverts/admin_add.php';
 }
 
 // Добавить объявление ...
-if ($path === '/admin/adverts/add_action' && $method = 'POST') {
+if ($path === '/admin/adverts/add_action' && $method === 'POST') {
     require dirname(__DIR__) . '/src/modules/adverts/admin_add_action.php';
 }
 
 // Форма редактирования объявления ...
-if ($path === '/admin/adverts/edit' && $method = 'GET') {
+if ($path === '/admin/adverts/edit' && $method === 'GET') {
     require dirname(__DIR__) . '/src/modules/adverts/admin_edit.php';
 }
 
 // Редактирование объявления ...
-if ($path === '/admin/adverts/edit_action' && $method = 'POST') {
+if ($path === '/admin/adverts/edit_action' && $method === 'POST') {
     require dirname(__DIR__) . '/src/modules/adverts/admin_edit_action.php';
 }
 
 // Удаление  объявления ...
-if ($path === '/admin/adverts/delete_action' && $method = 'GET') {
+if ($path === '/admin/adverts/delete_action' && $method === 'GET') {
     require dirname(__DIR__) . '/src/modules/adverts/admin_delete_action.php';
 }

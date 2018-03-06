@@ -10,7 +10,7 @@ function userAddValidation($arr)
 {
     $errors = [];
 
-    if (empty($arr['user']) || empty($arr['email']) || empty($arr['password'])) {
+    if (empty($arr['name']) || empty($arr['email']) || empty($arr['password'])) {
         $errors[] = 'All fields must be completed';
     } else {
         if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {

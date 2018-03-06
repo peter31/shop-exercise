@@ -3,7 +3,7 @@
 error_reporting(E_ALL & ~E_STRICT);
 ini_set('display_errors', 1);
 
-require_once dirname(dirname(__DIR__)) . '/functions.php';
+require_once dirname(__DIR__, 2) . '/functions.php';
 
 $errors = advertAddValidation($_POST);
 
@@ -22,7 +22,7 @@ if (empty($_POST['id'])) {
 
 if (count($errors) > 0) {
 
-    include dirname(dirname(__DIR__)) . '/templates/adverts/add.php';
+    include dirname(__DIR__, 2) . '/templates/adverts/add.php';
 
 } else {
 
@@ -44,7 +44,7 @@ if (count($errors) > 0) {
 
     $userResultString = 'Advert was changed';
 
-    include dirname(dirname(__DIR__)) . '/templates/adverts/add_action.php';
+    include dirname(__DIR__, 2) . '/templates/adverts/add_action.php';
 }
 
 mysqli_close($accessDB);

@@ -1,3 +1,3 @@
 <?php
 
-include dirname(dirname(__DIR__)) . '/templates/users/csv.php';
+include dirname(__DIR__, 2) . '/templates/users/csv.php';

@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__DIR__)) . '/functions.php';
+require_once dirname(__DIR__, 2) . '/functions.php';
 
 $users = [];
 if (array_key_exists('browse_csv', $_FILES)) {
@@ -25,11 +25,11 @@ $total = 0;
 
 foreach ($users as $key => $value) {
     $total++;
-    $user = $value[0];
+    $name = $value[0];
     $email = $value[1];
     $sqlQuery = 'SELECT * FROM users WHERE email = "' . $email . '"';
-    $addUser = 'INSERT INTO users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '", email = "' . $email . '"';
-    $updateUser = 'UPDATE users SET name = "' . mysqli_real_escape_string($accessDB, $user) . '" WHERE email = "' . $email . '"';
+    $addUser = 'INSERT INTO users SET name = "' . mysqli_real_escape_string($accessDB, $name) . '", email = "' . $email . '"';
+    $updateUser = 'UPDATE users SET name = "' . mysqli_real_escape_string($accessDB, $name) . '" WHERE email = "' . $email . '"';
     if (mysqli_fetch_row(mysqli_query($accessDB, $sqlQuery)) === NULL) {
         $added++;
         mysqli_query($accessDB, $addUser);
@@ -40,4 +40,4 @@ foreach ($users as $key => $value) {
 }
 mysqli_close($accessDB);
 
-include dirname(dirname(__DIR__)) . '/templates/users/csv_action.php';
+include dirname(__DIR__, 2) . '/templates/users/csv_action.php';

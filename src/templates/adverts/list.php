@@ -1,6 +1,6 @@
 <?php include dirname(__DIR__) . '/header.php' ?>
-    <p><a href='/admin/adverts/add'>Add an advert through form</a></p>
-    <table border='1'>
+    <p><a href="/admin/adverts/add">Add an advert through form</a></p>
+    <table border="1">
         <tr>
             <th>ID</th>
             <th>Title</th>

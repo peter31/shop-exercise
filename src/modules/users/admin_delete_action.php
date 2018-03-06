@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__DIR__)) . '/functions.php';
+require_once dirname(__DIR__, 2) . '/functions.php';
 
 $id = $_GET['id'];
 
@@ -14,4 +14,4 @@ mysqli_close($accessDB);
 
 $userResultString = 'User was deleted';
 
-include dirname(dirname(__DIR__)) . '/templates/users/add_action.php';
+include dirname(__DIR__, 2) . '/templates/users/add_action.php';
