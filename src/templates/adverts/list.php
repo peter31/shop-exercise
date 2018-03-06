@@ -4,6 +4,7 @@
         <tr>
             <th>ID</th>
             <th>Title</th>
+            <th>Message</th>
             <th>Phone</th>
             <th>Status</th>
             <th>Created</th>
@@ -15,12 +16,13 @@
             <tr>
                 <td><?php echo $advert['id'] ?></td>
                 <td><?php echo $advert['title'] ?></td>
+                <td><?php echo $advert['message'] ?></td>
                 <td><?php echo $advert['phone'] ?></td>
                 <td><?php echo $advert['status'] ?></td>
                 <td><?php echo $advert['created'] ?></td>
                 <td><?php echo $advert['updated'] ?></td>
-                <td><a href="/admin/adverts/edit?id=<?php echo $user['id'] ?>">Edit</a></td>
-                <td><a href="/admin/adverts/delete_action?id=<?php echo $user['id'] ?>">Delete</a></td>
+                <td><a href="/admin/adverts/edit?id=<?php echo $advert['id'] ?>">Edit</a></td>
+                <td><a href="/admin/adverts/delete_action?id=<?php echo $advert['id'] ?>">Delete</a></td>
             </tr>
         <?php } ?>
     </table>
