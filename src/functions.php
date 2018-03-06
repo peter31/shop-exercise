@@ -3,7 +3,7 @@
 function openDB()
 {
     require __DIR__ . '/config.php';
-    return mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db']);
+    return mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db_name']);
 }
 
 function userAddValidation($arr)
