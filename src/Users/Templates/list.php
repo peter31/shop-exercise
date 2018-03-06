@@ -1,4 +1,5 @@
-<?php include dirname(__DIR__) . '/header.php' ?>
+<?php include dirname(__DIR__, 2) . '/Common/Templates/header.php' ?>
+
 <p><a href="/admin/users/add">Add user  through form</a></p>
 <p><a href="/admin/users/csv">Add user(s)  through sending CVS file</a></p>
 <table border="1">
@@ -12,7 +13,9 @@
         <th></th>
         <th></th>
     </tr>
+
     <?php foreach ($users as $user) { ?>
+
     <tr>
         <td><?php echo $user['id'] ?></td>
         <td><?php echo $user['name'] ?></td>
@@ -25,4 +28,5 @@
     </tr>
     <?php } ?>
 </table>
-<?php include dirname(__DIR__) . '/footer.php' ?>
+
+<?php include dirname(__DIR__, 2) . '/Common/Templates/footer.php' ?>

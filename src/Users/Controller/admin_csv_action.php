@@ -1,14 +1,12 @@
 <?php
 
-require_once dirname(__DIR__, 2) . '/functions.php';
-
 $users = [];
 if (array_key_exists('browse_csv', $_FILES)) {
     $result = explode('.', $_FILES['browse_csv']['name']);
     if ($result[1] === 'csv') {
         $take = fopen($_FILES['browse_csv']['tmp_name'], "rb");
         while (($usersRow = fgetcsv($take)) !== false) {
-            $errors = userAddValidation(['user' => $usersRow[0], 'email' => $usersRow[1]]);
+            $errors = userAddValidation(['name' => $usersRow[0], 'email' => $usersRow[1]]);
             if (!count($errors)) {
                 $users[] = $usersRow;
             }
@@ -40,4 +38,4 @@ foreach ($users as $key => $value) {
 }
 mysqli_close($accessDB);
 
-include dirname(__DIR__, 2) . '/templates/users/csv_action.php';
+include dirname(__DIR__) . '/Templates/csv_action.php';

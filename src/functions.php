@@ -2,7 +2,7 @@
 
 function openDB()
 {
-    require __DIR__ . '/config.php';
+    require dirname(__DIR__) . '/config.php';
     return mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db_name']);
 }
 
@@ -31,5 +31,12 @@ function advertAddValidation($arr)
     }
 
     return $errors;
+}
 
+function my_autoload($className)
+{
+    $classArr = explode('\\', $className);
+
+    $path = dirname(__DIR__) . '/src/' . implode('/', $classArr) . '.php';
+    require_once $path;
 }

@@ -1,10 +1,5 @@
 <?php
 
-error_reporting(E_ALL & ~E_STRICT);
-ini_set('display_errors', 1);
-
-require_once dirname(__DIR__, 2) . '/functions.php';
-
 $errors = userAddValidation($_POST);
 
 $accessDB = openDB();
@@ -22,7 +17,7 @@ if (empty($_POST['id'])) {
 
 if (count($errors) > 0) {
 
-    include dirname(__DIR__, 2) . '/templates/users/add.php';
+    include dirname(__DIR__) . '/Templates/add.php';
 
 } else {
 
@@ -42,7 +37,7 @@ if (count($errors) > 0) {
 
     $userResultString = 'User was changed';
 
-    include dirname(__DIR__, 2) . '/templates/users/add_action.php';
+    include dirname(__DIR__) . '/Templates/add_action.php';
 }
 
 mysqli_close($accessDB);
