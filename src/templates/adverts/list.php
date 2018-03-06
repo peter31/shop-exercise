@@ -4,7 +4,6 @@
         <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>Message</th>
             <th>Phone</th>
             <th>Status</th>
             <th>Created</th>
@@ -16,7 +15,6 @@
             <tr>
                 <td><?php echo $advert['id'] ?></td>
                 <td><?php echo $advert['title'] ?></td>
-                <td><?php echo $advert['message'] ?></td>
                 <td><?php echo $advert['phone'] ?></td>
                 <td><?php echo $advert['status'] ?></td>
                 <td><?php echo $advert['created'] ?></td>
