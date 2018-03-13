@@ -1,0 +1,17 @@
+{
+  "name"         : "show-exercise",
+  "type"         : "project",
+  "description"  : "Exercise web application",
+  "autoload"     : {
+    "psr-0"   : {
+      "": "src/"
+    }
+  },
+  "prefer-stable": true,
+  "require"      : {
+    "php": ">=7.1.0"
+  },
+  "require-dev"  : {
+    "squizlabs/php_codesniffer": "@stable"
+  }
+}
