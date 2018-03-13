@@ -1,13 +1,15 @@
 <?php
 namespace User\Controllers;
 
-class AdminAdd
+class AdminAddController
 {
-    public function addForm() {
+    public function addForm()
+    {
         include dirname(__DIR__) . '/Templates/add.php';
     }
 
-    public function addAction() {
+    public function addAction()
+    {
         $errors = userAddValidation($_POST);
 
         if (!empty($_POST['email'])) {

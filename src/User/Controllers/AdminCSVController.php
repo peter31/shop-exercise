@@ -1,13 +1,15 @@
 <?php
 namespace User\Controllers;
 
-class AdminCSV
+class AdminCSVController
 {
-    public function getCSV() {
+    public function getCSV()
+    {
         include dirname(__DIR__) . '/Templates/csv.php';
     }
 
-    public function sendCSV() {
+    public function sendCSV()
+    {
         $users = [];
         if (array_key_exists('browse_csv', $_FILES)) {
             $result = explode('.', $_FILES['browse_csv']['name']);

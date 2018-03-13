@@ -1,7 +1,7 @@
 <?php
 namespace Advert\Controllers;
 
-class AdminList
+class AdminListController
 {
     public function listAction()
     {

@@ -1,9 +1,10 @@
 <?php
 namespace User\Controllers;
 
-class AdminList
+class AdminListController
 {
-    public function listAction() {
+    public function listAction()
+    {
         $sqlQuery = 'SELECT * FROM users';
         $sqlData  = mysqli_query(connectDB(), $sqlQuery);
 
@@ -16,7 +17,8 @@ class AdminList
         require dirname(__DIR__) . '/Templates/list.php';
     }
 
-    public function deleteAction() {
+    public function deleteAction()
+    {
         $sqlQuery = 'DELETE FROM users WHERE id = "' . mysqli_real_escape_string(connectDB(), $_GET['id']) . '"';
 
         mysqli_query(connectDB(), $sqlQuery);
