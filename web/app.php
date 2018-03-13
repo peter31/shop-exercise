@@ -4,83 +4,85 @@ error_reporting(E_ALL & ~E_STRICT);
 ini_set('display_errors', 1);
 
 require_once dirname(__DIR__) . '/src/functions.php';
-spl_autoload_register('my_autoload');
+spl_autoload_register('autoload');
 
 list($path) = explode('?', $_SERVER['REQUEST_URI']);
 $method = $_SERVER['REQUEST_METHOD'];
 
-$srcDir = dirname(__DIR__) . '/src';
-
-
-// Страница пользователей ...
+// Users list ...
 if ($path === '/admin/users') {
-    $controller = new \Users\Controller\AdminController();
+    $controller = new \User\Controllers\AdminList();
     $controller->listAction();
 }
 
-// Страница добавления пользователя через форму ...
+// User add form ...
 if ($path === '/admin/users/add') {
-    $controller = new \Users\Controller\AdminController();
+    $controller = new \User\Controllers\AdminAdd();
+    $controller->addForm();
+}
+
+// User add action ...
+if ($path === '/admin/users/add_action' && $method === 'POST') {
+    $controller = new \User\Controllers\AdminAdd();
     $controller->addAction();
 }
 
-// Добавления пользователя ...
-if ($path === '/admin/users/add_action' && $method === 'POST') {
-    $controller = new \Users\Controller\AdminController();
-    $controller->addHanderAction();
-}
-
-// Страница добавления пользователя(ей) путём загрузки CSV файла ...
+// Get CSV file ...
 if ($path === '/admin/users/csv') {
-    require dirname(__DIR__) . '/src/Users/Controller/admin_csv.php';
+    $controller = new \User\Controllers\AdminCSV();
+    $controller->getCSV();
 }
 
-// Загрузка файла CSV ...
+// Send CSV file ...
 if ($path === '/admin/users/csv_action' && $method === 'POST') {
-    require dirname(__DIR__) . '/src/Users/Controller/admin_csv_action.php';
+        $controller = new \User\Controllers\AdminCSV();
+        $controller->sendCSV();
 }
 
-// Форма редактирования пользователя ...
+// User edit form ...
 if ($path === '/admin/users/edit' && $method === 'GET') {
-    require dirname(__DIR__) . '/src/Users/Controller/admin_edit.php';
+    $controller = new \User\Controllers\AdminEdit();
+    $controller->editForm();
 }
 
-// Форма редактирования пользователя ...
+// User edit action ...
 if ($path === '/admin/users/edit_action' && $method === 'POST') {
-    require dirname(__DIR__) . '/src/Users/Controller/admin_edit_action.php';
+    $controller = new \User\Controllers\AdminEdit();
+    $controller->editAction();
 }
 
-// Удаление пользователя ...
+// Delete user ...
 if ($path === '/admin/users/delete_action' && $method === 'GET') {
-    require dirname(__DIR__) . '/src/Users/Controller/admin_delete_action.php';
+    $controller = new \User\Controllers\AdminList();
+    $controller->deleteAction();
 }
 
-// Объявления ...
-if ($path === '/admin/adverts' && $method === 'GET') {
-    require dirname(__DIR__) . '/src/Adverts/Controller/admin_list.php';
-}
-
-// Форма добавить объявление ...
-if ($path === '/admin/adverts/add' && $method === 'GET') {
-    require dirname(__DIR__) . '/src/Adverts/Controller/admin_add.php';
-}
-
-// Добавить объявление ...
-if ($path === '/admin/adverts/add_action' && $method === 'POST') {
-    require dirname(__DIR__) . '/src/Adverts/Controller/admin_add_action.php';
-}
-
-// Форма редактирования объявления ...
-if ($path === '/admin/adverts/edit' && $method === 'GET') {
-    require dirname(__DIR__) . '/src/Adverts/Controller/admin_edit.php';
-}
-
-// Редактирование объявления ...
-if ($path === '/admin/adverts/edit_action' && $method === 'POST') {
-    require dirname(__DIR__) . '/src/Adverts/Controller/admin_edit_action.php';
-}
-
-// Удаление  объявления ...
-if ($path === '/admin/adverts/delete_action' && $method === 'GET') {
-    require dirname(__DIR__) . '/src/Adverts/Controller/admin_delete_action.php';
-}
+//// Объявления ...
+//if ($path === '/admin/adverts' && $method === 'GET') {
+//    require dirname(__DIR__) . '/src/Advert/Controllers/admin_list.php';
+//}
+//
+//// Форма добавить объявление ...
+//if ($path === '/admin/adverts/add' && $method === 'GET') {
+//    require dirname(__DIR__) . '/src/Advert/Controllers/admin_add.php';
+//}
+//
+//// Добавить объявление ...
+//if ($path === '/admin/adverts/add_action' && $method === 'POST') {
+//    require dirname(__DIR__) . '/src/Advert/Controllers/admin_add_action.php';
+//}
+//
+//// Форма редактирования объявления ...
+//if ($path === '/admin/adverts/edit' && $method === 'GET') {
+//    require dirname(__DIR__) . '/src/Advert/Controllers/admin_edit.php';
+//}
+//
+//// Редактирование объявления ...
+//if ($path === '/admin/adverts/edit_action' && $method === 'POST') {
+//    require dirname(__DIR__) . '/src/Advert/Controllers/admin_edit_action.php';
+//}
+//
+//// Удаление  объявления ...
+//if ($path === '/admin/adverts/delete_action' && $method === 'GET') {
+//    require dirname(__DIR__) . '/src/Advert/Controllers/admin_delete_action.php';
+//}

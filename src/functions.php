@@ -1,9 +1,9 @@
 <?php
 
-function openDB()
+function connectDB()
 {
     require dirname(__DIR__) . '/config.php';
-    return mysqli_connect($database['host'], $database['user'],  $database['pass'], $database['db_name']);
+    return mysqli_connect($db['host'], $db['user'],  $db['pass'], $db['name']);
 }
 
 function userAddValidation($arr)
@@ -33,10 +33,9 @@ function advertAddValidation($arr)
     return $errors;
 }
 
-function my_autoload($className)
+function autoload($className)
 {
     $classArr = explode('\\', $className);
-
     $path = dirname(__DIR__) . '/src/' . implode('/', $classArr) . '.php';
     require_once $path;
 }
