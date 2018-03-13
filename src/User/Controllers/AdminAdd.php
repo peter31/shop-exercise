@@ -3,13 +3,11 @@ namespace User\Controllers;
 
 class AdminAdd
 {
-    public function addForm()
-    {
+    public function addForm() {
         include dirname(__DIR__) . '/Templates/add.php';
     }
 
-    public function addAction()
-    {
+    public function addAction() {
         $errors = userAddValidation($_POST);
 
         if (!empty($_POST['email'])) {

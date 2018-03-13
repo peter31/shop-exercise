@@ -1,13 +1,11 @@
 <?php
 
-function connectDB()
-{
-    require dirname(__DIR__) . '/config.php';
+function connectDB() {
+    require dirname(__DIR__, 2) . '/config.php';
     return mysqli_connect($db['host'], $db['user'],  $db['pass'], $db['name']);
 }
 
-function userAddValidation($arr)
-{
+function userAddValidation($arr) {
     $errors = [];
 
     if (empty($arr['name']) || empty($arr['email']) || empty($arr['password'])) {
@@ -22,8 +20,7 @@ function userAddValidation($arr)
 
 }
 
-function advertAddValidation($arr)
-{
+function advertAddValidation($arr) {
     $errors = [];
 
     if ( empty($arr['title']) || empty($arr['message']) || empty($arr['phone']) ) {
@@ -33,9 +30,8 @@ function advertAddValidation($arr)
     return $errors;
 }
 
-function autoload($className)
-{
+function autoload($className) {
     $classArr = explode('\\', $className);
-    $path = dirname(__DIR__) . '/src/' . implode('/', $classArr) . '.php';
+    $path = dirname(__DIR__, 2) . '/src/' . implode('/', $classArr) . '.php';
     require_once $path;
 }
