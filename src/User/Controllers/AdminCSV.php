@@ -12,16 +12,14 @@ class AdminCSV
         if (array_key_exists('browse_csv', $_FILES)) {
             $result = explode('.', $_FILES['browse_csv']['name']);
             if ($result[1] === 'csv') {
-                $take = fopen($_FILES['browse_csv']['tmp_name'], "rb");
+                $take = fopen($_FILES['browse_csv']['tmp_name'], 'rb');
                 while (($usersRow = fgetcsv($take)) !== false) {
-                    $errors = userAddValidation(['name' => $usersRow[0], 'email' => $usersRow[1]]);
+                    $errors = checkCSV(['name' => $usersRow[0], 'email' => $usersRow[1]]);
                     if (!count($errors)) {
                         $users[] = $usersRow;
                     }
                 }
                 fclose($take);
-                var_dump($_FILES);
-                die;
             }
         }
 

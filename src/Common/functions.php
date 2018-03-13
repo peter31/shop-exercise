@@ -20,6 +20,20 @@ function userAddValidation($arr) {
 
 }
 
+function checkCSV($arr) {
+    $errors = [];
+
+    if (empty($arr['name']) || empty($arr['email'])) {
+        $errors[] = 'All fields must be completed';
+    } else {
+        if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
+            $errors[] = 'Is not a valid email address';
+        }
+    }
+
+    return $errors;
+
+}
 function advertAddValidation($arr) {
     $errors = [];
 
