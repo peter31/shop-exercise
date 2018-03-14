@@ -15,23 +15,17 @@ class AdminAddController
         if (count($errors) > 0) {
 
             include dirname(__DIR__) . '/Templates/add.php';
-
         } else {
-
-            $sqlConn = connectDB();
-
-            $sqlQuery =
-                'INSERT INTO adverts SET
-                title = "' . mysqli_real_escape_string($sqlConn, $_POST['title']) . '",
-                message = "' . mysqli_real_escape_string($sqlConn, $_POST['message']) . '",
-                phone = "' . mysqli_real_escape_string($sqlConn, $_POST['phone']) . '"';
-
-            mysqli_query($sqlConn, $sqlQuery);
-
-            mysqli_close($sqlConn);
-
+            $mysql = connectDB();
+            $sqlQuery = sprintf(
+                'INSERT INTO adverts SET title = "%s", message = "%s", phone = "%s"',
+                $mysql->escape_string($_POST['title']),
+                $mysql->escape_string($_POST['message']),
+                $mysql->escape_string($_POST['phone'])
+            );
+            $mysql->query($sqlQuery);
+            $mysql->close();
             $userResultString = 'Advert is added';
-
             include dirname(__DIR__) . '/Templates/add_action.php';
         }
      }

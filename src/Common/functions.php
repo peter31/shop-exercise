@@ -3,7 +3,7 @@
 function connectDB()
 {
     require dirname(__DIR__, 2) . '/config.php';
-    return mysqli_connect($db['host'], $db['user'],  $db['pass'], $db['name']);
+    return new mysqli($db['host'], $db['user'], $db['pass'], $db['name']);
 }
 
 function userAddValidation($arr)

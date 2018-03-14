@@ -7,16 +7,16 @@
     <br />
 <?php } ?>
 <form  action="/admin/adverts/edit_action" method="POST">
-    <input type="hidden" name="id" value="<?php echo $user['id'] ?>" />
+    <input type="hidden" name="id" value="<?php echo $advert['id'] ?>" />
     Title:<br>
-    <input type="text" name="title" value="<?php echo $user['title'] ?>"required/><br><br>
+    <input type="text" name="title" value="<?php echo $advert['title'] ?>"required/><br><br>
     Message:<br>
-    <textarea name="message" rows="10" cols="30" required><?php echo $user['message'] ?></textarea><br><br>
+    <textarea name="message" rows="10" cols="30" required><?php echo $advert['message'] ?></textarea><br><br>
     Phone number:<br>
-    <input type="text" name="phone" placeholder="078123456" value="<?php echo $user['phone'] ?>" required/><br><br>
+    <input type="text" name="phone" placeholder="078123456" value="<?php echo $advert['phone'] ?>" required/><br><br>
     Status:<br>
     <input type="hidden" name="status" value="0"/>
-    <input type="checkbox" name="status" value="1" <?php if ($user['status'] == 1) { ?>checked<?php } ?>/><br><br>
+    <input type="checkbox" name="status" value="1" <?php if ($advert['status'] == 1) { ?>checked<?php } ?>/><br><br>
     <button>Submit</button>
 </form>
 

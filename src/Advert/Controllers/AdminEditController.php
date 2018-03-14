@@ -3,13 +3,13 @@ namespace Advert\Controllers;
 
 class AdminEditController
 {
-    public  function editForm()
+    public function editForm()
     {
-        $sqlConn = connectDB();
-        $sqlQuery = 'SELECT * FROM adverts WHERE id = "' . mysqli_real_escape_string($sqlConn, $_GET['id']) . '"';
-        $user = mysqli_fetch_assoc(mysqli_query($sqlConn, $sqlQuery));
-        mysqli_close($sqlConn);
-
+        $mysql = connectDB();
+        $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $mysql->escape_string($_GET['id']));
+        $result = $mysql->query($sqlQuery);
+        $advert = $result->fetch_assoc();
+        $mysql->close();
         include dirname(__DIR__) . '/Templates/edit.php';
     }
 
@@ -19,40 +19,31 @@ class AdminEditController
 
         if (empty($_POST['id'])) {
             $errors[] = 'ID is empty';
-
         } else {
-
-            $sqlConn = connectDB();
-
-            $sqlQuery = 'SELECT * FROM adverts WHERE id = "' . mysqli_real_escape_string($sqlConn, $_POST['id']) . '"';
-
-            if (mysqli_fetch_row(mysqli_query($sqlConn, $sqlQuery)) === NULL) {
+            $mysql = connectDB();
+            $sqlQuery = sprintf('SELECT FROM adverts WHERE id = "%d"', $mysql->escape_string($_POST['id']));
+            $result = $mysql->query($sqlQuery);
+            if ($result->fetch_row() === NULL) {
                 $errors[] = 'Advert with this id does not exist';
             }
         }
 
         if (count($errors) > 0) {
             include dirname(__DIR__) . '/Templates/add.php';
-
         } else {
-
-            $sqlConn = connectDB();
-
-            $sqlQuery =
-                'UPDATE adverts SET
-                title = "' . mysqli_real_escape_string($sqlConn, $_POST['title']) . '",
-                message = "' . mysqli_real_escape_string($sqlConn, $_POST['message']) . '",
-                phone = "' . mysqli_real_escape_string($sqlConn, $_POST['phone']) . '",
-                status = "' . mysqli_real_escape_string($sqlConn, $_POST['status']) . '"
-                WHERE id = "' . mysqli_real_escape_string($sqlConn, $_POST['id']) . '"';
-
-            mysqli_query($sqlConn, $sqlQuery);
-
+            $mysql = connectDB();
+            $sqlQuery = sprintf(
+                'UPDATE adverts SET title = "%s", message = "%s", phone = "%s", status = "%s" WHERE id = "%d"',
+                $mysql->escape_string($_POST['title']),
+                $mysql->escape_string($_POST['message']),
+                $mysql->escape_string($_POST['phone']),
+                $mysql->escape_string($_POST['status']),
+                $mysql->escape_string($_POST['id'])
+            );
+            $mysql->query($sqlQuery);
+            $mysql->close();
             $userResultString = 'Advert was changed';
-
             include dirname(__DIR__) . '/Templates/add_action.php';
         }
-
-        mysqli_close($sqlConn);
     }
 }

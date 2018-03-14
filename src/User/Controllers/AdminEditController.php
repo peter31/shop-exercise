@@ -5,10 +5,11 @@ class AdminEditController
 {
     public function editForm()
     {
-        $sqlQuery = 'SELECT * FROM users WHERE id = "' . mysqli_real_escape_string(connectDB(), $_GET['id']) . '"';
-        $user = mysqli_fetch_assoc(mysqli_query(connectDB(), $sqlQuery));
-        mysqli_close(connectDB());
-
+        $mysql = connectDB();
+        $sqlQuery = sprintf('SELECT * FROM users WHERE id = "%d"', $mysql->escape_string($_GET['id']));
+        $result = $mysql->query($sqlQuery);
+        $user = $result->fetch_assoc();
+        $mysql->close();
         include dirname(__DIR__) . '/Templates/edit.php';
     }
 
@@ -19,35 +20,31 @@ class AdminEditController
         if (empty($_POST['id'])) {
             $errors[] = 'ID is empty';
         } else {
-
-            $sqlQuery = 'SELECT * FROM users WHERE id = "' . mysqli_real_escape_string(connectDB(), $_POST['id']) . '"';
-
-            if (mysqli_fetch_row(mysqli_query(connectDB(), $sqlQuery)) === NULL) {
+            $mysql = connectDB();
+            $sqlQuery = sprintf('SELECT * FROM users WHERE id = "%d"', $mysql->escape_string($_GET['id']));
+            $result = $mysql->query($sqlQuery);
+            if ($result->fetch_row() === NULL) {
                 $errors[] = 'User with this id does not exist';
             }
         }
 
         if (count($errors) > 0) {
-
             include dirname(__DIR__) . '/Templates/add.php';
-
         } else {
-            $sqlQuery =
-                'UPDATE users SET
-                name = "' . mysqli_real_escape_string(connectDB(), $_POST['name']) . '",
-                email = "' . mysqli_real_escape_string(connectDB(), $_POST['email']) . '",
-                status = "' . mysqli_real_escape_string(connectDB(), $_POST['status']) . '"
-                WHERE id = "' . mysqli_real_escape_string(connectDB(), $_POST['id']) . '"';
-
-            mysqli_query(connectDB(), $sqlQuery);
-
+            $mysql = connectDB();
+            $sqlQuery = sprintf(
+                'UPDATE users SET name = "%s", email = "%s", status = "%d" WHERE id = "%d"',
+                $mysql->escape_string($_POST['name']),
+                $mysql->escape_string($_POST['email']),
+                $mysql->escape_string($_POST['status']),
+                $mysql->escape_string($_POST['id'])
+            );
+            $mysql->query($sqlQuery);
+            $mysql->close();
             $userResultString = 'User was changed';
-
             include dirname(__DIR__) . '/Templates/add_action.php';
         }
-        mysqli_close(connectDB());
     }
-
 }
 
 
