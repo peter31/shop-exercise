@@ -21,7 +21,10 @@ class AdminEditController
             $errors[] = 'ID is empty';
         } else {
             $mysql = connectDB();
-            $sqlQuery = sprintf('SELECT * FROM users WHERE id = "%d"', $mysql->escape_string($_GET['id']));
+            $sqlQuery = sprintf(
+                'SELECT * FROM users WHERE id = "%d"',
+                $mysql->escape_string($_POST['id'])
+            );
             $result = $mysql->query($sqlQuery);
             if ($result->fetch_row() === NULL) {
                 $errors[] = 'User with this id does not exist';

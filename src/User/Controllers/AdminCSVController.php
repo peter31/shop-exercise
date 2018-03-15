@@ -25,25 +25,41 @@ class AdminCSVController
             }
         }
 
+        $total = count($users);
         $added = 0;
         $updated = 0;
-        $total = 0;
 
         foreach ($users as $key => $value) {
-            $total++;
-            $sqlQuery = 'SELECT * FROM users WHERE email = "' . mysqli_real_escape_string(connectDB(), $value[1]) . '"';
-            $addUser = 'INSERT INTO users SET name = "' . mysqli_real_escape_string(connectDB(), $value[0]) . '", email = "' . mysqli_real_escape_string(connectDB(), $value[1]) . '"';
-            $updateUser = 'UPDATE users SET name = "' . mysqli_real_escape_string(connectDB(), $value[0]) . '" WHERE email = "' . mysqli_real_escape_string(connectDB(), $value[1]) . '"';
-            if (mysqli_fetch_row(mysqli_query(connectDB(), $sqlQuery)) === NULL) {
-                $added++;
-                mysqli_query(connectDB(), $addUser);
+
+            $mysql = connectDB();
+
+            $sqlQuery = sprintf(
+                'SELECT * FROM users WHERE email = "%s"',
+                $mysql->escape_string($value[1])
+            );
+
+            $addUser = sprintf(
+                'INSERT INTO users SET name = "%s", email = "%s"',
+                $mysql->escape_string($value[0]),
+                $mysql->escape_string($value[1])
+            );
+
+            $updateUser = sprintf(
+                'UPDATE users SET name = "%s" WHERE email = "%s"',
+                $mysql->escape_string($value[0]),
+                $mysql->escape_string($value[1])
+            );
+
+            $result = $mysql->query($sqlQuery);
+
+            if ($result->num_rows == 0) {
+                $mysql->query($addUser);
             } else {
-                mysqli_query(connectDB(), $updateUser);
+                $mysql->query($updateUser);
                 $updated++;
             }
+            $mysql->close();
         }
-        mysqli_close(connectDB());
-
         include dirname(__DIR__) . '/Templates/csv_action.php';
     }
 }

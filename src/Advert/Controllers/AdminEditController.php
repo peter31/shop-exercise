@@ -16,13 +16,14 @@ class AdminEditController
     public function editAction()
     {
         $errors = advertAddValidation($_POST);
+        $mysql = connectDB();
 
         if (empty($_POST['id'])) {
             $errors[] = 'ID is empty';
         } else {
-            $mysql = connectDB();
-            $sqlQuery = sprintf('SELECT FROM adverts WHERE id = "%d"', $mysql->escape_string($_POST['id']));
+            $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $mysql->escape_string($_POST['id']));
             $result = $mysql->query($sqlQuery);
+
             if ($result->fetch_row() === NULL) {
                 $errors[] = 'Advert with this id does not exist';
             }

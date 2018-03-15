@@ -11,10 +11,17 @@ class AdminAddController
     public function addAction()
     {
         $errors = userAddValidation($_POST);
+        $mysql = connectDB();
 
         if (!empty($_POST['email'])) {
-            $sqlQuery = 'SELECT * FROM users WHERE email = "' . mysqli_real_escape_string(connectDB(), $_POST['email']) . '"';
-            if (mysqli_fetch_row(mysqli_query(connectDB(), $sqlQuery)) !== NULL) {
+            $sqlQuery = sprintf(
+                'SELECT * FROM users WHERE email = "%s"',
+                $mysql->escape_string($_POST['email'])
+            );
+
+            $result = $mysql->query($sqlQuery);
+
+            if ($result->num_rows !== 0) {
                 $errors[] = 'User with this email already exists';
             }
         }
@@ -22,19 +29,18 @@ class AdminAddController
         if (count($errors) > 0) {
             include dirname(__DIR__) . '/Templates/add.php';
         } else {
-            $sqlQuery =
-                'INSERT INTO users SET
-                name = "' . mysqli_real_escape_string(connectDB(), $_POST['name']) . '",
-                email = "' . mysqli_real_escape_string(connectDB(), $_POST['email']) . '",
-                password = "' . mysqli_real_escape_string(connectDB(), $_POST['password']) . '"';
-
-            mysqli_query(connectDB(), $sqlQuery);
+            $sqlQuery = sprintf(
+                'INSERT INTO users SET name = "%s", email = "%s", password = "%s"',
+                $mysql->escape_string($_POST['name']),
+                $mysql->escape_string($_POST['email']),
+                $mysql->escape_string($_POST['password'])
+            );
+            $mysql->query($sqlQuery);
 
             $userResultString = 'User is added';
 
             include dirname(__DIR__) . '/Templates/add_action.php';
-
-            mysqli_close(connectDB());
         }
+        $mysql->close();
     }
 }

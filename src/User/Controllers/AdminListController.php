@@ -6,7 +6,8 @@ class AdminListController
     public function listAction()
     {
         $mysql = connectDB();
-        $result  = $mysql->query('SELECT * FROM users');
+        $result = $mysql->query('SELECT * FROM users');
+
         $users = $result->fetch_all(MYSQLI_ASSOC);
         $mysql->close();
         require dirname(__DIR__) . '/Templates/list.php';
