@@ -1,4 +1,4 @@
-<?php include dirname(__DIR__, 2) . '/Common/Templates/header.php' ?>
+<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
 
 <?php if (!empty($errors)) { ?>
     <?php foreach($errors as $error) { ?>
@@ -10,4 +10,4 @@
     <p><a href="/admin/users/add">Add another one user</a></p>
     <p><a href="/admin/users">Return to the list of users</a></p>
 
-<?php include dirname(__DIR__, 2) . '/Common/Templates/footer.php' ?>
+<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/footer.php' ?>

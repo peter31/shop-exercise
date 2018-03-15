@@ -10,7 +10,7 @@ class AdminEditController
         $result = $mysql->query($sqlQuery);
         $user = $result->fetch_assoc();
         $mysql->close();
-        include dirname(__DIR__) . '/Templates/edit.php';
+        include dirname(__DIR__) . '/Resources/templates/edit.php';
     }
 
     public function editAction()
@@ -32,7 +32,7 @@ class AdminEditController
         }
 
         if (count($errors) > 0) {
-            include dirname(__DIR__) . '/Templates/add.php';
+            include dirname(__DIR__) . '/Resources/templates/add.php';
         } else {
             $sqlQuery = sprintf(
                 'UPDATE users SET name = "%s", email = "%s", status = "%d" WHERE id = "%d"',
@@ -43,7 +43,7 @@ class AdminEditController
             );
             $mysql->query($sqlQuery);
             $userResultString = 'User was changed';
-            include dirname(__DIR__) . '/Templates/add_action.php';
+            include dirname(__DIR__) . '/Resources/templates/add_action.php';
         }
         $mysql->close();
     }

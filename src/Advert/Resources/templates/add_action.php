@@ -1,4 +1,4 @@
-<?php include dirname(__DIR__, 2) . '/Common/Templates/header.php' ?>
+<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
 <?php if (!empty($errors)) { ?>
     <?php foreach($errors as $error) { ?>
         <span style="color: #C1272D;"><?php echo $error ?></span><br />
@@ -9,4 +9,4 @@
     <p><a href="/admin/adverts/add">Add another one advert</a></p>
     <p><a href="/admin/adverts">Return to the list of adverts</a></p>
 
-<?php include dirname(__DIR__, 2) . '/Common/Templates/footer.php' ?>
+<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/footer.php' ?>

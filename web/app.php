@@ -10,10 +10,7 @@ list($path) = explode('?', $_SERVER['REQUEST_URI']);
 $method = $_SERVER['REQUEST_METHOD'];
 
 $router = new \Common\Router();
-$controllerData = $router->getControllerData($path, $method);
-
-$controllerClass = $controllerData[0];
-$controllerMethod = $controllerData[1];
+list($controllerClass, $controllerMethod) = $router->getControllerData($path, $method);
 
 $controller = new $controllerClass();
 $controller->{$controllerMethod}();

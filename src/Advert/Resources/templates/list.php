@@ -1,4 +1,4 @@
-<?php include dirname(__DIR__, 2) . '/Common/Templates/header.php' ?>
+<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
 
     <p><a href="/admin/adverts/add">Add an advert through form</a></p>
     <table border="1">
@@ -26,4 +26,4 @@
         <?php } ?>
     </table>
 
-<?php include dirname(__DIR__, 2) . '/Common/Templates/footer.php' ?>
+<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/footer.php' ?>

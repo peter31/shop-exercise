@@ -5,7 +5,7 @@ class AdminCSVController
 {
     public function getCSV()
     {
-        include dirname(__DIR__) . '/Templates/csv.php';
+        include dirname(__DIR__) . '/Resources/templates/csv.php';
     }
 
     public function sendCSV()
@@ -60,6 +60,6 @@ class AdminCSVController
             }
             $mysql->close();
         }
-        include dirname(__DIR__) . '/Templates/csv_action.php';
+        include dirname(__DIR__) . '/Resources/templates/csv_action.php';
     }
 }

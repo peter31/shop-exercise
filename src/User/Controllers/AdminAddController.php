@@ -5,7 +5,7 @@ class AdminAddController
 {
     public function addForm()
     {
-        include dirname(__DIR__) . '/Templates/add.php';
+        include dirname(__DIR__) . '/Resources/templates/add.php';
     }
 
     public function addAction()
@@ -27,7 +27,7 @@ class AdminAddController
         }
 
         if (count($errors) > 0) {
-            include dirname(__DIR__) . '/Templates/add.php';
+            include dirname(__DIR__) . '/Resources/templates/add.php';
         } else {
             $sqlQuery = sprintf(
                 'INSERT INTO users SET name = "%s", email = "%s", password = "%s"',
@@ -39,7 +39,7 @@ class AdminAddController
 
             $userResultString = 'User is added';
 
-            include dirname(__DIR__) . '/Templates/add_action.php';
+            include dirname(__DIR__) . '/Resources/templates/add_action.php';
         }
         $mysql->close();
     }

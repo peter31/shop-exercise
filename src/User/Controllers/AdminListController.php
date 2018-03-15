@@ -10,7 +10,7 @@ class AdminListController
 
         $users = $result->fetch_all(MYSQLI_ASSOC);
         $mysql->close();
-        require dirname(__DIR__) . '/Templates/list.php';
+        require dirname(__DIR__) . '/Resources/templates/list.php';
     }
 
     public function deleteAction()
@@ -20,6 +20,6 @@ class AdminListController
         $mysql->query($sqlQuery);
         $mysql->close();
         $userResultString = 'User was deleted';
-        include dirname(__DIR__) . '/Templates/add_action.php';
+        include dirname(__DIR__) . '/Resources/templates/add_action.php';
     }
 }
