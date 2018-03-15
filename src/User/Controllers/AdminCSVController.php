@@ -52,7 +52,7 @@ class AdminCSVController
 
             $result = $mysql->query($sqlQuery);
 
-            if ($result->num_rows == 0) {
+            if ($result->num_rows === 0) {
                 $mysql->query($addUser);
             } else {
                 $mysql->query($updateUser);

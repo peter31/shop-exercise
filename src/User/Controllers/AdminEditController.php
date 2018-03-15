@@ -26,7 +26,7 @@ class AdminEditController
                 $mysql->escape_string($_POST['id'])
             );
             $result = $mysql->query($sqlQuery);
-            if ($result->num_rows == 0) {
+            if ($result->num_rows === 0) {
                 $errors[] = 'User with this id does not exist';
             }
         }

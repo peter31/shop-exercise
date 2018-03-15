@@ -24,7 +24,7 @@ class AdminEditController
             $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $mysql->escape_string($_POST['id']));
             $result = $mysql->query($sqlQuery);
 
-            if ($result->num_rows == 0) {
+            if ($result->num_rows === 0) {
                 $errors[] = 'Advert with this id does not exist';
             }
         }
