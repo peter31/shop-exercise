@@ -16,11 +16,11 @@ class AdminEditController
     public function editAction()
     {
         $errors = userAddValidation($_POST);
+        $mysql = connectDB();
 
         if (empty($_POST['id'])) {
             $errors[] = 'ID is empty';
         } else {
-            $mysql = connectDB();
             $sqlQuery = sprintf(
                 'SELECT * FROM users WHERE id = "%d"',
                 $mysql->escape_string($_POST['id'])
@@ -34,7 +34,6 @@ class AdminEditController
         if (count($errors) > 0) {
             include dirname(__DIR__) . '/Templates/add.php';
         } else {
-            $mysql = connectDB();
             $sqlQuery = sprintf(
                 'UPDATE users SET name = "%s", email = "%s", status = "%d" WHERE id = "%d"',
                 $mysql->escape_string($_POST['name']),
@@ -43,10 +42,10 @@ class AdminEditController
                 $mysql->escape_string($_POST['id'])
             );
             $mysql->query($sqlQuery);
-            $mysql->close();
             $userResultString = 'User was changed';
             include dirname(__DIR__) . '/Templates/add_action.php';
         }
+        $mysql->close();
     }
 }
 
