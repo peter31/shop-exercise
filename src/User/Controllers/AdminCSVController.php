@@ -1,7 +1,9 @@
 <?php
 namespace User\Controllers;
 
-class AdminCSVController
+use Common\Controllers\AbstractController;
+
+class AdminCSVController extends AbstractController
 {
     public function getCSV()
     {
@@ -31,34 +33,31 @@ class AdminCSVController
 
         foreach ($users as $key => $value) {
 
-            $mysql = connectDB();
-
             $sqlQuery = sprintf(
                 'SELECT * FROM users WHERE email = "%s"',
-                $mysql->escape_string($value[1])
+                $this->mysql->escape_string($value[1])
             );
 
             $addUser = sprintf(
                 'INSERT INTO users SET name = "%s", email = "%s"',
-                $mysql->escape_string($value[0]),
-                $mysql->escape_string($value[1])
+                $this->mysql->escape_string($value[0]),
+                $this->mysql->escape_string($value[1])
             );
 
             $updateUser = sprintf(
                 'UPDATE users SET name = "%s" WHERE email = "%s"',
-                $mysql->escape_string($value[0]),
-                $mysql->escape_string($value[1])
+                $this->mysql->escape_string($value[0]),
+                $this->mysql->escape_string($value[1])
             );
 
-            $result = $mysql->query($sqlQuery);
+            $result = $this->mysql->query($sqlQuery);
 
             if ($result->num_rows === 0) {
-                $mysql->query($addUser);
+                $this->mysql->query($addUser);
             } else {
-                $mysql->query($updateUser);
+                $this->mysql->query($updateUser);
                 $updated++;
             }
-            $mysql->close();
         }
         include dirname(__DIR__) . '/Resources/templates/csv_action.php';
     }

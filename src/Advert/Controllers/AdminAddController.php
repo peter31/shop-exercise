@@ -1,7 +1,9 @@
 <?php
 namespace Advert\Controllers;
 
-class AdminAddController
+use Common\Controllers\AbstractController;
+
+class AdminAddController extends AbstractController
 {
     public function addForm()
     {
@@ -16,15 +18,13 @@ class AdminAddController
 
             include dirname(__DIR__) . '/Resources/templates/add.php';
         } else {
-            $mysql = connectDB();
             $sqlQuery = sprintf(
                 'INSERT INTO adverts SET title = "%s", message = "%s", phone = "%s"',
-                $mysql->escape_string($_POST['title']),
-                $mysql->escape_string($_POST['message']),
-                $mysql->escape_string($_POST['phone'])
+                $this->mysql->escape_string($_POST['title']),
+                $this->mysql->escape_string($_POST['message']),
+                $this->mysql->escape_string($_POST['phone'])
             );
-            $mysql->query($sqlQuery);
-            $mysql->close();
+            $this->mysql->query($sqlQuery);
             $userResultString = 'Advert is added';
             include dirname(__DIR__) . '/Resources/templates/add_action.php';
         }

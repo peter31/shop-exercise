@@ -1,28 +1,27 @@
 <?php
 namespace Advert\Controllers;
 
-class AdminEditController
+use Common\Controllers\AbstractController;
+
+class AdminEditController extends AbstractController
 {
     public function editForm()
     {
-        $mysql = connectDB();
-        $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $mysql->escape_string($_GET['id']));
-        $result = $mysql->query($sqlQuery);
+        $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $this->mysql->escape_string($_GET['id']));
+        $result = $this->mysql->query($sqlQuery);
         $advert = $result->fetch_assoc();
-        $mysql->close();
         include dirname(__DIR__) . '/Resources/templates/edit.php';
     }
 
     public function editAction()
     {
         $errors = advertAddValidation($_POST);
-        $mysql = connectDB();
 
         if (empty($_POST['id'])) {
             $errors[] = 'ID is empty';
         } else {
-            $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $mysql->escape_string($_POST['id']));
-            $result = $mysql->query($sqlQuery);
+            $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $this->mysql->escape_string($_POST['id']));
+            $result = $this->mysql->query($sqlQuery);
 
             if ($result->num_rows === 0) {
                 $errors[] = 'Advert with this id does not exist';
@@ -32,17 +31,15 @@ class AdminEditController
         if (count($errors) > 0) {
             include dirname(__DIR__) . '/Resources/templates/add.php';
         } else {
-            $mysql = connectDB();
             $sqlQuery = sprintf(
                 'UPDATE adverts SET title = "%s", message = "%s", phone = "%s", status = "%s" WHERE id = "%d"',
-                $mysql->escape_string($_POST['title']),
-                $mysql->escape_string($_POST['message']),
-                $mysql->escape_string($_POST['phone']),
-                $mysql->escape_string($_POST['status']),
-                $mysql->escape_string($_POST['id'])
+                $this->mysql->escape_string($_POST['title']),
+                $this->mysql->escape_string($_POST['message']),
+                $this->mysql->escape_string($_POST['phone']),
+                $this->mysql->escape_string($_POST['status']),
+                $this->mysql->escape_string($_POST['id'])
             );
-            $mysql->query($sqlQuery);
-            $mysql->close();
+            $this->mysql->query($sqlQuery);
             $userResultString = 'Advert was changed';
             include dirname(__DIR__) . '/Resources/templates/add_action.php';
         }

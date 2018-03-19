@@ -19,16 +19,16 @@ class AdminEditController extends AbstractController
     public function editAction()
     {
         $errors = userAddValidation($_POST);
-        $mysql = connectDB();
 
         if (empty($_POST['id'])) {
             $errors[] = 'ID is empty';
         } else {
             $sqlQuery = sprintf(
                 'SELECT * FROM users WHERE id = "%d"',
-                $mysql->escape_string($_POST['id'])
+                $this->mysql->escape_string($_POST['id'])
             );
-            $result = $mysql->query($sqlQuery);
+
+            $result = $this->mysql->query($sqlQuery);
             if ($result->num_rows === 0) {
                 $errors[] = 'User with this id does not exist';
             }
@@ -39,16 +39,15 @@ class AdminEditController extends AbstractController
         } else {
             $sqlQuery = sprintf(
                 'UPDATE users SET name = "%s", email = "%s", status = "%d" WHERE id = "%d"',
-                $mysql->escape_string($_POST['name']),
-                $mysql->escape_string($_POST['email']),
-                $mysql->escape_string($_POST['status']),
-                $mysql->escape_string($_POST['id'])
+                $this->mysql->escape_string($_POST['name']),
+                $this->mysql->escape_string($_POST['email']),
+                $this->mysql->escape_string($_POST['status']),
+                $this->mysql->escape_string($_POST['id'])
             );
-            $mysql->query($sqlQuery);
+            $this->mysql->query($sqlQuery);
             $userResultString = 'User was changed';
             include dirname(__DIR__) . '/Resources/templates/add_action.php';
         }
-        $mysql->close();
     }
 }
 

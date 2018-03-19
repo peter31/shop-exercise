@@ -12,14 +12,6 @@ class AdminListController extends AbstractController
         require dirname(__DIR__) . '/Resources/templates/list.php';
     }
 
-    public function importAction()
-    {
-        $result = $this->mysql->query('SELECT * FROM users');
-        $users = $result->fetch_all(MYSQLI_ASSOC);
-
-        require dirname(__DIR__) . '/Resources/templates/import.php';
-    }
-
     public function deleteAction()
     {
         $sqlQuery = sprintf(

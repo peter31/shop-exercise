@@ -30,7 +30,6 @@ $routing[] = [
     'controllerMethod' => 'addAction'
 ];
 
-
 // User edit form ...
 $routing[] = [
     'path' => '/admin/users/edit',
