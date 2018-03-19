@@ -17,7 +17,7 @@ class Router
             }
         }
 
-        return [null, null];
+        return [\Common\Controllers\ErrorController::class, 'notFoundAction'];
     }
 
     private function getConfig()

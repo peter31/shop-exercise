@@ -1,15 +1,18 @@
 <?php
 namespace User\Controllers;
 
-class AdminEditController
+use Common\Controllers\AbstractController;
+
+class AdminEditController extends AbstractController
 {
     public function editForm()
     {
-        $mysql = connectDB();
-        $sqlQuery = sprintf('SELECT * FROM users WHERE id = "%d"', $mysql->escape_string($_GET['id']));
-        $result = $mysql->query($sqlQuery);
+        $sqlQuery = sprintf(
+            'SELECT * FROM users WHERE id = "%d"',
+            $this->mysql->escape_string($_GET['id'])
+        );
+        $result = $this->mysql->query($sqlQuery);
         $user = $result->fetch_assoc();
-        $mysql->close();
         include dirname(__DIR__) . '/Resources/templates/edit.php';
     }
 

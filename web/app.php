@@ -13,4 +13,6 @@ $router = new \Common\Router();
 list($controllerClass, $controllerMethod) = $router->getControllerData($path, $method);
 
 $controller = new $controllerClass();
-$controller->{$controllerMethod}();
+$controller->$controllerMethod();
+
+\Common\DB::close();

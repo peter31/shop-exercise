@@ -1,11 +1,5 @@
 <?php
 
-function connectDB()
-{
-    require dirname(__DIR__, 2) . '/config.php';
-    return new mysqli($db['host'], $db['user'], $db['pass'], $db['name']);
-}
-
 function userAddValidation($arr)
 {
     $errors = [];
