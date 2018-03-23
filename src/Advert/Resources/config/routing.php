@@ -1,6 +1,10 @@
 <?php
 
-// Advert list ...
+/**
+ * ADMIN SECTION --------------------
+*/
+
+// Adverts list ...
 $routing[] = [
     'path' => '/admin/adverts',
     'method' => 'GET',
@@ -47,3 +51,28 @@ $routing[] = [
     'controllerClass' => \Advert\Controllers\AdminEditController::class,
     'controllerMethod' => 'editAction'
 ];
+
+
+/**
+ * USER SECTION
+ */
+
+// Advert list ...
+$routing[] = [
+    'path' => '/',
+    'method' => 'GET',
+    'controllerClass' => \Advert\Controllers\ItemController::class,
+    'controllerMethod' => 'listAction'
+];
+
+// View advert ...
+$routing[] = [
+    'path' => '/adverts/item',
+    'method' => 'GET',
+    'controllerClass' => \Advert\Controllers\ItemController::class,
+    'controllerMethod' => 'viewAction'
+];
+
+
+
+
