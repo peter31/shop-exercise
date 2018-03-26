@@ -10,7 +10,7 @@ class AdminEditController extends AbstractController
         $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $this->mysql->escape_string($_GET['id']));
         $result = $this->mysql->query($sqlQuery);
         $advert = $result->fetch_assoc();
-        include dirname(__DIR__) . '/Resources/templates/admin_edit.php';
+        include dirname(__DIR__) . '/Resources/templates/admin/edit.php';
     }
 
     public function editAction()
@@ -29,7 +29,7 @@ class AdminEditController extends AbstractController
         }
 
         if (count($errors) > 0) {
-            include dirname(__DIR__) . '/Resources/templates/admin_add.php';
+            include dirname(__DIR__) . '/Resources/templates/admin/add.php';
         } else {
             $sqlQuery = sprintf(
                 'UPDATE adverts SET title = "%s", message = "%s", phone = "%s", status = "%s" WHERE id = "%d"',
@@ -41,7 +41,7 @@ class AdminEditController extends AbstractController
             );
             $this->mysql->query($sqlQuery);
             $userResultString = 'Advert was changed';
-            include dirname(__DIR__) . '/Resources/templates/admin_add_action.php';
+            include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
         }
     }
 }

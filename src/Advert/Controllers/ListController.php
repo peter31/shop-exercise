@@ -3,14 +3,14 @@ namespace Advert\Controllers;
 
 use Common\Controllers\AbstractController;
 
-class ItemController extends AbstractController
+class ListController extends AbstractController
 {
     public function listAction()
     {
         $result = $this->mysql->query('SELECT * FROM adverts WHERE status = 1 LIMIT 5');
         $adverts = $result->fetch_all(MYSQLI_ASSOC);
         $title = 'Adverts MD';
-        require dirname(__DIR__) . '/Resources/templates/item_list.php';
+        require dirname(__DIR__) . '/Resources/templates/list.php';
     }
     public function viewAction()
     {
@@ -18,6 +18,6 @@ class ItemController extends AbstractController
         $result = $this->mysql->query($sqlQuery);
         $item = $result->fetch_assoc();
         $title = 'Adverts MD';
-        require dirname(__DIR__) . '/Resources/templates/item_view.php';
+        require dirname(__DIR__) . '/Resources/templates/view.php';
     }
 }
