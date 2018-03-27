@@ -1,0 +1,23 @@
+CREATE TABLE users (
+id int NOT NULL AUTO_INCREMENT,
+name varchar(200) NOT NULL,
+email varchar(200) NOT NULL,
+password VARCHAR(200),
+status int(1) DEFAULT '1',
+created TIMESTAMP DEFAULT NOW(),
+updated TIMESTAMP DEFAULT NOW() ON UPDATE NOW(),
+PRIMARY KEY (id),
+UNIQUE KEY (email)
+);
+
+DROP TABLE users;
+
+CREATE TABLE adverts (
+id int NOT NULL AUTO_INCREMENT,
+title  VARCHAR(200) NOT NULL,
+phone   INT(9) NOT NULL,
+status  INT(1) DEFAULT '1',
+created TIMESTAMP DEFAULT NOW(),
+updated TIMESTAMP DEFAULT NOW() ON UPDATE NOW(),
+PRIMARY KEY (id)
+);
