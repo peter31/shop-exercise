@@ -1,17 +1,11 @@
 <?php include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
 
-    <table>
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <?php foreach ($adverts as $advert) { ?>
+        <table>
+<?php foreach ($adverts as $advert) { ?>
             <tr>
-                <td><a href="/adverts/item?id=<?php echo $advert['id'] ?>"><?php echo $advert['title'] ?></a></td>
-                <td><?php echo $advert['created'] ?></td>
-
+                <td class="title"><a href="/adverts/item?id=<?php echo $advert['id'] ?>"><?php echo $advert['title'] ?></a></td>
+                <td class="created"><?php echo $advert['created'] ?></td>
             </tr>
-        <?php } ?>
-    </table>
-
+<?php } ?>
+        </table>
 <?php include dirname(__DIR__, 3) . '/Common/Resources/templates/footer.php' ?>
