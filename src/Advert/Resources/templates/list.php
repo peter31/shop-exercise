@@ -1,5 +1,5 @@
 <?php include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
-
+    <div class="adverts">
         <table>
 <?php foreach ($adverts as $advert) { ?>
             <tr>
@@ -8,4 +8,5 @@
             </tr>
 <?php } ?>
         </table>
+    </div>
 <?php include dirname(__DIR__, 3) . '/Common/Resources/templates/footer.php' ?>
