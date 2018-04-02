@@ -3,7 +3,7 @@
 include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
     <p><a href="/admin/users/add">Add user  through form</a></p>
     <p><a href="/admin/users/csv">Add user(s)  through sending CVS file</a></p>
-    <table border="1">
+    <table>
         <tr>
             <th>ID</th>
             <th>Name</th>
