@@ -7,7 +7,7 @@ class AdminCSVController extends AbstractController
 {
     public function getCSV()
     {
-        include dirname(__DIR__) . '/Resources/templates/csv.php';
+        include dirname(__DIR__) . '/Resources/templates/admin/csv.php';
     }
 
     public function sendCSV()
@@ -59,6 +59,6 @@ class AdminCSVController extends AbstractController
                 $updated++;
             }
         }
-        include dirname(__DIR__) . '/Resources/templates/csv_action.php';
+        include dirname(__DIR__) . '/Resources/templates/admin/csv_action.php';
     }
 }

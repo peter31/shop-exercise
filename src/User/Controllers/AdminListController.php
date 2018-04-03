@@ -9,7 +9,7 @@ class AdminListController extends AbstractController
     {
         $result = $this->mysql->query('SELECT * FROM users');
         $users = $result->fetch_all(MYSQLI_ASSOC);
-        require dirname(__DIR__) . '/Resources/templates/list.php';
+        require dirname(__DIR__) . '/Resources/templates/admin/list.php';
     }
 
     public function deleteAction()
@@ -21,6 +21,6 @@ class AdminListController extends AbstractController
         $this->mysql->query($sqlQuery);
 
         $userResultString = 'User was deleted';
-        include dirname(__DIR__) . '/Resources/templates/add_action.php';
+        include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
     }
 }

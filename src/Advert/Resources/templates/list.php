@@ -1,6 +1,6 @@
 <?php include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
 <div class="adverts">
-    <table>
+    <table border="1">
         <?php foreach ($adverts as $advert) { ?>
             <tr>
                 <td class="title"><a href="/adverts/item?id=<?php echo $advert['id'] ?>"><?php echo $advert['title'] ?></a></td>

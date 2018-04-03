@@ -1,9 +1,9 @@
 <?php
 
-include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
+include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/header.php' ?>
     <p><a href="/admin/users/add">Add user  through form</a></p>
     <p><a href="/admin/users/csv">Add user(s)  through sending CVS file</a></p>
-    <table>
+    <table border="1">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -27,4 +27,4 @@ include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
         </tr>
 <?php } ?>
     </table>
-<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/footer.php' ?>
+<?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/footer.php' ?>

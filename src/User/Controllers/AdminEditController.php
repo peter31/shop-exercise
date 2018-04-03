@@ -13,7 +13,7 @@ class AdminEditController extends AbstractController
         );
         $result = $this->mysql->query($sqlQuery);
         $user = $result->fetch_assoc();
-        include dirname(__DIR__) . '/Resources/templates/edit.php';
+        include dirname(__DIR__) . '/Resources/templates/admin/edit.php';
     }
 
     public function editAction()
@@ -35,7 +35,7 @@ class AdminEditController extends AbstractController
         }
 
         if (count($errors) > 0) {
-            include dirname(__DIR__) . '/Resources/templates/add.php';
+            include dirname(__DIR__) . '/Resources/templates/admin/add.php';
         } else {
             $sqlQuery = sprintf(
                 'UPDATE users SET name = "%s", email = "%s", status = "%d" WHERE id = "%d"',
@@ -46,7 +46,7 @@ class AdminEditController extends AbstractController
             );
             $this->mysql->query($sqlQuery);
             $userResultString = 'User was changed';
-            include dirname(__DIR__) . '/Resources/templates/add_action.php';
+            include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
         }
     }
 }

@@ -1,4 +1,4 @@
-<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/header.php' ?>
+<?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/header.php' ?>
 
 <?php if (!empty($errors)) { ?>
     <?php foreach($errors as $error) { ?>
@@ -19,4 +19,4 @@
     <button>Submit</button>
 </form>
 
-<?php include dirname(__DIR__, 3) . '/Common/Resources/templates/footer.php' ?>
+<?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/footer.php' ?>

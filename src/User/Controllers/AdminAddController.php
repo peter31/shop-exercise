@@ -7,7 +7,7 @@ class AdminAddController extends AbstractController
 {
     public function addForm()
     {
-        include dirname(__DIR__) . '/Resources/templates/add.php';
+        include dirname(__DIR__) . '/Resources/templates/admin/add.php';
     }
 
     public function addAction()
@@ -28,7 +28,7 @@ class AdminAddController extends AbstractController
         }
 
         if (count($errors) > 0) {
-            include dirname(__DIR__) . '/Resources/templates/add.php';
+            include dirname(__DIR__) . '/Resources/templates/admin/add.php';
         } else {
             $sqlQuery = sprintf(
                 'INSERT INTO users SET name = "%s", email = "%s", password = "%s"',
@@ -40,7 +40,7 @@ class AdminAddController extends AbstractController
 
             $userResultString = 'User is added';
 
-            include dirname(__DIR__) . '/Resources/templates/add_action.php';
+            include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
         }
     }
 }

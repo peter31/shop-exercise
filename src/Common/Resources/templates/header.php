@@ -36,6 +36,7 @@
         }
 
         table {
+            width: inherit;
             border-collapse: collapse;
         }
     </style>
