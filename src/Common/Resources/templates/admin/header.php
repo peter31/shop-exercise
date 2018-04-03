@@ -33,6 +33,10 @@
             width: inherit;
             border-collapse: collapse;
         }
+
+        .footer {
+            text-align: center;
+        }
     </style>
 </head>
 <body>

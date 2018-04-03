@@ -5,6 +5,7 @@
     <title><?php echo $title ?></php></title>
     <link rel="stylesheet" type="text/css" href="/normalize.css">
     <style>
+
         body {
             width: 1000px;
             margin: 0 auto;
@@ -35,10 +36,27 @@
             clear: both;
         }
 
+        .adverts {
+            width: inherit;
+        }
         table {
             width: inherit;
             border-collapse: collapse;
         }
+
+        .title {
+            width: 80%;
+        }
+
+        .created {
+            width: 20%;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
