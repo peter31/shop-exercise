@@ -3,32 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo $title ?></php></title>
-    <link rel="stylesheet" type="text/css" href="/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>
         body {
-            width: 1000px;
+            width: 1140px;
             margin: 0 auto;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
         }
 
         .header {
-            height: 80px;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            display: flex;
+            background-color: cornflowerblue;
         }
 
         .logo {
-            height: inherit;
-            float: left;
+
         }
 
-        img {
-            height: inherit;
+        .sign {
+            margin: auto;
         }
 
-        .clearfix {
-            clear: both;
-        }
+        /*form {*/
+            /*width: 33%;*/
+            /*margin: auto;*/
+            /*text-align: center;*/
+            /*background-color: #0c5460;*/
+        /*}*/
 
+        /*input {*/
+            /*padding: 5px;*/
+
+
+        /*}*/
         table {
             width: inherit;
             border-collapse: collapse;
@@ -40,7 +50,8 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo"><img src="/images/logo.jpg"></div>
-        <div class="clearfix"></div>
-    </div>
+    <header class="header">
+        <div class="logo">Dashboard</div>
+        <div class="sign">Sign out</div>
+    </header>
+
