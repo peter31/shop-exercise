@@ -1,9 +1,9 @@
 <?php
 namespace Advert\Controllers;
 
-use Common\Controllers\AbstractController;
+use Common\Controllers\AdminAbstractController;
 
-class AdminListController extends AbstractController
+class AdminListController extends AdminAbstractController
 {
     public function listAction()
     {

@@ -5,7 +5,6 @@ use Common\DB;
 
 class AbstractController
 {
-    /** @var \mysqli */
     protected $mysql;
 
     public function __construct()

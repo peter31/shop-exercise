@@ -1,9 +1,9 @@
 <?php
 namespace User\Controllers;
 
-use Common\Controllers\AbstractController;
+use Common\Controllers\AdminAbstractController;
 
-class AdminAddController extends AbstractController
+class AdminAddController extends AdminAbstractController
 {
     public function addForm()
     {

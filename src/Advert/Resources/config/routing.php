@@ -61,7 +61,7 @@ $routing[] = [
 $routing[] = [
     'path' => '/',
     'method' => 'GET',
-    'controllerClass' => \Advert\Controllers\ListController::class,
+    'controllerClass' => \Common\Controllers\MainController::class,
     'controllerMethod' => 'listAction'
 ];
 
@@ -69,7 +69,7 @@ $routing[] = [
 $routing[] = [
     'path' => '/adverts/item',
     'method' => 'GET',
-    'controllerClass' => \Advert\Controllers\ListController::class,
+    'controllerClass' => \Advert\Controllers\ListAdminController::class,
     'controllerMethod' => 'viewAction'
 ];
 

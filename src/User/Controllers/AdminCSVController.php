@@ -1,9 +1,9 @@
 <?php
 namespace User\Controllers;
 
-use Common\Controllers\AbstractController;
+use Common\Controllers\AdminAbstractController;
 
-class AdminCSVController extends AbstractController
+class AdminCSVController extends AdminAbstractController
 {
     public function getCSV()
     {

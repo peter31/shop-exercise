@@ -1,7 +1,7 @@
 <?php
 namespace Common\Controllers;
 
-class ErrorController extends AbstractController
+class ErrorAdminAbstractController extends AdminAbstractController
 {
     public function notFoundAction()
     {

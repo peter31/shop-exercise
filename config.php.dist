@@ -4,5 +4,10 @@ $db = [
     'host' => '',
     'user' => '',
     'pass' => '',
-    'name' => '',
+    'name' => ''
+];
+
+$admin = [
+    'user' => '',
+    'pass' => ''
 ];

@@ -1,9 +1,9 @@
 <?php
 namespace Advert\Controllers;
 
-use Common\Controllers\AbstractController;
+use Common\Controllers\AdminAbstractController;
 
-class AdminEditController extends AbstractController
+class AdminEditController extends AdminAbstractController
 {
     public function editForm()
     {

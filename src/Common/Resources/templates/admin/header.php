@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title><?php echo $title ?></php></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>
         body {
             width: 1140px;

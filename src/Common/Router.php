@@ -23,7 +23,6 @@ class Router
                 ];
             }
         }
-
-        return [\Common\Controllers\ErrorController::class, 'notFoundAction'];
+        return [\Common\Controllers\ErrorAdminAbstractController::class, 'notFoundAction'];
     }
 }
