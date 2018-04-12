@@ -50,6 +50,6 @@
 <body>
     <header class="header">
         <div class="logo">Dashboard</div>
-        <div class="sign">Sign out</div>
+        <div class="sign"><a href="/admin/logout">Sign out</a></div>
     </header>
 
