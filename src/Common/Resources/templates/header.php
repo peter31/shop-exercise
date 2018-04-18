@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title><?php echo $title ?></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-
     <style>
 
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic);
@@ -12,39 +11,44 @@
         body {
             font-family: 'Open Sans', sans-serif;
             font-size: 14px;
-            background-color: #eee;
-        }
-
-        .top {
-            background-color: #2c3338;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        .top a {
-            color: #eeeeee;
-        }
-
-        .content {
-            margin-left: 10px;
-            margin-bottom: 10px;
+            width: 1140px;
+            margin: 0 auto;
         }
 
         a {
-            text-decoration: none;
+            /*text-decoration: none;*/
         }
 
-        table {
-            border-collapse: collapse;
+        .user-panel {
+             margin-top: 10px;
+            text-align: right;
+         }
+
+        .header {
+            font-size: 30px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: cornflowerblue;
+        }
+
+        .content {
+            margin-top: 10px;
         }
 
         .footer {
-            margin-left: 10px;
+            margin-top: 10px;
         }
 
     </style>
 </head>
 <body>
-    <div class="top">
-        <a href="/user/login">log in</a>
-    </div>
+
+    <div class="user-panel">
+<a href="/user/login">log in</a>
+<span>|</span>
+<a href="/user/registration">registration</a>
+</div>
+
+    <div class="header">
+    <span><b>LOGO</b></span>
+</div>

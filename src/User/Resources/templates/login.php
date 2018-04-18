@@ -14,7 +14,7 @@
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic);
 
         body {
-            background-color: #2c3338;
+            /*background-color: #2c3338;*/
             /*color: #606468;*/
             font-family: 'Open Sans', sans-serif;
             font-size: 14px;
