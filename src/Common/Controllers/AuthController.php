@@ -14,12 +14,12 @@ class AuthController
 
     public function registration()
     {
-        require dirname(__DIR__) . '/Resources/templates/registration.php';
+        require dirname(__DIR__, 2) . '/User/Resources/templates/registration.php';
     }
 
     public function logIn()
     {
-        require dirname(__DIR__) . '/Resources/templates/login.php';
+        require dirname(__DIR__, 2) . '/User/Resources/templates/login.php';
     }
 
     public function logInAction()
