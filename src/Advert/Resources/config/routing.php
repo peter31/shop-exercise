@@ -57,13 +57,7 @@ $routing[] = [
  * USER SECTION
  */
 
-// Advert list ...
-$routing[] = [
-    'path' => '/',
-    'method' => 'GET',
-    'controllerClass' => \Common\Controllers\MainController::class,
-    'controllerMethod' => 'listAction'
-];
+
 
 // View advert ...
 $routing[] = [

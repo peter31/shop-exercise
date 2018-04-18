@@ -36,6 +36,21 @@ $routing[] = [
  * USER SECTION --------------------
  */
 
+// Advert list ...
+$routing[] = [
+    'path' => '/',
+    'method' => 'GET',
+    'controllerClass' => \Common\Controllers\MainController::class,
+    'controllerMethod' => 'listAction'
+];
+
+$routing[] = [
+    'path' => '/advert/item',
+    'method' => 'GET',
+    'controllerClass' => \Common\Controllers\MainController::class,
+    'controllerMethod' => 'viewAction'
+];
+
 $routing[] = [
     'path' => '/user/registration',
     'method' => 'GET',

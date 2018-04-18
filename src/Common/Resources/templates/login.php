@@ -53,7 +53,7 @@
             <p><input type="text" name="username" placeholder="user" required></p>
             <p><input type="password" name="password" placeholder="password" required></p>
             <p><input type="submit" value="log in"></p>
-            <p><a href="">create account</a></p>
+            <p><a href="/user/registration">create account</a></p>
         </form>
 </body>
 </html>

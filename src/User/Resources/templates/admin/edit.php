@@ -1,10 +1,9 @@
 <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/header.php' ?>
-
+<div class="content">
 <?php if (!empty($errors)) { ?>
     <?php foreach($errors as $error) { ?>
-        <span style="color: #C1272D;"><?php echo $error ?></span><br />
+        <span style="color: #C1272D;"><?php echo $error ?></span>
     <?php } ?>
-    <br />
 <?php } ?>
 <form action="/admin/users/edit_action" method="POST">
     <input type="hidden" name="id" value="<?php echo $user['id'] ?>" />
@@ -19,5 +18,5 @@
     <input type="checkbox" name="status" value="1" <?php if ($user['status'] == 1) { ?>checked<?php } ?>/><br><br>
     <button>Submit</button>
 </form>
-
+</div>
 <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/footer.php' ?>

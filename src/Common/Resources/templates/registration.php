@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-    <form action="/user/register" method="POST">
+    <form action="/user/registration" method="POST">
         <p><input type="text" name="username" placeholder="username" required></p>
         <p><input type="email" name="email" placeholder="example@mail.com" required/></p>
         <p><input type="password" name="pass" placeholder="password" required></p>

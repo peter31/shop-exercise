@@ -5,51 +5,45 @@
     <title><?php echo $title ?></php></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <style>
+
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic);
+
         body {
-            width: 1140px;
-            margin: 0 auto;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 14px;
+            background-color: #eee;
         }
 
-        .header {
-            display: flex;
-            background-color: cornflowerblue;
+        .top {
+            background-color: #2c3338;
+            padding: 10px;
+            margin-bottom: 10px;
         }
 
-        .logo {
-
+        .top a {
+            color: #eeeeee;
         }
 
-        .sign {
-            margin: auto;
+        .content {
+            margin-left: 10px;
+            margin-bottom: 10px;
         }
 
-        /*form {*/
-            /*width: 33%;*/
-            /*margin: auto;*/
-            /*text-align: center;*/
-            /*background-color: #0c5460;*/
-        /*}*/
+        a {
+            text-decoration: none;
+        }
 
-        /*input {*/
-            /*padding: 5px;*/
-
-
-        /*}*/
         table {
-            width: inherit;
             border-collapse: collapse;
         }
 
         .footer {
-            text-align: center;
+            margin-left: 10px;
         }
+
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">Dashboard</div>
-        <div class="sign"><a href="/admin/logout">Sign out</a></div>
-    </header>
-
+    <div class="top">
+        <a href="/admin/login">log out</a>
+    </div>

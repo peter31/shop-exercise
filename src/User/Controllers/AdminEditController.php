@@ -1,6 +1,5 @@
 <?php
 namespace User\Controllers;
-
 use Common\Controllers\AdminAbstractController;
 
 class AdminEditController extends AdminAbstractController

@@ -1,4 +1,6 @@
 <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/header.php' ?>
+
+    <div class="container">
 <?php if (!empty($errors)) { ?>
     <?php foreach($errors as $error) { ?>
         <span style="color: #C1272D;"><?php echo $error ?></span><br />
@@ -17,5 +19,7 @@
         <input type="checkbox" name="checkbox" value="1" checked/><br><br>
         <button>Submit</button>
     </form>
+    </div>
+
 
 <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/footer.php' ?>
