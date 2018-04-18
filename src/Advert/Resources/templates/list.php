@@ -4,7 +4,7 @@
         <?php foreach ($adverts as $advert) { ?>
             <tr>
                 <td class="title"><a href="/advert/item?id=<?php echo $advert['id'] ?>"><?php echo $advert['title'] ?></a></td>
-                <td class="created"><?php echo $advert['created'] ?></td></tr>
+                <td class="created" align="right"><?php echo $advert['created'] ?></td></tr>
         <?php } ?>
         </table>
     </div>
