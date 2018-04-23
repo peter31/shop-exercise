@@ -1,5 +1,6 @@
 <?php
 namespace Common\Controllers;
+
 use Common\DB;
 
 class AdminAbstractController

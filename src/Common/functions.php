@@ -1,11 +1,18 @@
 <?php
 
+function autoload($className)
+{
+    $classArr = explode('\\', $className);
+    $path = dirname(__DIR__, 2) . '/src/' . implode('/', $classArr) . '.php';
+    require_once $path;
+}
+
 function userAddValidation($arr)
 {
     $errors = [];
 
     if (empty($arr['name']) || empty($arr['email']) || empty($arr['password'])) {
-        $errors[] = 'All fields must be completed';
+        $errors[] = 'All fields must be completed !';
     } else {
         if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
             $errors[] = 'Is not a valid email address';
@@ -43,9 +50,3 @@ function advertAddValidation($arr)
     return $errors;
 }
 
-function autoload($className)
-{
-    $classArr = explode('\\', $className);
-    $path = dirname(__DIR__, 2) . '/src/' . implode('/', $classArr) . '.php';
-    require_once $path;
-}

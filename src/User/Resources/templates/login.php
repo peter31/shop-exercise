@@ -1,9 +1,3 @@
-<?php if (!empty($errors)) { ?>
-    <?php foreach($errors as $error) { ?>
-        <span style="color: #C1272D;"><?php echo $error ?></span><br />
-    <?php } ?>
-    <br />
-<?php } ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,11 +43,15 @@
     </style>
 </head>
 <body>
-        <form action="/user/login" method="POST">
-            <p><input type="text" name="username" placeholder="user" required></p>
-            <p><input type="password" name="password" placeholder="password" required></p>
-            <p><input type="submit" value="log in"></p>
-            <p><a href="/user/registration">create account</a></p>
-        </form>
+
+
+
+    <form action="/user/login" method="POST">
+        <p><?php include dirname(__DIR__, 3) . '/Common/Resources/templates/errors.php' ?></p>
+        <p><input type="text" name="name" placeholder="username" ></p>
+        <p><input type="password" name="password" placeholder="password" ></p>
+        <p><input type="submit" value="log in"></p>
+        <p><a href="/user/registration">create account</a></p>
+    </form>
 </body>
 </html>

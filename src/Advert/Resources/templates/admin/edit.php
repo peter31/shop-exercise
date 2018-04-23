@@ -1,10 +1,10 @@
 <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/header.php' ?>
 <div class="content">
-<?php if (!empty($errors)) { ?>
-<?php foreach($errors as $error) { ?>
-<span style="color: #C1272D;"><?php echo $error ?></span>
-<?php } ?>
-<?php } ?>
+<?php if (!empty($errors)) {
+foreach($errors as $error) { ?>
+<span style="color: #C1272D"><?php echo $error ?></span>
+<?php }
+} ?>
 <form  action="/admin/adverts/edit_action" method="POST">
 <input type="hidden" name="id" value="<?php echo $advert['id'] ?>" />
 Title:<br>
@@ -19,6 +19,4 @@ Status:<br>
 <button>Submit</button>
 </form>
 </div>
-
-
 <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/footer.php' ?>

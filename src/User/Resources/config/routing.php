@@ -61,3 +61,31 @@ $routing[] = [
     'controllerClass' => \User\Controllers\AdminCSVController::class,
     'controllerMethod' => 'sendCSV'
 ];
+
+$routing[] = [
+    'path' => '/user/login',
+    'method' => 'GET',
+    'controllerClass' => \User\Controllers\AuthController::class,
+    'controllerMethod' => 'logIn'
+];
+
+$routing[] = [
+    'path' => '/user/login',
+    'method' => 'POST',
+    'controllerClass' => \User\Controllers\AuthController::class,
+    'controllerMethod' => 'logInAction'
+];
+
+$routing[] = [
+    'path' => '/user/logout',
+    'method' => 'GET',
+    'controllerClass' => \User\Controllers\AuthController::class,
+    'controllerMethod' => 'logOutAction'
+];
+
+$routing[] = [
+    'path' => '/user/registration',
+    'method' => 'GET',
+    'controllerClass' => \User\Controllers\AuthController::class,
+    'controllerMethod' => 'registration'
+];

@@ -46,9 +46,9 @@
 </head>
 <body>
     <form action="/user/registration" method="POST">
-        <p><input type="text" name="username" placeholder="username" required></p>
+        <p><input type="text" name="name" placeholder="username" required></p>
         <p><input type="email" name="email" placeholder="example@mail.com" required/></p>
-        <p><input type="password" name="pass" placeholder="password" required></p>
+        <p><input type="password" name="password" placeholder="password" required></p>
         <p><input type="password" name="check_pass" placeholder="confirm password" required></p>
         <p><input type="submit" value="sign up"></p>
     </form>
