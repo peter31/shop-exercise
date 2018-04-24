@@ -89,7 +89,6 @@ class AuthController extends AbstractController
                 $this->mysql->escape_string($_POST['email']),
                 $this->mysql->escape_string($_POST['password'])
             );
-
             $this->mysql->query($sqlQuery);
             header('Location: /');
         } else {
