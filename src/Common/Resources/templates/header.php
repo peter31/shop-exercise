@@ -43,14 +43,14 @@
 </head>
 <body>
 
-<div class="user-panel">
-<?php if (array_key_exists('user_login_name', $_SESSION)) { ?>
-    <span>Hi <?php echo ($_SESSION['user_login_name']) ?></span><span> | </span><a href="/user/logout">log out</a>
-<?php } else { ?>
-    <a href="/user/login">log in</a><span> | </span><a href="/user/registration">registration</a>
-<?php } ?>
-</div>
+    <div class="user-panel">
+    <?php if (array_key_exists('user_login_name', $_SESSION)) { ?>
+       <span>Hi <?php echo ($_SESSION['user_login_name']) ?></span><span> | </span><a href="/user/logout">log out</a>
+    <?php } else { ?>
+      <a href="/user/login">log in</a><span> | </span><a href="/user/registration">registration</a>
+    <?php } ?>
+    </div>
 
-<div class="header">
-<span><b>LOGO</b></span>
-</div>
+    <div class="header">
+        <span><b>LOGO</b></span>
+    </div>

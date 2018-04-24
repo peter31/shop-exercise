@@ -80,7 +80,7 @@ $routing[] = [
     'path' => '/user/logout',
     'method' => 'GET',
     'controllerClass' => \User\Controllers\AuthController::class,
-    'controllerMethod' => 'logOutAction'
+    'controllerMethod' => 'logoutAction'
 ];
 
 $routing[] = [
@@ -88,4 +88,11 @@ $routing[] = [
     'method' => 'GET',
     'controllerClass' => \User\Controllers\AuthController::class,
     'controllerMethod' => 'registration'
+];
+
+$routing[] = [
+    'path' => '/user/registration',
+    'method' => 'POST',
+    'controllerClass' => \User\Controllers\AuthController::class,
+    'controllerMethod' => 'registrationAction'
 ];

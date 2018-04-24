@@ -12,10 +12,17 @@
             /*color: #606468;*/
             font-family: 'Open Sans', sans-serif;
             font-size: 14px;
+            margin-top: 0;
+
+        }
+
+        h2 {
+            margin-top: 50px;
+            text-align: center;
         }
 
         form {
-            margin-top: 150px;
+            margin-top: 50px;
             text-align: center;
             color: #eee;
         }
@@ -43,9 +50,7 @@
     </style>
 </head>
 <body>
-
-
-
+    <h2>Log in</h2>
     <form action="/user/login" method="POST">
         <p><?php include dirname(__DIR__, 3) . '/Common/Resources/templates/errors.php' ?></p>
         <p><input type="text" name="name" placeholder="username" ></p>
