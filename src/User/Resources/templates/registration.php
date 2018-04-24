@@ -47,10 +47,10 @@
     <h2>Registration</h2>
     <form action="/user/registration" method="POST">
         <p><?php include dirname(__DIR__, 3) . '/Common/Resources/templates/errors.php' ?></p>
-        <p><input type="text" name="name" placeholder="username" required></p>
-        <p><input type="email" name="email" placeholder="example@mail.com" required/></p>
-        <p><input type="password" name="password" placeholder="password" required></p>
-        <p><input type="password" name="password2" placeholder="confirm password" required></p>
+        <p><input type="text" name="name" value="<?php echo isset($item['name']) ? $item['name'] : '' ?>" placeholder="username" required></p>
+        <p><input type="email" name="email" value="<?php echo isset($item['email']) ? $item['email'] : '' ?>" placeholder="example@mail.com" required/></p>
+        <p><input type="password" name="password" value="<?php echo isset($item['password']) ? $item['password'] : '' ?>"placeholder="password" required></p>
+        <p><input type="password" name="password2" value="<?php echo isset($item['password2']) ? $item['password2'] : '' ?>"placeholder="confirm password" required></p>
         <p><input type="submit" value="sign up"></p>
     </form>
 </body>
