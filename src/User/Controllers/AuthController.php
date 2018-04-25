@@ -48,6 +48,10 @@ class AuthController extends AbstractController
 
     public function registration()
     {
+        if (array_key_exists('saved_data', $_SESSION)) {
+            $item = $_SESSION['saved_data'];
+            unset($_SESSION['saved_data']);
+        }
         require dirname(__DIR__) . '/Resources/templates/registration.php';
     }
 
