@@ -1,33 +1,54 @@
 <?php
 namespace User\Controllers;
+
 use Common\Controllers\AdminAbstractController;
 
 class AdminAddController extends AdminAbstractController
 {
-    public function addForm()
+    public  function addForm()
     {
+        if (array_key_exists('saved_data', $_SESSION)) {
+            $user   = $_SESSION['saved_data']['user'];
+            $errors = $_SESSION['saved_data']['errors'];
+            unset($_SESSION['saved_data']);
+        }
+
+        $title    = 'Admin';
         include dirname(__DIR__) . '/Resources/templates/admin/add.php';
     }
 
-    public function addAction()
+    private function validationErrors($arr)
     {
-        $errors = userAddValidation($_POST);
+        $errors = [];
 
-        if (!empty($_POST['email'])) {
-            $sqlQuery = sprintf(
-                'SELECT * FROM users WHERE email = "%s"',
-                $this->mysql->escape_string($_POST['email'])
-            );
-
-            $result = $this->mysql->query($sqlQuery);
-
-            if ($result->num_rows !== 0) {
-                $errors[] = 'User with this email already exists';
-            }
+        if (empty($arr['name']) || empty($arr['email']) || empty($arr['password'])) {
+            $errors[] = 'All fields must be completed !';
         }
 
-        if (count($errors) > 0) {
-            include dirname(__DIR__) . '/Resources/templates/admin/add.php';
+        if (!empty($arr['email'])) {
+            if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
+                $errors[] = 'Is not valid email address';
+            } else {
+                $sqlQuery = sprintf('SELECT * FROM users WHERE email = "%s"', $this->mysql->escape_string($_POST['email']));
+                $result = $this->mysql->query($sqlQuery);
+                if ($result->num_rows !== 0 ) {
+                    $errors[] = 'User with this email already exists';
+                }
+            }
+        }
+        return $errors;
+    }
+
+    public  function addAction()
+    {
+        $errors = $this->validationErrors($_POST);
+
+        if (!empty($errors)) {
+            $_SESSION['saved_data'] = [
+                'user'   => $_POST,
+                'errors' => $errors
+            ];
+            header('Location: /admin/users/add');
         } else {
             $sqlQuery = sprintf(
                 'INSERT INTO users SET name = "%s", email = "%s", password = "%s"',
@@ -36,8 +57,8 @@ class AdminAddController extends AdminAbstractController
                 $this->mysql->escape_string($_POST['password'])
             );
             $this->mysql->query($sqlQuery);
-
-            $userResultString = 'User is added';
+            $title = 'Admin';
+            $userResultString = 'User was added';
 
             include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
         }

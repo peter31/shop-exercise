@@ -59,7 +59,7 @@ $routing[] = [
     'path' => '/admin/users/csv_action',
     'method' => 'POST',
     'controllerClass' => \User\Controllers\AdminCSVController::class,
-    'controllerMethod' => 'sendCSV'
+    'controllerMethod' => 'actionCSV'
 ];
 
 $routing[] = [

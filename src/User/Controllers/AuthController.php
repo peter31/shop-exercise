@@ -23,7 +23,6 @@ class AuthController extends AbstractController
                 $errors[] = 'Wrong username or password !';
             }
         }
-
         return $errors;
     }
 
@@ -78,7 +77,6 @@ class AuthController extends AbstractController
                 }
             }
         }
-
         return $errors;
     }
 

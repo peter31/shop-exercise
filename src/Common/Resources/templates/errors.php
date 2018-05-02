@@ -3,8 +3,8 @@
     <?php unset($_SESSION['saved_errors']); ?>
 <?php endif; ?>
 
-<?php if (!empty($errors)) { ?>
+<?php if (isset($errors)) { ?>
     <?php foreach ($errors as $error) { ?>
-        <span style="color: #C1272D;"><?php echo $error ?></span>
+        <p style="color: #C1272D;"><?php echo $error ?></p>
     <?php } ?>
 <?php } ?>

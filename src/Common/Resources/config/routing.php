@@ -1,53 +1,37 @@
 <?php
 
 /**
- * ADMIN SECTION --------------------
-*/
+ * ADMIN SECTION
+ */
 
-//$routing[] = [
-//    'path' => '/admin',
-//    'method' => 'GET',
-//    'controllerClass' => \Common\Controllers\AdminDashboardController::class,
-//    'controllerMethod' => 'adminDashboard'
-//];
+$routing[] = [
+    'path' => '/admin',
+    'method' => 'GET',
+    'controllerClass' => \Common\Controllers\AdminPanelController::class,
+    'controllerMethod' => 'controlPanel'
+];
 
 $routing[] = [
     'path' => '/admin/login',
     'method' => 'GET',
     'controllerClass' => \Common\Controllers\AdminAuthController::class,
-    'controllerMethod' => 'logIn'
+    'controllerMethod' => 'login'
 ];
 
 $routing[] = [
     'path' => '/admin/login',
     'method' => 'POST',
     'controllerClass' => \Common\Controllers\AdminAuthController::class,
-    'controllerMethod' => 'logInAction'
+    'controllerMethod' => 'loginAction'
 ];
 
 $routing[] = [
     'path' => '/admin/logout',
     'method' => 'GET',
     'controllerClass' => \Common\Controllers\AdminAuthController::class,
-    'controllerMethod' => 'logOutAction'
+    'controllerMethod' => 'logoutAction'
 ];
 
 /**
- * USER SECTION --------------------
+ * USER SECTION
  */
-
-// Advert list ...
-$routing[] = [
-    'path' => '/',
-    'method' => 'GET',
-    'controllerClass' => \Common\Controllers\MainController::class,
-    'controllerMethod' => 'listAction'
-];
-
-$routing[] = [
-    'path' => '/advert/item',
-    'method' => 'GET',
-    'controllerClass' => \Common\Controllers\MainController::class,
-    'controllerMethod' => 'viewAction'
-];
-

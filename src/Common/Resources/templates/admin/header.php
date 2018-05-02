@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $title ?></php></title>
+    <title>Admin</php></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <style>
 
@@ -45,5 +45,5 @@
 </head>
 <body>
     <div class="top">
-        <a href="/admin/login">log out</a>
+        <a href="/admin/logout">log out</a>
     </div>

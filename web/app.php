@@ -12,7 +12,6 @@ $method = $_SERVER['REQUEST_METHOD'];
 $router = new \Common\Router();
 list($controllerClass, $controllerMethod) = $router->getControllerData($path, $method);
 
-
 session_start();
 
 $controller = new $controllerClass();

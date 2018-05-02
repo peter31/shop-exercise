@@ -1,9 +1,3 @@
-<?php if (!empty($errors)) { ?>
-    <?php foreach($errors as $error) { ?>
-        <span style="color: #C1272D;"><?php echo $error ?></span><br />
-    <?php } ?>
-    <br />
-<?php } ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,10 +39,12 @@
     </style>
 </head>
 <body>
-    <form action="/admin/login" method="POST">
-        <p><input type="text" name="user" placeholder="user" required></p>
-        <p><input type="password" name="pass" placeholder="password" required></p>
-        <p><input type="submit" value="log in"></p>
-    </form>
+
+<form action="/admin/login" method="POST">
+    <p><?php include dirname(__DIR__) . '/errors.php' ?></p>
+    <p><input type="text" name="user" placeholder="username" required></p>
+    <p><input type="password" name="pass" placeholder="password" required></p>
+    <p><input type="submit" value="log in"></p>
+</form>
 </body>
 </html>
