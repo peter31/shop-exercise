@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Admin</php></title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <style>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic);
 
         body {
@@ -47,3 +50,5 @@
     <div class="top">
         <a href="/admin/logout">log out</a>
     </div>
+
+    <div class="container">

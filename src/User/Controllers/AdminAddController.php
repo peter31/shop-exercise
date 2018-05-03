@@ -8,7 +8,7 @@ class AdminAddController extends AdminAbstractController
     public  function addForm()
     {
         if (array_key_exists('saved_data', $_SESSION)) {
-            $user   = $_SESSION['saved_data']['user'];
+            $user   = $_SESSION['saved_data']['item'];
             $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
@@ -44,10 +44,8 @@ class AdminAddController extends AdminAbstractController
         $errors = $this->validationErrors($_POST);
 
         if (!empty($errors)) {
-            $_SESSION['saved_data'] = [
-                'user'   => $_POST,
-                'errors' => $errors
-            ];
+            $_SESSION['saved_data']['item'] = $_POST;
+            $_SESSION['saved_data']['errors'] = $errors;
             header('Location: /admin/users/add');
         } else {
             $sqlQuery = sprintf(

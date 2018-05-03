@@ -7,8 +7,9 @@ class AdminAddController extends AdminAbstractController
 {
     public function addForm()
     {
+        $item = [];
         if (array_key_exists('saved_data', $_SESSION)) {
-            $advert = array_merge($advert, $_SESSION['saved_data']['advert']);
+            $item = array_merge($item, $_SESSION['saved_data']['item']);
             $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
@@ -16,11 +17,10 @@ class AdminAddController extends AdminAbstractController
         include dirname(__DIR__) . '/Resources/templates/admin/add.php';
     }
 
-    function advertAddValidation($arr)
+    private function advertAddValidation($arr)
     {
         $errors = [];
-
-        if ( empty($arr['title']) || empty($arr['message']) || empty($arr['phone']) ) {
+        if (empty($arr['title']) || empty($arr['message']) || empty($arr['phone'])) {
             $errors[] = 'All fields must be completed';
         }
 
@@ -32,8 +32,8 @@ class AdminAddController extends AdminAbstractController
         $errors = $this->advertAddValidation($_POST);
 
         if (count($errors) > 0) {
+            $_SESSION['saved_data']['item'] = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
-            $_SESSION['saved_data']['advert'] = $_POST;
             header('Location: /admin/adverts/add');
         } else {
             $sqlQuery = sprintf(
@@ -47,5 +47,5 @@ class AdminAddController extends AdminAbstractController
             $userResultString = 'Advert is added';
             include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
         }
-     }
+    }
 }
