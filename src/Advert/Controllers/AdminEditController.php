@@ -3,6 +3,9 @@ namespace Advert\Controllers;
 
 use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
+use Common\Validator\Strategy\Exists;
+use Common\Validator\Strategy\NotBlank;
+use Common\Validator\Validator;
 
 class AdminEditController extends AdminAbstractController
 {
@@ -24,29 +27,15 @@ class AdminEditController extends AdminAbstractController
         include dirname(__DIR__) . '/Resources/templates/admin/edit.php';
     }
 
-    private function advertEditValidation($arr)
-    {
-        $errors = [];
-
-        if (empty($arr['title']) || empty($arr['message']) || empty($arr['phone'])) {
-            $errors[] = 'All fields must be completed';
-        }
-
-        if (empty($_POST['id'])) {
-            $errors[] = 'ID is empty';
-        } else {
-            $item = $this->getAdvertManager()->getById($_POST['id']);
-            if (null === $item) {
-                $errors[] = 'Advert with this id does not exist';
-            }
-        }
-
-        return $errors;
-    }
-
     public function editAction()
     {
-        $errors = $this->advertEditValidation($_POST);
+        $validator = new Validator([
+            'id' => [new NotBlank(), new Exists('adverts')],
+            'title' => [new NotBlank()],
+            'message' => [new NotBlank()],
+            'phone' => [new NotBlank()],
+        ]);
+        $errors = $validator->validate($_POST);
 
         if (count($errors) > 0) {
             $_SESSION['saved_data']['advert'] = $_POST;

@@ -2,6 +2,7 @@
 namespace User\Controllers;
 
 use Common\Controllers\AdminAbstractController;
+use Common\Validator\Strategy\Exists;
 
 class AdminEditController extends AdminAbstractController
 {
@@ -19,36 +20,15 @@ class AdminEditController extends AdminAbstractController
         include dirname(__DIR__) . '/Resources/templates/admin/edit.php';
     }
 
-    private function validationErrors($arr)
-    {
-        $errors = [];
-
-        if (empty($_POST['id'])) {
-            $errors[] = 'ID is empty';
-        } else {
-            $sqlQuery = sprintf('SELECT * FROM users WHERE id = "%d"', $this->mysql->escape_string($_POST['id']));
-            $result = $this->mysql->query($sqlQuery)->num_rows;
-
-            if ($result === 0) {
-                $errors[] = 'User with this id does not exist';
-            }
-        }
-
-        if (empty($arr['name']) || empty($arr['email']) || empty($arr['password'])) {
-            $errors[] = 'All fields must be completed !';
-        }
-
-        if (!empty($arr['email'])) {
-            if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === false) {
-                $errors[] = 'Is not valid email address';
-            }
-        }
-        return $errors;
-    }
-
     public function editAction()
     {
-        $errors = $this->validationErrors($_POST);
+        $validator = new Validator([
+            'id' => [new NotBlank(), new Exists('users')],
+            'name' => [new NotBlank()],
+            'email' => [new NotBlank(), new EmailFormat()],
+            'password' => [new NotBlank()],
+        ]);
+        $errors = $validator->validate($_POST);
 
         if (count($errors) > 0) {
             $_SESSION['saved_data']['user']   = $_POST;

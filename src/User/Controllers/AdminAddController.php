@@ -2,6 +2,10 @@
 namespace User\Controllers;
 
 use Common\Controllers\AdminAbstractController;
+use Common\Validator\Strategy\EmailFormat;
+use Common\Validator\Strategy\NotBlank;
+use Common\Validator\Strategy\Unique;
+use Common\Validator\Validator;
 use User\Traits\GetUserManagerTrait;
 
 class AdminAddController extends AdminAbstractController
@@ -20,30 +24,14 @@ class AdminAddController extends AdminAbstractController
         include dirname(__DIR__) . '/Resources/templates/admin/add.php';
     }
 
-    private function validationErrors($arr)
-    {
-        $errors = [];
-
-        if (empty($arr['name']) || empty($arr['email']) || empty($arr['password'])) {
-            $errors[] = 'All fields must be completed !';
-        }
-
-        if (!empty($arr['email'])) {
-            if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === false) {
-                $errors[] = 'Is not valid email address';
-            } else {
-                $item = $this->getUserManager()->getByEmail($_POST['email']);
-                if (null !== $item) {
-                    $errors[] = 'User with this email already exists';
-                }
-            }
-        }
-        return $errors;
-    }
-
     public function addAction()
     {
-        $errors = $this->validationErrors($_POST);
+        $validator = new Validator([
+            'name' => [new NotBlank()],
+            'email' => [new NotBlank(), new EmailFormat(), new Unique('users')],
+            'password' => [new NotBlank()],
+        ]);
+        $errors = $validator->validate($_POST);
 
         if (!empty($errors)) {
             $_SESSION['saved_data']['item'] = $_POST;

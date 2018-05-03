@@ -3,6 +3,8 @@ namespace Advert\Controllers;
 
 use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
+use Common\Validator\Strategy\NotBlank;
+use Common\Validator\Validator;
 
 class AdminAddController extends AdminAbstractController
 {
@@ -20,21 +22,16 @@ class AdminAddController extends AdminAbstractController
         include dirname(__DIR__) . '/Resources/templates/admin/add.php';
     }
 
-    private function advertAddValidation($arr)
-    {
-        $errors = [];
-        if (empty($arr['title']) || empty($arr['message']) || empty($arr['phone'])) {
-            $errors[] = 'All fields must be completed';
-        }
-
-        return $errors;
-    }
-
     public function addAction()
     {
-        $errors = $this->advertAddValidation($_POST);
+        $validator = new Validator([
+            'title' => [new NotBlank()],
+            'message' => [new NotBlank()],
+            'phone' => [new NotBlank()],
+        ]);
+        $errors = $validator->validate($_POST);
 
-        if (count($errors) > 0) {
+        if (count($errors)) {
             $_SESSION['saved_data']['item'] = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
 
