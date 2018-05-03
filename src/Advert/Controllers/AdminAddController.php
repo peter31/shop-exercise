@@ -1,10 +1,13 @@
 <?php
 namespace Advert\Controllers;
 
+use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
 
 class AdminAddController extends AdminAbstractController
 {
+    use GetAdvertManagerTrait;
+
     public function addForm()
     {
         $item = [];
@@ -34,18 +37,12 @@ class AdminAddController extends AdminAbstractController
         if (count($errors) > 0) {
             $_SESSION['saved_data']['item'] = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
-            header('Location: /admin/adverts/add');
-        } else {
-            $sqlQuery = sprintf(
-                'INSERT INTO adverts SET title = "%s", message = "%s", phone = "%s"',
-                $this->mysql->escape_string($_POST['title']),
-                $this->mysql->escape_string($_POST['message']),
-                $this->mysql->escape_string($_POST['phone'])
-            );
 
-            $this->mysql->query($sqlQuery);
-            $userResultString = 'Advert is added';
-            include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
+            $this->redirect('/admin/adverts/add');
+        } else {
+            $this->getAdvertManager()->createItem($_POST);
+
+            $this->redirect('/admin/adverts');
         }
     }
 }

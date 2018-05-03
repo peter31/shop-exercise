@@ -32,17 +32,17 @@ class AuthController extends AbstractController
 
         if (empty($errors)) {
             $_SESSION['user_login_name'] = $_POST['name'];
-            header('Location: /');
+            $this->redirect('/');
         } else {
             $_SESSION['saved_errors'] = $errors;
-            header('Location: /user/login');
+            $this->redirect('/user/login');
         }
     }
 
     public function logoutAction()
     {
         unset($_SESSION['user_login_name']);
-        header('Location: /');
+        $this->redirect('/');
     }
 
     public function registration()
@@ -92,11 +92,11 @@ class AuthController extends AbstractController
                 $this->mysql->escape_string($_POST['password'])
             );
             $this->mysql->query($sqlQuery);
-            header('Location: /');
+            $this->redirect('/');
         } else {
             $_SESSION['saved_errors'] = $errors;
             $_SESSION['saved_data'] = $_POST;
-            header('Location: /user/registration');
+            $this->redirect('/user/registration');
         }
     }
 }

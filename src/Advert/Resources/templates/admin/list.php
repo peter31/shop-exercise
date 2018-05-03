@@ -22,7 +22,7 @@
                 <td><?php echo $advert['created'] ?></td>
                 <td><?php echo $advert['updated'] ?></td>
                 <td><a href="/admin/adverts/edit?id=<?php echo $advert['id'] ?>">Edit</a></td>
-                <td><a href="/admin/adverts/delete_action?id=<?php echo $advert['id'] ?>">Delete</a></td>
+                <td><a href="/admin/adverts/delete_action?id=<?php echo $advert['id'] ?>" onclick="return confirm('Delete selected element?');">Delete</a></td>
             </tr>
     <?php } ?>
         </table>

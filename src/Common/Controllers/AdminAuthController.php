@@ -2,8 +2,7 @@
 
 namespace Common\Controllers;
 
-
-class AdminAuthController
+class AdminAuthController extends AbstractController
 {
     private function loginValidation($arr)
     {
@@ -23,7 +22,7 @@ class AdminAuthController
     public function login()
     {
         if (array_key_exists('admin_auth_login', $_SESSION)) {
-            header('Location: /admin');
+            $this->redirect('/admin');
         } else {
             $title = 'Login';
             require dirname(__DIR__) . '/Resources/templates/admin/login.php';
@@ -38,7 +37,7 @@ class AdminAuthController
 
         if (count($errors) > 0) {
             $_SESSION['saved_errors'] = $errors;
-            header('Location: /admin/login');
+            $this->redirect('/admin/login');
         } else {
             $_SESSION['admin_auth_login'] = $_POST['user'];
 
@@ -50,13 +49,13 @@ class AdminAuthController
                 unset($_SESSION['saved_errors']);
             }
 
-            header('Location: ' . $back_url);
-            }
+            $this->redirect($back_url);
         }
+    }
 
     public function logoutAction()
     {
         unset($_SESSION['admin_auth_login']);
-        header('Location: /admin/login');
+        $this->redirect('/admin/login');
     }
 }

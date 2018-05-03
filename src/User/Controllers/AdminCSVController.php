@@ -19,7 +19,7 @@ class AdminCSVController extends AdminAbstractController
     {
         if (count($errors = $this->fileErrors($_FILES))) {
             $_SESSION['saved_data']['errors'] = $errors;
-            header('Location: /admin/users/csv');
+            $this->redirect('/admin/users/csv');
         } else {
             $take = fopen($_FILES['browse_csv']['tmp_name'], 'rb');
             $incorrect = 0;

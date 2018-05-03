@@ -16,13 +16,13 @@
 
         <div class="form-group">
           <label>Phone number:</label>
-          <input type="text" name="phone" class="form-control" value="<?php echo $item['phone'] ?? '' ?>" placeholder="078123456" required/>
+          <input name="phone" class="form-control"  placeholder="078123456" value="<?php echo $item['phone'] ?? '' ?>" placeholder="078123456" required/>
         </div>
 
         <div class="form-group">
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="advert-status" name="checkbox" value="1" checked/>
-            <input type="hidden" name="checkbox" value="0"/>
+            <input type="hidden" name="status" value="0"/>
+            <input type="checkbox" class="form-check-input" id="advert-status" name="status" value="1" checked/>
 
             <label class="form-check-label" for="advert-status">Status</label>
           </div>

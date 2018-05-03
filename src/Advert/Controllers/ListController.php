@@ -2,22 +2,26 @@
 
 namespace Advert\Controllers;
 
+use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AbstractController;
 
 class ListController extends AbstractController
 {
+    use GetAdvertManagerTrait;
+
     public function listAction()
     {
-        $sqlQuery = 'SELECT * FROM adverts WHERE status = 1';
-        $adverts  = $this->mysql->query($sqlQuery)->fetch_all(MYSQLI_ASSOC);
+        $adverts  = $this->getAdvertManager()->getActive();
 
         require dirname(__DIR__) . '/Resources/templates/list.php';
     }
 
     public function viewAction()
     {
-        $sqlQuery = sprintf('SELECT * FROM adverts WHERE id = "%d"', $this->mysql->escape_string($_GET['id']));
-        $advert   = $this->mysql->query($sqlQuery)->fetch_assoc();
+        $item = $this->getAdvertManager()->getById($_GET['id']);
+        if (null === $item) {
+            $this->show404();
+        }
 
         include dirname(__DIR__) . '/Resources/templates/view.php';
     }

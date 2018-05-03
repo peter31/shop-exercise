@@ -9,11 +9,18 @@ class AbstractController
 
     public function __construct()
     {
-//        if (!array_key_exists('user_auth_login', $_SESSION)) {
-//            $_SESSION['user_back_url'] = $_SERVER['REQUEST_URI'];
-//            header('Location: /admin/login');
-//            exit;
-//        }
         $this->mysql = DB::connect();
+    }
+
+    public function show404()
+    {
+        header("HTTP/1.0 404 Not Found", true, 404);
+
+        include dirname(__DIR__, 2) . '/Common/Resources/templates/404.php';
+    }
+
+    public function redirect($url)
+    {
+        header('Location: ' . $url);
     }
 }

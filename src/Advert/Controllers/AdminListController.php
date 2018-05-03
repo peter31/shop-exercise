@@ -1,25 +1,24 @@
 <?php
 namespace Advert\Controllers;
 
+use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
 
 class AdminListController extends AdminAbstractController
 {
+    use GetAdvertManagerTrait;
+
     public function listAction()
     {
-
-        $result  = $this->mysql->query('SELECT * FROM adverts');
-        $adverts = $result->fetch_all(MYSQLI_ASSOC);
+        $adverts = $this->getAdvertManager()->getAll();
 
         require dirname(__DIR__) . '/Resources/templates/admin/list.php';
     }
 
     public function deleteAction()
     {
-        $sqlQuery = sprintf('DELETE FROM adverts WHERE id = "%d"', $this->mysql->escape_string($_GET['id']));
-        $this->mysql->query($sqlQuery);
-        $userResultString = 'Advert was deleted';
+        $this->getAdvertManager()->deleteById($_GET['id']);
 
-        require dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
+        $this->redirect('/admin/adverts');
     }
 }

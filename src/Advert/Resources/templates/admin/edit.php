@@ -4,32 +4,33 @@
 
         <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/errors.php' ?>
 
-        <input type="hidden" name="id" value="<?php echo $advert['id'] ?>" />
-
         <div class="form-group">
             <label>Title:</label>
-            <input type="text" name="title" value="<?php echo $advert['title'] ?>"required/>
+            <input name="title" class="form-control" value="<?php echo $item['title'] ?>"required/>
         </div>
 
         <div class="form-group">
             <label>Message:</label>
-            <textarea name="message" rows="10" cols="30" required><?php echo $advert['message'] ?></textarea>
+            <textarea name="message" class="form-control" rows="10" cols="30" required><?php echo $item['message'] ?></textarea>
         </div>
 
         <div class="form-group">
             <label>Phone number:</label>
-            <input type="text" name="phone" placeholder="078123456" value="<?php echo $advert['phone'] ?>" required/>
+            <input name="phone" class="form-control" placeholder="078123456" value="<?php echo $item['phone'] ?>" required/>
         </div>
 
         <div class="form-group">
             <div class="form-check">
                 <input type="hidden" name="status" value="0"/>
-                <input type="checkbox" name="status" value="1" <?php echo isset($advert['status']) && $advert['status'] ? 'checked' : '' ?>/>
+                <input type="checkbox" id="advert-status" name="status" value="1" <?php echo isset($item['status']) && $item['status'] ? 'checked' : '' ?>/>
+
                 <label class="form-check-label" for="advert-status">Status</label>
             </div>
         </div>
 
         <div class="form-group">
+            <input type="hidden" name="id" value="<?php echo $item['id'] ?>" />
+
             <button class="btn btn-primary mb-2">Submit</button>
         </div>
 

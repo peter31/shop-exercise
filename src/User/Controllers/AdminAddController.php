@@ -2,10 +2,13 @@
 namespace User\Controllers;
 
 use Common\Controllers\AdminAbstractController;
+use User\Traits\GetUserManagerTrait;
 
 class AdminAddController extends AdminAbstractController
 {
-    public  function addForm()
+    use GetUserManagerTrait;
+
+    public function addForm()
     {
         if (array_key_exists('saved_data', $_SESSION)) {
             $user   = $_SESSION['saved_data']['item'];
@@ -26,12 +29,11 @@ class AdminAddController extends AdminAbstractController
         }
 
         if (!empty($arr['email'])) {
-            if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === FALSE) {
+            if (filter_var($arr['email'], FILTER_VALIDATE_EMAIL) === false) {
                 $errors[] = 'Is not valid email address';
             } else {
-                $sqlQuery = sprintf('SELECT * FROM users WHERE email = "%s"', $this->mysql->escape_string($_POST['email']));
-                $result = $this->mysql->query($sqlQuery);
-                if ($result->num_rows !== 0 ) {
+                $item = $this->getUserManager()->getByEmail($_POST['email']);
+                if (null !== $item) {
                     $errors[] = 'User with this email already exists';
                 }
             }
@@ -39,14 +41,14 @@ class AdminAddController extends AdminAbstractController
         return $errors;
     }
 
-    public  function addAction()
+    public function addAction()
     {
         $errors = $this->validationErrors($_POST);
 
         if (!empty($errors)) {
             $_SESSION['saved_data']['item'] = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
-            header('Location: /admin/users/add');
+            $this->redirect('/admin/users/add');
         } else {
             $sqlQuery = sprintf(
                 'INSERT INTO users SET name = "%s", email = "%s", password = "%s"',

@@ -25,7 +25,7 @@ include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/header.php' ?>
             <td><?php echo $user['created'] ?></td>
             <td><?php echo $user['updated'] ?></td>
             <td><a href="/admin/users/edit?id=<?php echo $user['id'] ?>">Edit</a></td>
-            <td><a href="/admin/users/delete_action?id=<?php echo $user['id'] ?>">Delete</a></td>
+            <td><a href="/admin/users/delete_action?id=<?php echo $user['id'] ?>" onclick="return confirm('Delete selected element?');">Delete</a></td>
         </tr>
 <?php } ?>
     </table>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Advert\Traits;
+namespace Common\Traits;
 
 use Common\DB;
 

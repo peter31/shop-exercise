@@ -48,7 +48,9 @@
 </head>
 <body>
     <div class="top">
-        <a href="/admin/logout">log out</a>
+      <div style="float: left;"><a href="/admin">Dashboard</a></div>
+      <div style="float: right;"><a href="/admin/logout">log out</a></div>
+      <br clear="all">
     </div>
 
     <div class="container">

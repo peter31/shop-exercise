@@ -53,7 +53,7 @@ class AdminEditController extends AdminAbstractController
         if (count($errors) > 0) {
             $_SESSION['saved_data']['user']   = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
-            header('Location: /admin/users/edit?id=' . $_POST['id']);
+            $this->redirect('/admin/users/edit?id=' . $_POST['id']);
         } else {
             $sqlQuery = sprintf(
                 'UPDATE users SET name = "%s", email = "%s", status = "%d" WHERE id = "%d"',
