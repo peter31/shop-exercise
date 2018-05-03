@@ -10,7 +10,7 @@
         </div>
 
         <div class="form-group">
-          <label>Text:</label>
+          <label>Message:</label>
           <textarea name="message" class="form-control" rows="10" cols="30" value="<?php echo $item['message'] ?? '' ?>" required></textarea>
         </div>
 
