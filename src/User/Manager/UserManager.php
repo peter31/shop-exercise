@@ -27,7 +27,7 @@ class UserManager
     {
         return DB::connect()->query(
             sprintf('SELECT * FROM users WHERE email = "%s"', $this->escape($email))
-        )->fetch_assoc();
+        );
     }
 
     public function deleteById($id)
@@ -52,10 +52,11 @@ class UserManager
 
     public function createItemCsv(array $data)
     {
+
         $sqlQuery = sprintf(
             'INSERT INTO users SET name = "%s", email = "%s"',
-            $this->escape($data['name']),
-            $this->escape($data['email'])
+            $this->escape($data[0]),
+            $this->escape($data[1])
         );
 
         return DB::connect()->query($sqlQuery);
@@ -77,10 +78,11 @@ class UserManager
 
     public function updateItemCsv(array $data)
     {
+
         $sqlQuery = sprintf(
-            'UPDATE users SET name = "%s" WHERE id = "%s"',
-            $this->escape($data['name']),
-            $this->escape($data['email'])
+            'UPDATE users SET name = "%s" WHERE email = "%s"',
+            $this->escape($data[0]),
+            $this->escape($data[1])
         );
 
         return DB::connect()->query($sqlQuery);

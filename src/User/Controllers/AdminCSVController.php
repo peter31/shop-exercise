@@ -40,14 +40,13 @@ class AdminCSVController extends AdminAbstractController
             $take = fopen($_FILES['browse_csv']['tmp_name'], 'rb');
 
             $validator = new Validator([
-                'name' => [new NotBlank()],
+                'name'  => [new NotBlank()],
                 'email' => [new NotBlank(), new EmailFormat()]
             ]);
 
             $incorrectRows = 0;
-
             while (($usersRow = fgetcsv($take)) !== false) {
-                $errors = $this->$validator->validate(['name' => $usersRow[0], 'email' => $usersRow[1]]);
+                $errors = $validator->validate(['name' => $usersRow[0], 'email' => $usersRow[1]]);
                 if (!count($errors)) {
                     $users[] = $usersRow;
                 } else {
@@ -57,23 +56,19 @@ class AdminCSVController extends AdminAbstractController
             fclose($take);
         }
 
-
         $total = count($users);
-
         $added = 0;
         $updated = 0;
 
-
         foreach ($users as $key => $value) {
-
             $result = $this->getUserManager()->getByEmail($value[1]);
 
             if ($result->num_rows === 0) {
-                $this->getUserManager()->createItemCsv([$value['0'], $value['1']]);
-                $added = $this->mysql->affected_rows;
+                $this->getUserManager()->createItemCsv([$value[0], $value[1]]);
+                $added++;
             } else {
-                $this->getUserManager()->updateItemCsv([$value['0'], $value['1']])
-                $updated = $this->mysql->affected_rows;
+                $this->getUserManager()->updateItemCsv([$value[0], $value[1]]);
+                $updated++;
             }
         }
 
