@@ -23,7 +23,7 @@ class Validator
 
                 $fieldErrors = $strategy->execute($data, $field);
 
-                if (is_array($fieldErrors) &&  count($fieldErrors)) {
+                if (is_array($fieldErrors) && count($fieldErrors)) {
                     $errors = array_merge($errors, $fieldErrors);
                 }
             }

@@ -30,10 +30,10 @@ class AdminEditController extends AdminAbstractController
     public function editAction()
     {
         $validator = new Validator([
-            'id' => [new NotBlank(), new Exists('adverts')],
-            'title' => [new NotBlank()],
+            'id'      => [new NotBlank(), new Exists('adverts')],
+            'title'   => [new NotBlank()],
             'message' => [new NotBlank()],
-            'phone' => [new NotBlank()],
+            'phone'   => [new NotBlank()],
         ]);
         $errors = $validator->validate($_POST);
 

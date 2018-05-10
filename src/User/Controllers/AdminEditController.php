@@ -2,14 +2,20 @@
 namespace User\Controllers;
 
 use Common\Controllers\AdminAbstractController;
+use User\Traits\GetUserManagerTrait;
+
+use Common\Validator\Validator;
+use Common\Validator\Strategy\EmailFormat;
 use Common\Validator\Strategy\Exists;
+use Common\Validator\Strategy\NotBlank;
 
 class AdminEditController extends AdminAbstractController
 {
+    use GetUserManagerTrait;
+
     public function editForm()
     {
-        $sqlQuery = sprintf('SELECT * FROM users WHERE id = "%d"', $this->mysql->escape_string($_GET['id']));
-        $user     = $this->mysql->query($sqlQuery)->fetch_assoc();
+        $user = $this->getUserManager()->getById($_GET['id']);
 
         if (array_key_exists('saved_data', $_SESSION)) {
             $user   = array_merge($user, $_SESSION['saved_data']['user']);
@@ -23,11 +29,12 @@ class AdminEditController extends AdminAbstractController
     public function editAction()
     {
         $validator = new Validator([
-            'id' => [new NotBlank(), new Exists('users')],
-            'name' => [new NotBlank()],
-            'email' => [new NotBlank(), new EmailFormat()],
+            'id'       => [new NotBlank(), new Exists('users')],
+            'name'     => [new NotBlank()],
+            'email'    => [new NotBlank(), new EmailFormat()],
             'password' => [new NotBlank()],
         ]);
+
         $errors = $validator->validate($_POST);
 
         if (count($errors) > 0) {
@@ -35,28 +42,10 @@ class AdminEditController extends AdminAbstractController
             $_SESSION['saved_data']['errors'] = $errors;
             $this->redirect('/admin/users/edit?id=' . $_POST['id']);
         } else {
-            $sqlQuery = sprintf(
-                'UPDATE users SET name = "%s", email = "%s", status = "%d" WHERE id = "%d"',
-                $this->mysql->escape_string($_POST['name']),
-                $this->mysql->escape_string($_POST['email']),
-                $this->mysql->escape_string($_POST['status']),
-                $this->mysql->escape_string($_POST['id'])
-            );
-
-            $this->mysql->query($sqlQuery);
+            $this->getUserManager()->updateItem($_POST);
             $userResultString = 'User was changed';
+
             include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

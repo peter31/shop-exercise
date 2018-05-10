@@ -1,6 +1,6 @@
 <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/admin/header.php' ?>
 
-    <form  action="/admin/adverts/edit_action" method="POST">
+    <form action="/admin/adverts/edit_action" method="POST">
 
         <?php include dirname(__DIR__, 4) . '/Common/Resources/templates/errors.php' ?>
 
@@ -20,16 +20,14 @@
         </div>
 
         <div class="form-group">
-            <div class="form-check">
-                <input type="hidden" name="status" value="0"/>
-                <input type="checkbox" id="advert-status" name="status" value="1" <?php echo isset($item['status']) && $item['status'] ? 'checked' : '' ?>/>
+            <input type="hidden" name="status" value="0"/>
 
-                <label class="form-check-label" for="advert-status">Status</label>
-            </div>
+            <label class="form-check-label" for="advert-status">Status</label>
+            <input type="checkbox" id="advert-status" name="status" value="1" <?php echo isset($item['status']) && $item['status'] ? 'checked' : '' ?>/>
         </div>
 
         <div class="form-group">
-            <input type="hidden" name="id" value="<?php echo $item['id'] ?>" />
+            <input type="hidden" name="id" value="<?php echo $item['id'] ?>"/>
 
             <button class="btn btn-primary mb-2">Submit</button>
         </div>

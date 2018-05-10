@@ -1,8 +1,8 @@
 <?php
 namespace Advert\Controllers;
 
-use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
+use Advert\Traits\GetAdvertManagerTrait;
 
 class AdminListController extends AdminAbstractController
 {

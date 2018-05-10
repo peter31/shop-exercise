@@ -14,7 +14,7 @@ class AdminAddController extends AdminAbstractController
     {
         $item = [];
         if (array_key_exists('saved_data', $_SESSION)) {
-            $item = array_merge($item, $_SESSION['saved_data']['item']);
+            $item   = array_merge($item, $_SESSION['saved_data']['item']);
             $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
@@ -25,14 +25,14 @@ class AdminAddController extends AdminAbstractController
     public function addAction()
     {
         $validator = new Validator([
-            'title' => [new NotBlank()],
+            'title'   => [new NotBlank()],
             'message' => [new NotBlank()],
-            'phone' => [new NotBlank()],
+            'phone'   => [new NotBlank()],
         ]);
         $errors = $validator->validate($_POST);
 
         if (count($errors)) {
-            $_SESSION['saved_data']['item'] = $_POST;
+            $_SESSION['saved_data']['item']   = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
 
             $this->redirect('/admin/adverts/add');

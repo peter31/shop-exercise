@@ -40,11 +40,22 @@ class UserManager
     public function createItem(array $data)
     {
         $sqlQuery = sprintf(
-            'INSERT INTO users SET title = "%s", message = "%s", phone = "%s", status = "%s"',
-            $this->escape($data['title']),
-            $this->escape($data['message']),
-            $this->escape($data['phone']),
+            'INSERT INTO users SET name = "%s", email = "%s", password = "%s", status = "%s"',
+            $this->escape($data['name']),
+            $this->escape($data['email']),
+            $this->escape($data['password']),
             $this->escape($data['status'])
+        );
+
+        return DB::connect()->query($sqlQuery);
+    }
+
+    public function createItemCsv(array $data)
+    {
+        $sqlQuery = sprintf(
+            'INSERT INTO users SET name = "%s", email = "%s"',
+            $this->escape($data['name']),
+            $this->escape($data['email'])
         );
 
         return DB::connect()->query($sqlQuery);
@@ -53,12 +64,23 @@ class UserManager
     public function updateItem(array $data)
     {
         $sqlQuery = sprintf(
-            'UPDATE users SET title = "%s", message = "%s", phone = "%s", status = "%s" WHERE id = "%d"',
-            $this->escape($data['title']),
-            $this->escape($data['message']),
-            $this->escape($data['phone']),
+            'UPDATE users SET name = "%s", email = "%s", password = "%s", status = "%d" WHERE id = "%d"',
+            $this->escape($data['name']),
+            $this->escape($data['email']),
+            $this->escape($data['password']),
             $this->escape($data['status']),
             $this->escape($data['id'])
+        );
+
+        return DB::connect()->query($sqlQuery);
+    }
+
+    public function updateItemCsv(array $data)
+    {
+        $sqlQuery = sprintf(
+            'UPDATE users SET name = "%s" WHERE id = "%s"',
+            $this->escape($data['name']),
+            $this->escape($data['email'])
         );
 
         return DB::connect()->query($sqlQuery);
