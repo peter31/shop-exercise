@@ -6,29 +6,30 @@
 
         <div class="form-group">
             <label>Name:</label>
-            <input type="text" name="name" placeholder="name" value="<?php echo $user['name'] ?>" required/>
+            <input class="form-control" name="name" placeholder="name" value="<?php echo $user['name'] ?>" required/>
         </div>
 
         <div class="form-group">
             <label>Email:</label>
-            <input type="email" name="email" placeholder="example@mail.com" value="<?php echo $user['email'] ?>" required/>
+            <input class="form-control" type="email" name="email" placeholder="example@mail.com" value="<?php echo $user['email'] ?>" required/>
         </div>
 
         <div class="form-group">
             <label>Password:</label>
-            <input type="password" name="password" placeholder="user" value="<?php echo $user['password'] ?>" required/>
+            <input class="form-control" type="password" name="password" placeholder="user" value="<?php echo $user['password'] ?>" required/>
         </div>
 
         <div class="form-group">
-            <input type="hidden" name="status" value="0"/>
+            <div class="form-check">
+                <input type="hidden" name="status" value="0"/>
 
-            <label class="form-check-label" for="user-status">Status</label>
-            <input type="checkbox" id="user-status" name="status" value="1" <?php echo isset($item['status']) && $item['status'] ? 'checked' : '' ?>/>
+                <input type="checkbox" id="user-status" class="form-check-input" name="status" value="1" <?php echo isset($user['status']) && $user['status'] ? 'checked' : '' ?>/>
+                <label class="form-check-label" for="user-status">Status</label>
+            </div>
         </div>
 
         <div class="form-group">
-            <input type="hidden" name="id" value="<?php echo $user['id'] ?>" />
-
+            <input type="hidden" name="id" value="<?php echo $user['id'] ?>"/>
             <button class="btn btn-primary mb-2">Submit</button>
         </div>
 
