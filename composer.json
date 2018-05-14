@@ -10,7 +10,8 @@
   "prefer-stable": true,
   "require"      : {
     "php": ">=7.1.0",
-    "symfony/validator": "3.*"
+    "symfony/validator": "3.*",
+    "telegram-bot/api": "@stable"
   },
   "require-dev"  : {
     "squizlabs/php_codesniffer": "@stable"

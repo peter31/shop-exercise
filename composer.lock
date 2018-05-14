@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bb584dff116626928daec06272ca097",
+    "content-hash": "9894861c7fe619c815569d3756db4ef2",
     "packages": [
         {
             "name": "symfony/polyfill-mbstring",
@@ -216,6 +216,61 @@
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
             "time": "2018-04-20T10:02:27+00:00"
+        },
+        {
+            "name": "telegram-bot/api",
+            "version": "v2.3.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TelegramBot/Api.git",
+                "reference": "8d34f3ccd3230a9fd7c7fd9ba8ec0110a059f781"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/8d34f3ccd3230a9fd7c7fd9ba8ec0110a059f781",
+                "reference": "8d34f3ccd3230a9fd7c7fd9ba8ec0110a059f781",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TelegramBot\\Api\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilya Gusev",
+                    "email": "mail@igusev.ru",
+                    "homepage": "https://php-cat.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Wrapper for Telegram Bot API",
+            "homepage": "https://github.com/TelegramBot/Api",
+            "keywords": [
+                "bot",
+                "bot api",
+                "php",
+                "telegram"
+            ],
+            "time": "2018-04-30T11:46:15+00:00"
         }
     ],
     "packages-dev": [
@@ -274,6 +329,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "telegram-bot/api": 0,
         "squizlabs/php_codesniffer": 0
     },
     "prefer-stable": true,

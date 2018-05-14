@@ -8,6 +8,7 @@ use Common\Validator\Validator;
 use Common\Validator\Strategy\EmailFormat;
 use Common\Validator\Strategy\NotBlank;
 use Common\Validator\Strategy\Unique;
+use TelegramBot\Api\BotApi;
 
 class AdminAddController extends AdminAbstractController
 {
@@ -39,7 +40,16 @@ class AdminAddController extends AdminAbstractController
             $this->redirect('/admin/users/add');
         } else {
             $this->getUserManager()->createItem($_POST);
-            $userResultString = 'User was added';
+
+            $bot = new BotApi('453057456:AAHpR4Gi5aYGoCjJsng0NBFrh3yCNm_lCLw');
+
+            $chatId = 541276219;
+
+            $messageText = 'New user was added';
+
+            $bot->sendMessage($chatId, $messageText);
+
+            $userResultString = 'New user was added';
 
             include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
         }
