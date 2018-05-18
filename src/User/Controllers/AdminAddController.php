@@ -4,11 +4,14 @@ namespace User\Controllers;
 use Common\Controllers\AdminAbstractController;
 use User\Traits\GetUserManagerTrait;
 
-use Common\Validator\Validator;
-use Common\Validator\Strategy\EmailFormat;
-use Common\Validator\Strategy\NotBlank;
-use Common\Validator\Strategy\Unique;
-use TelegramBot\Api\BotApi;
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
+//use Common\Validator\Validator;
+//use Common\Validator\Strategy\EmailFormat;
+//use Common\Validator\Strategy\NotBlank;
+//use Common\Validator\Strategy\Unique;
 
 class AdminAddController extends AdminAbstractController
 {
@@ -16,8 +19,9 @@ class AdminAddController extends AdminAbstractController
 
     public function addForm()
     {
+        $user = [];
         if (array_key_exists('saved_data', $_SESSION)) {
-            $user   = $_SESSION['saved_data']['item'];
+            $user   = array_merge($user, $_SESSION['saved_data']['user']);
             $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
@@ -27,27 +31,32 @@ class AdminAddController extends AdminAbstractController
 
     public function addAction()
     {
-        $validator = new Validator([
-            'name'     => [new NotBlank()],
-            'email'    => [new NotBlank(), new EmailFormat(), new Unique('users')],
-            'password' => [new NotBlank()],
+        $validator = Validation::createValidator();
+
+        $constraints = new Collection([
+            'name'     => new NotBlank(),
+            'email'    => new NotBlank(),
+            'password' => new NotBlank(),
+            'status'   => []
         ]);
-        $errors = $validator->validate($_POST);
+
+        $errors = $validator->validate($_POST, $constraints);
+
+
+//        $validator = new Validator([
+//            'name'     => [new NotBlank()],
+//            'email'    => [new NotBlank(), new EmailFormat(), new Unique('users')],
+//            'password' => [new NotBlank()],
+//        ]);
+
+
 
         if (!empty($errors)) {
-            $_SESSION['saved_data']['item']   = $_POST;
+            $_SESSION['saved_data']['user']   = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
             $this->redirect('/admin/users/add');
         } else {
             $this->getUserManager()->createItem($_POST);
-
-            $bot = new BotApi('453057456:AAHpR4Gi5aYGoCjJsng0NBFrh3yCNm_lCLw');
-
-            $chatId = 541276219;
-
-            $messageText = 'New user was added';
-
-            $bot->sendMessage($chatId, $messageText);
 
             $userResultString = 'New user was added';
 

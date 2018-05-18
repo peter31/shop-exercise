@@ -3,8 +3,13 @@ namespace Advert\Controllers;
 
 use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
-use Common\Validator\Strategy\NotBlank;
-use Common\Validator\Validator;
+//use Common\Validator\Strategy\NotBlank;
+//use Common\Validator\Validator;
+
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 class AdminAddController extends AdminAbstractController
 {
@@ -24,12 +29,24 @@ class AdminAddController extends AdminAbstractController
 
     public function addAction()
     {
-        $validator = new Validator([
-            'title'   => [new NotBlank()],
-            'message' => [new NotBlank()],
-            'phone'   => [new NotBlank()],
+
+//        $validator = new Validator([
+//            'title'   => [new NotBlank()],
+//            'message' => [new NotBlank()],
+//            'phone'   => [new NotBlank()],
+//        ]);
+//        $errors = $validator->validate($_POST);
+
+        $validator = Validation::createValidator();
+
+        $constraints = new Collection([
+            'title'   => new NotBlank(),
+            'message' => new NotBlank(),
+            'phone'   => new NotBlank(),
+            'status'  => []
         ]);
-        $errors = $validator->validate($_POST);
+
+        $errors = $validator->validate($_POST, $constraints);
 
         if (count($errors)) {
             $_SESSION['saved_data']['item']   = $_POST;

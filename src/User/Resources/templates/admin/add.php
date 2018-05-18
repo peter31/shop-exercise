@@ -23,7 +23,7 @@
             <div class="form-check">
                 <input type="hidden" name="status" value="0"/>
 
-                <input id="user-status" class="form-check-input" type="checkbox" name="status" value="1" <?php echo isset($user['status']) && $user['status'] ? 'checked' : '' ?>/>
+                <input id="user-status" class="form-check-input" type="checkbox" name="status" value="1" <?php echo isset($user['status']) && !$user['status'] ? '' : 'checked' ?>/>
                 <label class="form-check-label" for="user-status">Status</label>
             </div>
         </div>

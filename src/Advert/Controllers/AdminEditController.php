@@ -3,9 +3,14 @@ namespace Advert\Controllers;
 
 use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
-use Common\Validator\Strategy\Exists;
-use Common\Validator\Strategy\NotBlank;
-use Common\Validator\Validator;
+
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Common\Constraints\Exists;
+
+//use Common\Validator\Strategy\NotBlank;
+//use Common\Validator\Validator;
 
 class AdminEditController extends AdminAbstractController
 {
@@ -14,6 +19,7 @@ class AdminEditController extends AdminAbstractController
     public function editForm()
     {
         $item = $this->getAdvertManager()->getById($_GET['id']);
+
         if (null === $item) {
             return $this->show404();
         }
@@ -29,13 +35,25 @@ class AdminEditController extends AdminAbstractController
 
     public function editAction()
     {
-        $validator = new Validator([
+        $validator = Validation::createValidator();
+
+        $constraints = new Collection([
             'id'      => [new NotBlank(), new Exists('adverts')],
-            'title'   => [new NotBlank()],
-            'message' => [new NotBlank()],
-            'phone'   => [new NotBlank()],
+            'title'   => new NotBlank(),
+            'message' => new NotBlank(),
+            'phone'   => new NotBlank(),
+            'status'  => []
         ]);
-        $errors = $validator->validate($_POST);
+
+        $errors = $validator->validate($_POST, $constraints);
+
+//        $validator = new Validator([
+//            'id'      => [new NotBlank(), new Exists('adverts')],
+//            'title'   => [new NotBlank()],
+//            'message' => [new NotBlank()],
+//            'phone'   => [new NotBlank()],
+//        ]);
+//        $errors = $validator->validate($_POST);
 
         if (count($errors) > 0) {
             $_SESSION['saved_data']['advert'] = $_POST;

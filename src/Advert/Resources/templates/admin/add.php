@@ -22,7 +22,7 @@
         <div class="form-group">
             <div class="form-check">
                 <input type="hidden" name="status" value="0"/>
-                <input type="checkbox" id="advert-status" class="form-check-input" name="status" value="1" checked/>
+                <input type="checkbox" id="advert-status" class="form-check-input" name="status" value="1" <?php echo isset($item['status']) && !$item['status'] ? '' : 'checked' ?>/>
 
                 <label class="form-check-label" for="advert-status">Status</label>
             </div>
