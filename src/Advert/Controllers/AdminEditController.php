@@ -38,7 +38,7 @@ class AdminEditController extends AdminAbstractController
         $validator = Validation::createValidator();
 
         $constraints = new Collection([
-            'id'      => [new NotBlank(), new Exists('adverts')],
+            'id'      => [new NotBlank(), new Exists(['table' => 'adverts', 'field' => 'id'])],
             'title'   => new NotBlank(),
             'message' => new NotBlank(),
             'phone'   => new NotBlank(),

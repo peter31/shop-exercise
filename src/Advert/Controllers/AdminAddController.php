@@ -40,8 +40,8 @@ class AdminAddController extends AdminAbstractController
         $validator = Validation::createValidator();
 
         $constraints = new Collection([
-            'title'   => new NotBlank(),
-            'message' => new NotBlank(),
+            'title'   => new NotBlank(['message' => 'Title not filled']),
+            'message' => new NotBlank(['message' => 'Message not filled']),
             'phone'   => new NotBlank(),
             'status'  => []
         ]);
