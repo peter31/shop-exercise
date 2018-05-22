@@ -7,6 +7,6 @@ class ErrorController extends AdminAbstractController
     {
         header("HTTP/1.0 404 Not Found", true, 404);
 
-        include dirname(__DIR__) . '/Resources/templates/404.php';
+        $this->twig->display('@Common/404.html.twig');
     }
 }

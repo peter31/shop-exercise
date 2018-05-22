@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $title ?></title>
+    <title>{{ title is defined ? title : '' }}</title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <style>
 
@@ -39,13 +39,21 @@
 </head>
 <body>
 <div class="bar">
-    <?php if (array_key_exists('user_login_name', $_SESSION)) { ?>
-        Hi<?php echo ($_SESSION['user_login_name']) ?> | <a href="/user/logout">log out</a>
-    <?php } else { ?>
+    {% if session.user_login_name is defined %}
+        Hi {{ session.user_login_name }} | <a href="/user/logout">log out</a>
+    {% else %}
         <a href="/user/login">log in</a> | <a href="/user/registration">registration</a>
-    <?php } ?>
+    {% endif %}
 </div>
 
 <div class="header">
     <b>HEADER</b>
 </div>
+
+{% block body %}{% endblock body %}
+
+<div class="footer">
+    <p>&copy;{{ "now"|date("Y") }}</p>
+</div>
+</body>
+</html>

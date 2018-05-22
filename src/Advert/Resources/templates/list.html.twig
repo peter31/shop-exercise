@@ -1,0 +1,14 @@
+{% extends "@Common/layout.html.twig" %}
+
+{% block body %}
+<div class="content">
+    <table width="100%">
+        {% for advert in adverts %}
+            <tr>
+                <td class="title"><a href="/adverts/item?id={{ advert.id }}">{{ advert.title }}</a></td>
+                <td class="created" align="right">{{ advert.created }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock body %}

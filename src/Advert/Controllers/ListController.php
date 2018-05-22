@@ -11,9 +11,9 @@ class ListController extends AbstractController
 
     public function listAction()
     {
-        $adverts  = $this->getAdvertManager()->getActive();
-
-        require dirname(__DIR__) . '/Resources/templates/list.php';
+        $this->twig->display('@Advert/list.html.twig', [
+            'adverts' => $this->getAdvertManager()->getActive()
+        ]);
     }
 
     public function viewAction()
@@ -23,6 +23,8 @@ class ListController extends AbstractController
             $this->show404();
         }
 
-        include dirname(__DIR__) . '/Resources/templates/view.php';
+        $this->twig->display('@Advert/view.html.twig', [
+            'item' => $item
+        ]);
     }
 }
