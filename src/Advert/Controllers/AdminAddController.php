@@ -1,15 +1,15 @@
 <?php
 namespace Advert\Controllers;
 
-use Advert\Traits\GetAdvertManagerTrait;
 use Common\Controllers\AdminAbstractController;
-//use Common\Validator\Strategy\NotBlank;
-//use Common\Validator\Validator;
+use Advert\Traits\GetAdvertManagerTrait;
 
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+//use Common\Validator\Validator;
+//use Common\Validator\Strategy\NotBlank;
 
 class AdminAddController extends AdminAbstractController
 {
@@ -18,6 +18,7 @@ class AdminAddController extends AdminAbstractController
     public function addForm()
     {
         $item = [];
+
         if (array_key_exists('saved_data', $_SESSION)) {
             $item   = array_merge($item, $_SESSION['saved_data']['item']);
             $errors = $_SESSION['saved_data']['errors'];
@@ -40,9 +41,9 @@ class AdminAddController extends AdminAbstractController
         $validator = Validation::createValidator();
 
         $constraints = new Collection([
-            'title'   => new NotBlank(['message' => 'Title not filled']),
-            'message' => new NotBlank(['message' => 'Message not filled']),
-            'phone'   => new NotBlank(),
+            'title'   => [new NotBlank()],
+            'message' => [new NotBlank()],
+            'phone'   => [new NotBlank()],
             'status'  => []
         ]);
 

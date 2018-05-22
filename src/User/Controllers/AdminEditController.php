@@ -4,10 +4,16 @@ namespace User\Controllers;
 use Common\Controllers\AdminAbstractController;
 use User\Traits\GetUserManagerTrait;
 
-use Common\Validator\Validator;
-use Common\Validator\Strategy\EmailFormat;
-use Common\Validator\Strategy\Exists;
-use Common\Validator\Strategy\NotBlank;
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Common\Constraints\Exists;
+use Symfony\Component\Validator\Constraints\Email;
+
+//use Common\Validator\Validator;
+//use Common\Validator\Strategy\EmailFormat;
+//use Common\Validator\Strategy\Exists;
+//use Common\Validator\Strategy\NotBlank;
 
 class AdminEditController extends AdminAbstractController
 {
@@ -16,6 +22,10 @@ class AdminEditController extends AdminAbstractController
     public function editForm()
     {
         $user = $this->getUserManager()->getById($_GET['id']);
+
+        if (null === $user) {
+            return $this->show404();
+        }
 
         if (array_key_exists('saved_data', $_SESSION)) {
             $user   = array_merge($user, $_SESSION['saved_data']['user']);
@@ -28,14 +38,17 @@ class AdminEditController extends AdminAbstractController
 
     public function editAction()
     {
-        $validator = new Validator([
-            'id'       => [new NotBlank(), new Exists('users')],
+        $validator = Validation::createValidator();
+
+        $constraints = new Collection([
+            'id'       => [new NotBlank(), new Exists(['table' =>'users', 'field' => 'id'])],
             'name'     => [new NotBlank()],
-            'email'    => [new NotBlank(), new EmailFormat()],
+            'email'    => [new NotBlank(), new Email()],
             'password' => [new NotBlank()],
+            'status'   => []
         ]);
 
-        $errors = $validator->validate($_POST);
+        $errors = $validator->validate($_POST, $constraints);
 
         if (count($errors) > 0) {
             $_SESSION['saved_data']['user']   = $_POST;

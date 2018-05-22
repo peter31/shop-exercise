@@ -6,23 +6,23 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 use Common\DB;
 
-class ExistsValidator extends ConstraintValidator
+class UniqueValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof Exists) {
-            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Exists');
+        if (!$constraint instanceof Unique) {
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Unique');
         }
 
         if (!$constraint->table || !$constraint->field) {
-            throw new \RuntimeException('Wrong Exists validator configuration');
+            throw new \RuntimeException('Wrong Unique validator configuration');
         }
 
         if (isset($value) && $value) {
             $sql = sprintf('SELECT * FROM %s WHERE %s = "%s"', $constraint->table, $constraint->field, $value);
             $query = DB::connect()->query($sql);
 
-            if (0 === $query->num_rows) {
+            if (0 !== $query->num_rows) {
                 $this->context->buildViolation($constraint->message)->addViolation();
             }
         }
