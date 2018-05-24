@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
-use Common\Validator\Strategy\Unique;
+use Common\Constraints\Unique;
 
 //use Common\Validator\Validator;
 //use Common\Validator\Strategy\EmailFormat;
