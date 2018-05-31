@@ -1,18 +1,21 @@
 <?php
 namespace User\Controllers;
 
+use Common\Constraints\FileExtension;
+use Common\Constraints\FileNotBlank;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;
 use Common\Controllers\AdminAbstractController;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Validation;
 use User\Traits\GetUserManagerTrait;
 
 
-//use Symfony\Component\Validator\Constraints\NotBlank;
-//use Symfony\Component\Validator\Constraints\Email;
-
-use Common\Validator\Validator;
-use Common\Validator\Strategy\EmailFormat;
-use Common\Validator\Strategy\FileExtension;
-use Common\Validator\Strategy\FileNotBlank;
-use Common\Validator\Strategy\NotBlank;
+//use Common\Validator\Validator;
+//use Common\Validator\Strategy\EmailFormat;
+//use Common\Validator\Strategy\FileExtension;
+//use Common\Validator\Strategy\FileNotBlank;
+//use Common\Validator\Strategy\NotBlank;
 
 class AdminCSVController extends AdminAbstractController
 {
@@ -30,11 +33,20 @@ class AdminCSVController extends AdminAbstractController
 
     public function actionCSV()
     {
-        $validator = new Validator([
+
+        $validator = Validation::createValidator();
+
+        $constraints = new Collection([
             'browse_csv' => [new FileNotBlank(), new FileExtension('csv')]
         ]);
 
-        $errors = $validator->validate($_FILES);
+        $errors = $validator->validate($_FILES, $constraints);
+
+//        $validator = new Validator([
+//            'browse_csv' => [new FileNotBlank(), new FileExtension('csv')]
+//        ]);
+//
+//        $errors = $validator->validate($_FILES);
 
         if (count($errors)) {
             $_SESSION['saved_data']['errors'] = $errors;
@@ -43,16 +55,27 @@ class AdminCSVController extends AdminAbstractController
         } else {
             $take = fopen($_FILES['browse_csv']['tmp_name'], 'rb');
 
-            $validator = new Validator([
+            $validator = Validation::createValidator();
+
+            $constraints = new Collection([
                 'name'  => [new NotBlank()],
-                'email' => [new NotBlank(), new EmailFormat()]
+                'email' => [new NotBlank(), new Email()]
             ]);
 
+            $errors = $validator->validate($_FILES, $constraints);
+
+//            $validator = new Validator([
+//                'name'  => [new NotBlank()],
+//                'email' => [new NotBlank(), new EmailFormat()]
+//            ]);
+
             $incorrectRows = 0;
-            while (($usersRow = fgetcsv($take)) !== false) {
-                $errors = $validator->validate(['name' => $usersRow[0], 'email' => $usersRow[1]]);
+            $users = [];
+            while (($userRow = fgetcsv($take)) !== false) {
+//              $errors = $validator->validate(['name' => $usersRow[0], 'email' => $usersRow[1]]);
+                $errors = $validator->validate($userRow, $constraints);
                 if (!count($errors)) {
-                    $users[] = $usersRow;
+                    $users[] = $userRow;
                 } else {
                     $incorrectRows++;
                 }
