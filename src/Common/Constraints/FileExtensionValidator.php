@@ -23,7 +23,7 @@ class FileExtensionValidator extends ConstraintValidator
         list(, $real_file_extension) = explode('.', $value['name']);
 
         if ($real_file_extension !== $constraint->required_file_extension) {
-            $this->context->buildViolation($constraint->message)->addViolation();
+            $this->context->buildViolation(sprintf('File "%s" is not "%s" extension !', $value['name'], $constraint->required_file_extension))->addViolation();
 //                $errors[] = sprintf('File "%s" is not "%s" extension !', $value['name'], $constraint->required_file_extension);
             }
         }
