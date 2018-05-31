@@ -37,10 +37,14 @@ class AdminCSVController extends AdminAbstractController
         $validator = Validation::createValidator();
 
         $constraints = new Collection([
-            'browse_csv' => [new FileNotBlank(), new FileExtension('csv')]
+            'browse_csv' => new FileNotBlank()
         ]);
 
         $errors = $validator->validate($_FILES, $constraints);
+
+
+
+//        new FileExtension('csv')
 
 //        $validator = new Validator([
 //            'browse_csv' => [new FileNotBlank(), new FileExtension('csv')]
@@ -69,11 +73,16 @@ class AdminCSVController extends AdminAbstractController
 //                'email' => [new NotBlank(), new EmailFormat()]
 //            ]);
 
+            $total = 0;
             $incorrectRows = 0;
+            $added = 0;
+            $updated = 0;
+
             $users = [];
             while (($userRow = fgetcsv($take)) !== false) {
 //              $errors = $validator->validate(['name' => $usersRow[0], 'email' => $usersRow[1]]);
-                $errors = $validator->validate($userRow, $constraints);
+                $errors = $validator->validate(['name' => $userRow[0], 'email' => $userRow[1]], $constraints);
+                $total++;
                 if (!count($errors)) {
                     $users[] = $userRow;
                 } else {
@@ -83,9 +92,7 @@ class AdminCSVController extends AdminAbstractController
             fclose($take);
         }
 
-        $total = count($users);
-        $added = 0;
-        $updated = 0;
+
 
         foreach ($users as $key => $value) {
             $result = $this->getUserManager()->getByEmail($value[1]);

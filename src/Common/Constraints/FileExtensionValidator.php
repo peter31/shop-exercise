@@ -14,6 +14,10 @@ class FileExtensionValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\FileExtension');
         }
 
+        if (null === $value || '' === $value) {
+            return;
+        }
+
         list(, $real_file_extension) = explode('.', $value['name']);
 
         if ($real_file_extension !== $constraint->required_file_extension) {
