@@ -10,6 +10,8 @@ class FileExtensionValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
 
+        var_dump($value);die;
+
         if (!$constraint instanceof FileExtension) {
             throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\FileExtension');
         }

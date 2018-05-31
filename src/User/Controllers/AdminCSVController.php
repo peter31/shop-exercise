@@ -37,7 +37,7 @@ class AdminCSVController extends AdminAbstractController
         $validator = Validation::createValidator();
 
         $constraints = new Collection([
-            'browse_csv' => [new FileNotBlank(), new FileExtension('csv')]
+            'browse_csv' => [new FileNotBlank(), new FileExtension(['ext' => 'csv'])]
         ]);
 
         $errors = $validator->validate($_FILES, $constraints);

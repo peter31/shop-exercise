@@ -7,10 +7,6 @@ class FileExtension extends Constraint
 {
     public $message;
 
-    public $required_file_extension;
+    public $ext;
 
-    public function __construct($extension)
-    {
-        $this->required_file_extension = $extension;
-    }
 }
