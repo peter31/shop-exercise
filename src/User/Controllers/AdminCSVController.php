@@ -92,8 +92,6 @@ class AdminCSVController extends AdminAbstractController
             fclose($take);
         }
 
-
-
         foreach ($users as $key => $value) {
             $result = $this->getUserManager()->getByEmail($value[1]);
 
