@@ -51,7 +51,7 @@ class AdminAddController extends AdminAbstractController
 //            'password' => [new NotBlank()],
 //        ]);
 
-        if (!empty($errors)) {
+        if (count($errors)) {
             $_SESSION['saved_data']['user']   = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
             $this->redirect('/admin/users/add');

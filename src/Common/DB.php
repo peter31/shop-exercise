@@ -9,8 +9,15 @@ class DB
     {
         if (self::$link === null) {
             require dirname(__DIR__, 2) . '/config.php';
-            self::$link = new \mysqli($db['host'], $db['user'], $db['pass'], $db['name']);
+            self::$link = new \mysqli(
+                $db['host'],
+                $db['user'],
+                $db['pass'],
+                $db['name'],
+                (int) ($db['port'] ?? 3306)
+            );
         }
+
         return self::$link;
     }
 
