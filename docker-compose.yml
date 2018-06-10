@@ -4,7 +4,7 @@ services:
         image: exercise:latest
         container_name: exercise
         networks:
-          - exercise-gateway
+            - exercise-gateway
         volumes:
             - ./:/app
             - ./docker/nginx/default.conf:/etc/nginx/sites-available/default.conf
@@ -20,15 +20,20 @@ services:
         image: mysql:5.7
         container_name: exercise_mysql
         environment:
-          - MYSQL_ROOT_PASSWORD=qwerty
-          - MYSQL_DATABASE=exercise
-          - MYSQL_USER=exercise
-          - MYSQL_PASSWORD=qwerty
+            - MYSQL_ROOT_PASSWORD=qwerty
+            - MYSQL_DATABASE=exercise
+            - MYSQL_USER=exercise
+            - MYSQL_PASSWORD=qwerty
         ports:
             - 3308:3306
         networks:
             - exercise-gateway
+        volumes:
+            - my-datavolume:/var/lib/mysql
 
 networks:
     exercise-gateway:
         external: true
+
+volumes:
+    my-datavolume:
