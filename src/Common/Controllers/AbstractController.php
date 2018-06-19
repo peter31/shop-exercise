@@ -13,6 +13,7 @@ class AbstractController
 
         $basePath = dirname(dirname(__DIR__));
         $loadersArr = [];
+
         foreach (['Advert', 'Common', 'User'] as $module) {
             $loader = new \Twig_Loader_Filesystem();
             $loader->addPath($basePath . '/' . $module . '/Resources/templates', $module);

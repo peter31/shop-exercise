@@ -1,0 +1,17 @@
+{% extends "@Common/layout.html.twig" %}
+
+{% block errors %}
+    <div>
+        {% if session.saved_errors is defined %}
+            {% set errors = session.saved_errors %}
+        {% endif %}
+
+          {# todo <?php unset($_SESSION['saved_errors']); ?>#}
+
+        {% if errors is defined %}
+            {% for error in errors %}
+                  <p style="color: #C1272D;">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock errors %}

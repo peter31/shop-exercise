@@ -1,0 +1,34 @@
+{% extends "@Common/admin/layout.html.twig" %}
+
+{% block body %}
+<div class="content">
+    <a href="/admin/users/add"><b>Add user  through form</b></a>
+    <p></p>
+    <a href="/admin/users/csv"><b>Add user(s)  through sending CVS file</b></a>
+    <p></p>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>*</th>
+            <th>*</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td align="center">{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td align="center">{{ user.status }}</td>
+            <td>{{ user.created }}</td>
+            <td>{{ user.updated }}</td>
+            <td><a href="/admin/users/edit?id={{ user.id }}">Edit</a></td>
+            <td><a href="/admin/users/delete_action?id={{ user.id }}" onclick="return confirm('Delete selected element?');">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock body %}

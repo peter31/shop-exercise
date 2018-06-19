@@ -24,13 +24,18 @@ class AdminEditController extends AdminAbstractController
             return $this->show404();
         }
 
+        $errors = [];
+
         if (array_key_exists('saved_data', $_SESSION)) {
             $item = array_merge($item, $_SESSION['saved_data']['advert']);
             $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
 
-        include dirname(__DIR__) . '/Resources/templates/admin/edit.php';
+        $this->twig->display('@Advert/admin/edit.html.twig', [
+            'item'   => $item,
+            'errors' => $errors
+        ]);
     }
 
     public function editAction()

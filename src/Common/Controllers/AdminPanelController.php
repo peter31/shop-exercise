@@ -10,6 +10,9 @@ class AdminPanelController extends AdminAbstractController
     public function controlPanel()
     {
         $title = 'Control Panel';
-        require dirname(__DIR__) . '/Resources/templates/admin/panel.php';
+
+        $this->twig->display('@Common/admin/panel.html.twig', [
+            'title'   => $title
+        ]);
     }
 }

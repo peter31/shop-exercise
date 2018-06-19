@@ -1,0 +1,51 @@
+{% extends "@Common/admin/layout.html.twig" %}
+
+{% block body %}
+    <form  action="/admin/users/add_action" method="POST">
+
+        <div class="form-group">
+            <label for="user-name">Name:</label>
+            <input class="form-control" id="user-name" name="name"
+                   value="{% if user.name is defined and user.name %}{{ user.name }}{% endif %}" placeholder="name"
+                   required
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="user-email">Email:</label>
+            <input id="user-email" class="form-control" type="email" name="email"
+                   value="{% if user.email is defined and user.email %}{{ user.email }}{% endif %}" placeholder="example@mail.com"
+                   required
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="user-password">Password:</label>
+            <input id="user-password" class="form-control" type="password" name="password"
+                   value="{% if user.password is defined and user.password %}{{ user.password }}{% endif %}" placeholder="password"
+                   required
+            />
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <input type="hidden" name="status" value="0"/>
+                <input id="user-status" class="form-check-input" type="checkbox" name="status" value="1"
+                       {% if user.status is defined and not user.status %}
+
+                           {% else %}
+                               checked
+                       {% endif %}
+                />
+                <label class="form-check-label" for="user-status">Status</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary mb-2">Submit</button>
+        </div>
+
+    </form>
+{% endblock body %}
+
+

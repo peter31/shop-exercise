@@ -23,16 +23,27 @@ class AdminCSVController extends AdminAbstractController
 
     public function getCSV()
     {
+        $errors = [];
+
         if (array_key_exists('saved_data', $_SESSION)) {
             $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
 
-        include dirname(__DIR__) . '/Resources/templates/admin/csv.php';
+        $this->twig->display('@User/admin/csv.html.twig', [
+            'errors' => $errors,
+        ]);
     }
 
     public function actionCSV()
     {
+
+
+        $users = [];
+        $total = 0;
+        $incorrectRows = 0;
+        $added = 0;
+        $updated = 0;
 
         $validator = Validation::createValidator();
 
@@ -42,22 +53,13 @@ class AdminCSVController extends AdminAbstractController
 
         $errors = $validator->validate($_FILES, $constraints);
 
-
-
-//
-
-//        $validator = new Validator([
-//            'browse_csv' => [new FileNotBlank(), new FileExtension('csv')]
-//        ]);
-//
-//        $errors = $validator->validate($_FILES);
-
         if (count($errors)) {
             $_SESSION['saved_data']['errors'] = $errors;
 
             $this->redirect('/admin/users/csv');
         } else {
             $take = fopen($_FILES['browse_csv']['tmp_name'], 'rb');
+
 
             $validator = Validation::createValidator();
 
@@ -68,19 +70,10 @@ class AdminCSVController extends AdminAbstractController
 
             $errors = $validator->validate($_FILES, $constraints);
 
-//            $validator = new Validator([
-//                'name'  => [new NotBlank()],
-//                'email' => [new NotBlank(), new EmailFormat()]
-//            ]);
 
-            $total = 0;
-            $incorrectRows = 0;
-            $added = 0;
-            $updated = 0;
 
-            $users = [];
+//            $users = [];
             while (($userRow = fgetcsv($take)) !== false) {
-//              $errors = $validator->validate(['name' => $usersRow[0], 'email' => $usersRow[1]]);
                 $errors = $validator->validate(['name' => $userRow[0], 'email' => $userRow[1]], $constraints);
                 $total++;
                 if (!count($errors)) {
@@ -104,6 +97,11 @@ class AdminCSVController extends AdminAbstractController
             }
         }
 
-        include dirname(__DIR__) . '/Resources/templates/admin/csv_action.php';
+        $this->twig->display('@User/admin/csv_action.html.twig', [
+            'total'     => $total,
+            'incorrect' => $incorrectRows,
+            'added'     => $added,
+            'updated'   => $updated
+        ]);
     }
 }

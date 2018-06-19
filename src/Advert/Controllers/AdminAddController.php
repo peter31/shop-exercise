@@ -17,27 +17,24 @@ class AdminAddController extends AdminAbstractController
 
     public function addForm()
     {
+
         $item = [];
+        $errors = [];
 
         if (array_key_exists('saved_data', $_SESSION)) {
-            $item   = array_merge($item, $_SESSION['saved_data']['item']);
+            $item = array_merge($item, $_SESSION['saved_data']['item']);
             $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
 
-        include dirname(__DIR__) . '/Resources/templates/admin/add.php';
+        $this->twig->display('@Advert/admin/add.html.twig', [
+            'item'   => $item,
+            'errors' => $errors
+        ]);
     }
 
     public function addAction()
     {
-
-//        $validator = new Validator([
-//            'title'   => [new NotBlank()],
-//            'message' => [new NotBlank()],
-//            'phone'   => [new NotBlank()],
-//        ]);
-//        $errors = $validator->validate($_POST);
-
         $validator = Validation::createValidator();
 
         $constraints = new Collection([
@@ -45,18 +42,16 @@ class AdminAddController extends AdminAbstractController
             'message' => [new NotBlank()],
             'phone'   => [new NotBlank()],
             'status'  => []
-        ]);
+            ]);
 
         $errors = $validator->validate($_POST, $constraints);
 
         if (count($errors)) {
-            $_SESSION['saved_data']['item']   = $_POST;
+            $_SESSION['saved_data']['item'] = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
-
             $this->redirect('/admin/adverts/add');
         } else {
             $this->getAdvertManager()->createItem($_POST);
-
             $this->redirect('/admin/adverts');
         }
     }

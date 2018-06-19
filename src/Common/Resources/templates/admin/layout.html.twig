@@ -54,3 +54,12 @@
     </div>
 
     <div class="container">
+        {% block errors %}{% endblock errors %}
+        {% block body %}{% endblock body %}
+    </div>
+
+    <div class="footer">
+        <p>&copy;{{ "now"|date("Y") }}</p>
+    </div>
+</body>
+</html>

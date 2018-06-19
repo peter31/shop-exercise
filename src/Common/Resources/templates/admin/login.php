@@ -41,7 +41,7 @@
 <body>
 
 <form action="/admin/login" method="POST">
-    <p><?php include dirname(__DIR__) . '/errors.php' ?></p>
+<!--    <p>--><?php //include dirname(__DIR__) . '/errors.php' ?><!--</p>-->
     <p><input type="text" name="user" placeholder="username" required></p>
     <p><input type="password" name="pass" placeholder="password" required></p>
     <p><input type="submit" value="log in"></p>

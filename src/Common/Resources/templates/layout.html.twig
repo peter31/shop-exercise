@@ -38,22 +38,23 @@
     </style>
 </head>
 <body>
-<div class="bar">
-    {% if session.user_login_name is defined %}
-        Hi {{ session.user_login_name }} | <a href="/user/logout">log out</a>
-    {% else %}
-        <a href="/user/login">log in</a> | <a href="/user/registration">registration</a>
-    {% endif %}
-</div>
+    <div class="bar">
+        {% if session.user_login_name is defined %}
+            Hi {{ session.user_login_name }} | <a href="/user/logout">log out</a>
+        {% else %}
+            <a href="/user/login">log in</a> | <a href="/user/registration">registration</a>
+        {% endif %}
+    </div>
 
-<div class="header">
-    <b>HEADER</b>
-</div>
+    <div class="header">
+        <b>HEADER</b>
+    </div>
 
-{% block body %}{% endblock body %}
+    {% block errors %}{% endblock errors %}
+    {% block body %}{% endblock body %}
 
-<div class="footer">
-    <p>&copy;{{ "now"|date("Y") }}</p>
-</div>
+    <div class="footer">
+        <p>&copy;{{ "now"|date("Y") }}</p>
+    </div>
 </body>
 </html>

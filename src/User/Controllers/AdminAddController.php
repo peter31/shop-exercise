@@ -22,6 +22,7 @@ class AdminAddController extends AdminAbstractController
     public function addForm()
     {
         $user = [];
+        $errors = [];
 
         if (array_key_exists('saved_data', $_SESSION)) {
             $user   = array_merge($user, $_SESSION['saved_data']['user']);
@@ -29,7 +30,10 @@ class AdminAddController extends AdminAbstractController
             unset($_SESSION['saved_data']);
         }
 
-        include dirname(__DIR__) . '/Resources/templates/admin/add.php';
+        $this->twig->display('@User/admin/add.html.twig', [
+            'user'   => $user,
+            'errors' => $errors
+        ]);
     }
 
     public function addAction()
@@ -45,12 +49,6 @@ class AdminAddController extends AdminAbstractController
 
         $errors = $validator->validate($_POST, $constraints);
 
-//        $validator = new Validator([
-//            'name'     => [new NotBlank()],
-//            'email'    => [new NotBlank(), new EmailFormat(), new Unique('users')],
-//            'password' => [new NotBlank()],
-//        ]);
-
         if (count($errors)) {
             $_SESSION['saved_data']['user']   = $_POST;
             $_SESSION['saved_data']['errors'] = $errors;
@@ -58,9 +56,9 @@ class AdminAddController extends AdminAbstractController
         } else {
             $this->getUserManager()->createItem($_POST);
 
-            $userResultString = 'New user was added';
-
-            include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
+            $this->twig->display('@User/admin/add_action.html.twig', [
+                'result'   => 'New user was added'
+            ]);
         }
     }
 }

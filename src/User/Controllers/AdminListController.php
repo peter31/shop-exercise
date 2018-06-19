@@ -12,17 +12,17 @@ class AdminListController extends AdminAbstractController
 
     public function listAction()
     {
-        $users = $this->getUserManager()->getAll();
+        $this->twig->display('@User/admin/list.html.twig', [
+            'users' => $this->getUserManager()->getAll()
+        ]);
 
-        require dirname(__DIR__) . '/Resources/templates/admin/list.php';
-
-        $bot = new BotApi('547386859:AAGFMJWe9b73ViLed5lem97vX3WgeuB3AJc');
-
-        $chatId = -304306979;
-
-        $messageText = 'New user was added';
-
-        $bot->sendMessage($chatId, $messageText);
+//        $bot = new BotApi('547386859:AAGFMJWe9b73ViLed5lem97vX3WgeuB3AJc');
+//
+//        $chatId = -304306979;
+//
+//        $messageText = 'New user was added';
+//
+//        $bot->sendMessage($chatId, $messageText);
     }
 
     public function deleteAction()

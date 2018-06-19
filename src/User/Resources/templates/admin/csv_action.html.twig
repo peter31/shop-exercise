@@ -1,0 +1,13 @@
+{% extends "@Common/admin/layout.html.twig" %}
+
+{% block body %}
+<div class="content">
+    <p>Processed rows - {{ total }}</p>
+    <p>Incorrect rows - {{ incorrect }}</p>
+    <p>Added users - {{ added }}</p>
+    <p>Updated users - {{ updated }}</p>
+    <p><a href="/admin/users/add">Add another one user</a></p>
+    <p><a href="/admin/users">See the list of users</a></p>
+</div>
+{% endblock body %}
+

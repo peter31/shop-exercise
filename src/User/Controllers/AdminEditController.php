@@ -21,6 +21,7 @@ class AdminEditController extends AdminAbstractController
 
     public function editForm()
     {
+        $errors = [];
         $user = $this->getUserManager()->getById($_GET['id']);
 
         if (null === $user) {
@@ -33,7 +34,10 @@ class AdminEditController extends AdminAbstractController
             unset($_SESSION['saved_data']);
         }
 
-        include dirname(__DIR__) . '/Resources/templates/admin/edit.php';
+        $this->twig->display('@User/admin/edit.html.twig', [
+            'user'   => $user,
+            'errors' => $errors
+        ]);
     }
 
     public function editAction()
@@ -56,9 +60,10 @@ class AdminEditController extends AdminAbstractController
             $this->redirect('/admin/users/edit?id=' . $_POST['id']);
         } else {
             $this->getUserManager()->updateItem($_POST);
-            $userResultString = 'User was changed';
 
-            include dirname(__DIR__) . '/Resources/templates/admin/add_action.php';
+            $this->twig->display('@User/admin/add_action.html.twig', [
+                'result'   => 'user was updated'
+            ]);
         }
     }
 }

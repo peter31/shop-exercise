@@ -10,15 +10,14 @@ class AdminListController extends AdminAbstractController
 
     public function listAction()
     {
-        $adverts = $this->getAdvertManager()->getAll();
-
-        require dirname(__DIR__) . '/Resources/templates/admin/list.php';
+        $this->twig->display('@Advert/admin/list.html.twig', [
+            'adverts' => $this->getAdvertManager()->getAll()
+        ]);
     }
 
     public function deleteAction()
     {
         $this->getAdvertManager()->deleteById($_GET['id']);
-
         $this->redirect('/admin/adverts');
     }
 }
