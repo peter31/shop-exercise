@@ -54,7 +54,11 @@
     </div>
 
     <div class="container">
-        {% block errors %}{% endblock errors %}
+        {% if errors is defined and errors %}
+            {% for error in errors %}
+                <p style="color: #C1272D;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
         {% block body %}{% endblock body %}
     </div>
 

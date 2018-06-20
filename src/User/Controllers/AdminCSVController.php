@@ -37,8 +37,6 @@ class AdminCSVController extends AdminAbstractController
 
     public function actionCSV()
     {
-
-
         $users = [];
         $total = 0;
         $incorrectRows = 0;
@@ -70,9 +68,6 @@ class AdminCSVController extends AdminAbstractController
 
             $errors = $validator->validate($_FILES, $constraints);
 
-
-
-//            $users = [];
             while (($userRow = fgetcsv($take)) !== false) {
                 $errors = $validator->validate(['name' => $userRow[0], 'email' => $userRow[1]], $constraints);
                 $total++;

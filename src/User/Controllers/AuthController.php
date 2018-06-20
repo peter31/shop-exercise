@@ -7,7 +7,15 @@ class AuthController extends AbstractController
 {
     public function login()
     {
-        require dirname(__DIR__) . '/Resources/templates/login.php';
+        $errors = [];
+        if (array_key_exists('saved_data', $_SESSION)) {
+            $errors = $_SESSION['saved_data']['errors'];
+            unset($_SESSION['saved_data']);
+        }
+
+        $this->twig->display('@User/login.html.twig', [
+            'errors' => $errors
+        ]);
     }
 
     private function loginValidation($arr)
@@ -34,7 +42,7 @@ class AuthController extends AbstractController
             $_SESSION['user_login_name'] = $_POST['name'];
             $this->redirect('/');
         } else {
-            $_SESSION['saved_errors'] = $errors;
+            $_SESSION['saved_data']['errors'] = $errors;
             $this->redirect('/user/login');
         }
     }
@@ -47,11 +55,20 @@ class AuthController extends AbstractController
 
     public function registration()
     {
+
+        $user = [];
+        $errors = [];
+
         if (array_key_exists('saved_data', $_SESSION)) {
-            $item = $_SESSION['saved_data'];
+            $user = $_SESSION['saved_data']['user'];
+            $errors = $_SESSION['saved_data']['errors'];
             unset($_SESSION['saved_data']);
         }
-        require dirname(__DIR__) . '/Resources/templates/registration.php';
+
+        $this->twig->display('@User/registration.html.twig', [
+            'user'   => $user,
+            'errors' => $errors
+        ]);
     }
 
     private function registrationValidation($arr)

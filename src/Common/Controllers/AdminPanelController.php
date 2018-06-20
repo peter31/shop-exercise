@@ -12,7 +12,7 @@ class AdminPanelController extends AdminAbstractController
         $title = 'Control Panel';
 
         $this->twig->display('@Common/admin/panel.html.twig', [
-            'title'   => $title
+            'title' => $title
         ]);
     }
 }

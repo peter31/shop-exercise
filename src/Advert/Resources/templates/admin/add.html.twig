@@ -4,31 +4,23 @@
     <form  action="/admin/adverts/add_action" method="POST">
         <div class="form-group">
            <label for="advert-title">Title:</label>
-            <input name="title" class="form-control" id="advert-title" value="{% if item.title is defined and item.title %}{{ item.title }}{% endif %}" required/>
+            <input id="advert-title" class="form-control" name="title" {% if advert.title %}value="{{ advert.title }}"{% endif %} required/>
         </div>
 
         <div class="form-group">
             <label for="advert-message">Message:</label>
-            <textarea name="message" class="form-control" id="advert-message" rows="10" cols="30" required>
-                {% if item.message is defined and item.message %}
-                    {{ item.message }}
-                {% endif %}
-            </textarea>
+            <textarea name="message" class="form-control" id="advert-message" rows="10" cols="30" required>{% if advert.message %}{{ advert.message }}{% endif %}</textarea>
         </div>
 
         <div class="form-group">
             <label for="advert-phone-number">Phone number:</label>
-            <input name="phone" class="form-control" id="advert-phone-number" placeholder="078123456"
-                   value= "{% if item.phone is defined and item.phone %}{{ item.phone }}{% endif %}"
-                   required
-            />
+            <input id="advert-phone-number" class="form-control" name="phone" placeholder="078123456" {% if advert.phone %}value="{{ advert.phone }}"{% endif %} required/>
         </div>
 
         <div class="form-group">
             <div class="form-check">
                 <input type="hidden" name="status" value="0"/>
-                <input type="checkbox" id="advert-status" class="form-check-input" name="status" value="1"
-                        {% if item.status is defined and not item.status %}{% else %}checked{% endif %}/>
+                <input type="checkbox" id="advert-status" class="form-check-input" name="status" value="1" {% if advert.status is defined and not advert.status %}{% else %}checked{% endif %}/>
                 <label class="form-check-label" for="advert-status">Status</label>
             </div>
         </div>

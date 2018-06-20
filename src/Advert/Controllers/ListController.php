@@ -11,8 +11,10 @@ class ListController extends AbstractController
 
     public function listAction()
     {
+
         $this->twig->display('@Advert/list.html.twig', [
-            'adverts' => $this->getAdvertManager()->getActive()
+            'adverts' => $this->getAdvertManager()->getActive(),
+            'errors' => []
         ]);
     }
 

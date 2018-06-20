@@ -1,7 +1,7 @@
 <?php
 namespace Common\Controllers;
 
-use Common\DB;
+//use Common\DB;
 
 class AdminAbstractController extends AbstractController
 {
@@ -12,7 +12,6 @@ class AdminAbstractController extends AbstractController
             $this->redirect('/admin/login');
             exit;
         }
-
         parent::__construct();
     }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{ title is defined ? title : '' }}</title>
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+
     <style>
 
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic);
@@ -36,6 +37,7 @@
         }
 
     </style>
+
 </head>
 <body>
     <div class="bar">
@@ -45,14 +47,15 @@
             <a href="/user/login">log in</a> | <a href="/user/registration">registration</a>
         {% endif %}
     </div>
-
     <div class="header">
         <b>HEADER</b>
     </div>
-
-    {% block errors %}{% endblock errors %}
+    {% if errors is defined and errors %}
+        {% for error in errors %}
+            <p style="color: #C1272D;">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
     {% block body %}{% endblock body %}
-
     <div class="footer">
         <p>&copy;{{ "now"|date("Y") }}</p>
     </div>

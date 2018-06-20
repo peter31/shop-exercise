@@ -8,12 +8,10 @@
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic);
 
         body {
-            /*background-color: #2c3338;*/
-            /*color: #606468;*/
+            background-color: #2c3338;
+            color: #606468;
             font-family: 'Open Sans', sans-serif;
             font-size: 14px;
-            margin-top: 0;
-
         }
 
         h2 {
@@ -43,20 +41,21 @@
             cursor: pointer;
         }
 
-        a {
-            color: #1c7430;
-        }
-
     </style>
 </head>
 <body>
-    <h2>Log in</h2>
-    <form action="/user/login" method="POST">
-        <p><?php include dirname(__DIR__, 3) . '/Common/Resources/templates/errors.php' ?></p>
-        <p><input type="text" name="name" placeholder="username" ></p>
-        <p><input type="password" name="password" placeholder="password" ></p>
-        <p><input type="submit" value="log in"></p>
-        <p><a href="/user/registration">create account</a></p>
+    <h2>Registration</h2>
+    <form action="/user/registration" method="POST">
+        {% if errors %}
+            {% for error in errors %}
+                <p style="color: #C1272D;">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <p><input type="text" name="name" {% if user %}value="{{ user.name }}"{% endif %} placeholder="username" required></p>
+        <p><input type="email" name="email" {% if user %}value="{{ user.email }}"{% endif %} placeholder="example@mail.com" required/></p>
+        <p><input type="password" name="password" {% if user %}value="{{ user.password }}"{% endif %} placeholder="password" required></p>
+        <p><input type="password" name="password2" {% if user %}value="{{ user.password2 }}"{% endif %} placeholder="confirm password" required></p>
+        <p><input type="submit" value="sign up"></p>
     </form>
 </body>
 </html>
