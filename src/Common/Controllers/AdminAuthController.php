@@ -24,7 +24,14 @@ class AdminAuthController extends AbstractController
         if (array_key_exists('admin_auth_login', $_SESSION)) {
             $this->redirect('/admin');
         } else {
-            $this->twig->display('@Common/admin/login.html.twig', []);
+            $errors = [];
+            if (array_key_exists('saved_data', $_SESSION)) {
+                $errors = $_SESSION['saved_data']['errors'];
+                unset($_SESSION['saved_data']);
+            }
+            $this->twig->display('@Common/admin/login.html.twig', [
+                'errors' => $errors
+            ]);
         }
     }
 
